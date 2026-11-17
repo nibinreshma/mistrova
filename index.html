@@ -1753,7 +1753,7 @@ nav.desktop-nav .nav-link.is-current::after { content: ""; position: absolute; l
           <a href="#homestays" class="dropdown-link">Coffee Plantation Homestays</a>
           <a href="#heritage" class="dropdown-link">Heritage Nalukettu Manors</a>
           <div class="dropdown-footer">
-            <a href="#all-stays" class="dropdown-viewall"><span>View All</span><span class="va-arrow">→</span></a>
+            <a href="#curated-showcase" class="dropdown-viewall"><span>View All</span><span class="va-arrow">→</span></a>
           </div>
         </div>
       </div>
@@ -1766,7 +1766,7 @@ nav.desktop-nav .nav-link.is-current::after { content: ""; position: absolute; l
           <a href="#cafes" class="dropdown-link">Highland Specialty Coffee Cafés</a>
           <a href="#temple-treats" class="dropdown-link">Bamboo Rice Kheer (Mula Ari Payasam)</a>
           <div class="dropdown-footer">
-            <a href="#all-eat" class="dropdown-viewall"><span>View All</span><span class="va-arrow">→</span></a>
+            <a href="#eat" class="dropdown-viewall"><span>View All</span><span class="va-arrow">→</span></a>
           </div>
         </div>
       </div>
@@ -1790,7 +1790,7 @@ nav.desktop-nav .nav-link.is-current::after { content: ""; position: absolute; l
           <a href="#transport" class="dropdown-link">KSRTC Depots, Jeeps & Ghat Taxis</a>
           <a href="#ev" class="dropdown-link">Fast EV Charging & 24/7 Fuel Bunks</a>
           <div class="dropdown-footer">
-            <a href="#all-essentials" class="dropdown-viewall"><span>View All</span><span class="va-arrow">→</span></a>
+            <a href="#essentials" class="dropdown-viewall"><span>View All</span><span class="va-arrow">→</span></a>
           </div>
         </div>
       </div>
@@ -3842,31 +3842,29 @@ nav.desktop-nav .nav-link.is-current::after { content: ""; position: absolute; l
         { title: "Eco Treehouses & Glamping", link: "#treehouses" },
         { title: "Coffee Plantation Homestays", link: "#homestays" },
         { title: "Heritage Nalukettu Manors", link: "#heritage" },
-        { title: "View All", link: "#all-stays", isViewAll: true }
+        { title: "View All", link: "#curated-showcase", isViewAll: true }
       ],
       eat: [
         { title: "Malabar Biryani & Chattichoru", link: "#biryani" },
         { title: "Traditional Sadhya", link: "#sadhya" },
         { title: "Highland Specialty Cafés", link: "#cafes" },
         { title: "Bamboo Rice Payasam", link: "#temple-treats" },
-        { title: "View All", link: "#all-eat", isViewAll: true }
+        { title: "View All", link: "#eat", isViewAll: true }
       ],
       essentials: [
         { title: "24/7 Hospitals & Medical Centers", link: "#hospitals" },
         { title: "KSRTC Depots, Jeeps & Ghat Taxis", link: "#transport" },
         { title: "Fast EV Charging & 24/7 Fuel", link: "#ev" },
-        { title: "View All", link: "#all-essentials", isViewAll: true }
+        { title: "View All", link: "#essentials", isViewAll: true }
       ]
     };
 
     if (appIcons && appSubPanel) {
       appIcons.forEach(btn => {
         btn.addEventListener('click', () => {
-          // tapping the tile that is already open goes to that section's page
-          if (btn.classList.contains('active')) {
-            const all = (appCategoryData[btn.dataset.cat] || []).find(x => x.isViewAll);
-            if (all) { window.location.href = all.link; return; }
-          }
+          // one tap opens that section's page
+          const all = (appCategoryData[btn.dataset.cat] || []).find(x => x.isViewAll);
+          if (all && all.link) { window.location.href = all.link; return; }
           appIcons.forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
 

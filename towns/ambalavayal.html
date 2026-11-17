@@ -1045,7 +1045,7 @@ document.getElementById('mapDir').href = 'https://www.google.com/maps/dir/?api=1
   overlay.addEventListener('click', close);
   document.getElementById('mdClose').addEventListener('click', close);
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
-  drawer.addEventListener('click', function (e) { var t = e.target.closest('.md-tile'); if (t) { var was = t.classList.contains('active'), m = MENU[t.dataset.cat]; if (was && m) { location.href = B + m.all; return; } fill(t.dataset.cat); } if (e.target.closest('.md-link, .md-all')) close(); });
+  drawer.addEventListener('click', function (e) { var t = e.target.closest('.md-tile'); if (t) { var m = MENU[t.dataset.cat]; if (m && m.all) { location.href = B + m.all; return; } fill(t.dataset.cat); } if (e.target.closest('.md-link, .md-all')) close(); });
   fill('towns');
   // lift while touched (hover handled in CSS)
   var SEL = '.md-tile, .md-link, .md-all, .brand-press';
