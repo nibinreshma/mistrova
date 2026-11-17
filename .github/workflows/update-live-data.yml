@@ -1,0 +1,42 @@
+name: Update live data (SOS alerts + traffic)
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'   # every 15 minutes (GitHub may delay scheduled runs a little)
+  workflow_dispatch:          # run it by hand from the Actions tab
+  push:
+    paths: ['data/local-alerts.json']   # rebuild alerts as soon as the team edits them
+
+permissions:
+  contents: write
+
+concurrency:
+  group: live-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install --no-audit --no-fund
+      - name: SOS alerts (SACHET + local)
+        run: npm run update-alerts
+        continue-on-error: true
+      - name: Traffic (TomTom)
+        run: npm run update-traffic
+        continue-on-error: true
+        env:
+          TOMTOM_API_KEY: ${{ secrets.TOMTOM_API_KEY }}
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- data/; then echo "No changes"; exit 0; fi
+          git config user.name "mistrova-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/alerts.json data/traffic.json
+          git commit -m "Update live data"
+          git pull --rebase
+          git push

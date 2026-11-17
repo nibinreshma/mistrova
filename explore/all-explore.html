@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>All Destinations — MISTROVA</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <meta name="description" content="Every place to explore in Wayanad — peaks and treks, waterfalls, lakes and dams, heritage sites and wildlife — with a full page for each destination.">
+  <meta name="theme-color" content="#0A3D4A">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+/* =====================================================================
+   DESTINATIONS — add one entry per place. Set `page` to the file name of
+   its destination page (in this explore/ folder) once that page exists.
+   ===================================================================== */
+const CATEGORIES = ["Peaks & Viewpoints", "Waterfalls", "Lakes, Dams & River Islands", "Wildlife Sanctuaries", "Heritage"];
+const DESTINATIONS = [
+  {
+    "id": "chembra-peak",
+    "name": "Chembra Peak & Heart Lake",
+    "cat": "Peaks & Viewpoints",
+    "region": "Meppadi • 2,100 m",
+    "tag": "Highest peak in Wayanad",
+    "desc": "Wayanad's highest summit, with the heart-shaped Hridhayathadakam lake on the way up through tea and shola grassland.",
+    "page": "chembra-peak.html",
+    "image": "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "id": "banasura-hill",
+    "name": "Banasura Hill",
+    "cat": "Peaks & Viewpoints",
+    "region": "Vellamunda • 2,073 m",
+    "tag": "Second-highest peak",
+    "desc": "Wayanad's second-highest peak, rising above the Banasura Sagar reservoir with long ridge-line views.",
+    "page": "banasura-hill.html",
+    "image": null
+  },
+  {
+    "id": "brahmagiri-peak",
+    "name": "Brahmagiri Peak",
+    "cat": "Peaks & Viewpoints",
+    "region": "Thirunelly • 1,608 m",
+    "tag": "Shola forest trek",
+    "desc": "Shola forest and rolling grassland on the Kerala–Karnataka border above the Thirunelly valley.",
+    "page": "brahmagiri-peak.html",
+    "image": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "id": "vellarimala",
+    "name": "Vellarimala",
+    "cat": "Peaks & Viewpoints",
+    "region": "Meppadi • Wayanad–Kozhikode border",
+    "tag": "Camel's Hump range",
+    "desc": "High-altitude ridge of the Camel's Hump range — rugged, remote trekking country above Soochipara.",
+    "page": "vellarimala.html",
+    "image": null
+  },
+  {
+    "id": "phantom-rock",
+    "name": "Phantom Rock",
+    "cat": "Peaks & Viewpoints",
+    "region": "Ambalavayal",
+    "tag": "Skull-shaped rock",
+    "desc": "A giant skull-shaped rock formation near Edakkal, a short climb for wide views over the Ambalavayal plateau.",
+    "page": "phantom-rock.html",
+    "image": null
+  },
+  {
+    "id": "lakkidi-viewpoint",
+    "name": "Lakkidi Viewpoint",
+    "cat": "Peaks & Viewpoints",
+    "region": "Vythiri • Thamarassery Churam",
+    "tag": "Gateway of Wayanad",
+    "desc": "The \"Gateway of Wayanad\" at the top of the ghat road, looking down over the nine hairpin bends of the Thamarassery Churam.",
+    "page": "lakkidi-viewpoint.html",
+    "image": null
+  },
+  {
+    "id": "sunrise-valley",
+    "name": "Sunrise Valley",
+    "cat": "Peaks & Viewpoints",
+    "region": "Vaduvanchal • Meppadi",
+    "tag": "Gorge viewpoint",
+    "desc": "A deep gorge viewpoint over forested valleys toward the Chaliyar river basin — best in the early morning.",
+    "page": "sunrise-valley.html",
+    "image": null
+  },
+  {
+    "id": "meenmutty-waterfalls",
+    "name": "Meenmutty Waterfalls",
+    "cat": "Waterfalls",
+    "region": "Banasura • Padinjarathara",
+    "tag": "3-tier waterfall",
+    "desc": "A three-tiered forest waterfall near Banasura Sagar Dam — each level harder to reach than the last.",
+    "page": "meenmutty-waterfalls.html",
+    "image": "https://images.unsplash.com/photo-1511497584788-87676104235f?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "id": "soochipara-waterfalls",
+    "name": "Soochipara Waterfalls",
+    "cat": "Waterfalls",
+    "region": "Vellarimala • Meppadi",
+    "tag": "Sentinel Rock",
+    "desc": "Also called Sentinel Rock Falls — a cascade into a rock pool, surrounded by cliffs and tea estates.",
+    "page": "soochipara-waterfalls.html",
+    "image": "https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "id": "kanthanpara-waterfalls",
+    "name": "Kanthanpara Waterfalls",
+    "cat": "Waterfalls",
+    "region": "Meppadi",
+    "tag": "Family-friendly",
+    "desc": "A smaller, gentle cascade among plantations — an easy stop for families.",
+    "page": "kanthanpara-waterfalls.html",
+    "image": null
+  },
+  {
+    "id": "chethalayam-waterfalls",
+    "name": "Chethalayam Waterfalls",
+    "cat": "Waterfalls",
+    "region": "Sulthan Bathery • Kidanganad",
+    "tag": "Seasonal forest trek",
+    "desc": "A seasonal waterfall reached by a forest walk inside the wildlife sanctuary range near Sulthan Bathery.",
+    "page": "chethalayam-waterfalls.html",
+    "image": null
+  },
+  {
+    "id": "thusharagiri-waterfalls",
+    "name": "Thusharagiri Waterfalls",
+    "cat": "Waterfalls",
+    "region": "Kozhikode border • Kodenchery",
+    "tag": "Multi-level cascades",
+    "desc": "A series of cascades on the western slopes of the Ghats, just across the Wayanad–Kozhikode border.",
+    "page": "thusharagiri-waterfalls.html",
+    "image": null
+  },
+  {
+    "id": "banasura-sagar-dam",
+    "name": "Banasura Sagar Dam",
+    "cat": "Lakes, Dams & River Islands",
+    "region": "Padinjarathara • Banasura Hills",
+    "tag": "Reservoir & boating",
+    "desc": "India's largest earthen dam, with speed boating, small islands in the reservoir and Banasura Hill behind.",
+    "page": "banasura-sagar-dam.html",
+    "image": "https://images.unsplash.com/photo-1626014303757-65644775be37?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "id": "pookode-lake",
+    "name": "Pookode Lake",
+    "cat": "Lakes, Dams & River Islands",
+    "region": "Vythiri • Rainforest basin",
+    "tag": "Freshwater lake",
+    "desc": "A natural freshwater lake ringed by rainforest, with pedal boats and a walking path around the shore.",
+    "page": "pookode-lake.html",
+    "image": "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "id": "karapuzha-dam",
+    "name": "Karapuzha Dam & Adventure Park",
+    "cat": "Lakes, Dams & River Islands",
+    "region": "Ambalavayal • Valley gardens",
+    "tag": "Gardens & sunsets",
+    "desc": "An irrigation reservoir with landscaped gardens, an adventure park and wide sunset views.",
+    "page": "karapuzha-dam.html",
+    "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "id": "kuruva-dweep",
+    "name": "Kuruva Dweep",
+    "cat": "Lakes, Dams & River Islands",
+    "region": "Kabini River • Mananthavady",
+    "tag": "River islands",
+    "desc": "A cluster of forested river islands on the Kabini, crossed by bamboo rafts and walking trails.",
+    "page": "kuruva-dweep.html",
+    "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "id": "muthanga-wildlife-sanctuary",
+    "name": "Muthanga Wildlife Sanctuary",
+    "cat": "Wildlife Sanctuaries",
+    "region": "Sulthan Bathery • Nilgiri Biosphere",
+    "tag": "Jeep safari",
+    "desc": "Southern range of the Wayanad Wildlife Sanctuary — jeep safaris through elephant corridors and deciduous forest.",
+    "page": "muthanga-wildlife-sanctuary.html",
+    "image": "https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "id": "tholpetty-wildlife-sanctuary",
+    "name": "Tholpetty Wildlife Sanctuary",
+    "cat": "Wildlife Sanctuaries",
+    "region": "Thirunelly • Nagarhole border",
+    "tag": "Northern range safari",
+    "desc": "Northern range of the Wayanad Wildlife Sanctuary, bordering Karnataka's Nagarhole forests.",
+    "page": "tholpetty-wildlife-sanctuary.html",
+    "image": null
+  },
+  {
+    "id": "begur-reserve-forest",
+    "name": "Begur Reserve Forest",
+    "cat": "Wildlife Sanctuaries",
+    "region": "Mananthavady",
+    "tag": "Teak & medicinal flora",
+    "desc": "Reserve forest near Tholpetty known for teak groves, medicinal plants and birdlife.",
+    "page": "begur-reserve-forest.html",
+    "image": null
+  },
+  {
+    "id": "edakkal-caves",
+    "name": "Edakkal Caves",
+    "cat": "Heritage",
+    "region": "Ambalavayal • Ambukuthi Mala",
+    "tag": "Prehistoric carvings",
+    "desc": "A natural rock shelter high on Ambukuthi Mala with ancient carvings and petroglyphs.",
+    "page": "edakkal-caves.html",
+    "image": "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "id": "wayanad-heritage-museum",
+    "name": "Wayanad Heritage Museum",
+    "cat": "Heritage",
+    "region": "Ambalavayal",
+    "tag": "Archaeology museum",
+    "desc": "District museum run by DTPC, with tribal artefacts, hero stones and finds from Wayanad's past.",
+    "page": "wayanad-heritage-museum.html",
+    "image": null
+  },
+  {
+    "id": "jain-temple-sulthan-bathery",
+    "name": "Sulthan Bathery Jain Temple",
+    "cat": "Heritage",
+    "region": "Sulthan Bathery",
+    "tag": "ASI monument",
+    "desc": "A 13th-century granite Jain temple, later used as Tipu Sultan's battery — the origin of the town's name.",
+    "page": "jain-temple-sulthan-bathery.html",
+    "image": null
+  },
+  {
+    "id": "thirunelly-temple",
+    "name": "Thirunelly Temple",
+    "cat": "Heritage",
+    "region": "Thirunelly • Brahmagiri valley",
+    "tag": "Ancient temple",
+    "desc": "An ancient Maha Vishnu temple in the forested Brahmagiri valley, known for rites at the Papanasini stream.",
+    "page": "thirunelly-temple.html",
+    "image": null
+  },
+  {
+    "id": "pazhassi-raja-tomb",
+    "name": "Pazhassi Raja Tomb",
+    "cat": "Heritage",
+    "region": "Mananthavady",
+    "tag": "Memorial",
+    "desc": "Memorial and museum for Kerala Varma Pazhassi Raja, who resisted British rule from Wayanad's forests.",
+    "page": "pazhassi-raja-tomb.html",
+    "image": null
+  }
+];
+</script>
+<style>
+  :root{
+    --paper:#EEF8F5; --mint:#E2F4F0; --mint-2:#CDEBE5; --aqua:#98D8D0; --teal:#1D8B94; --deep:#10606F; --night:#0A3D4A; --abyss:#04222B; --coral:#F4B9A7;
+    --ink:#0A3D4A; --ink-2:#2F5D66; --line:rgba(10,61,74,.12);
+    --glass:linear-gradient(135deg,rgba(255,255,255,.8),rgba(255,255,255,.5));
+    --glass-edge:rgba(255,255,255,.85); --glass-blur:blur(18px) saturate(160%);
+    --glass-shadow:0 14px 36px -18px rgba(10,61,74,.35), inset 0 1px 0 rgba(255,255,255,.85);
+    --display:'EB Garamond',Georgia,serif; --sans:'Plus Jakarta Sans',system-ui,sans-serif;
+    --ease:cubic-bezier(.16,1,.3,1); --hdr:76px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+    background:var(--paper);background-image:radial-gradient(50% 35% at 0% 0%,rgba(152,216,208,.5),transparent 70%),radial-gradient(45% 35% at 100% 20%,rgba(29,139,148,.14),transparent 70%),radial-gradient(40% 30% at 15% 90%,rgba(244,185,167,.18),transparent 70%);background-attachment:fixed}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  button,input{font:inherit;color:inherit}
+  button{background:none;border:0;cursor:pointer}
+  h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.08;text-wrap:balance;color:var(--night)}
+  .accent{color:var(--teal);font-style:italic}
+  :focus-visible{outline:2px solid var(--deep);outline-offset:3px;border-radius:8px}
+  .wrap{max-width:1200px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+
+  /* Header — mint glass, same as the destination pages */
+  .hdr{position:sticky;top:0;z-index:60;background:rgba(226,244,240,.78);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);border-bottom:1px solid rgba(255,255,255,.7);transition:box-shadow .3s}
+  .hdr.scrolled{box-shadow:0 8px 28px -14px rgba(10,61,74,.35)}
+  .hdr .wrap{height:var(--hdr);display:flex;align-items:center;justify-content:space-between;gap:1rem}
+  .brand{display:flex;align-items:center;text-decoration:none}
+  .back{display:inline-flex;align-items:center;gap:.5rem;font-size:.82rem;font-weight:700;text-decoration:none;color:#fff;padding:.65rem 1.05rem;border-radius:12px;
+    background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,0) 55%),var(--night);border:1px solid rgba(152,216,208,.55);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 6px 16px -6px rgba(4,34,43,.4)}
+  .back:hover{background:linear-gradient(180deg,rgba(255,255,255,.24),rgba(255,255,255,0) 55%),var(--deep)}
+  .back svg{width:15px;height:15px}
+  /* Brand: animated emblem + EB Garamond wordmark, press/hover lift (same as homepage) */
+  .brand{gap:.65rem;padding:.3rem .8rem .3rem .35rem;margin-left:-.35rem;border-radius:16px;-webkit-tap-highlight-color:transparent;touch-action:manipulation;user-select:none;-webkit-user-select:none;
+    transform:translateZ(0);transform-origin:30% 50%;transition:transform .38s cubic-bezier(.2,.9,.3,1.35),box-shadow .38s ease,background-color .38s ease}
+  .brand .em-wrap{position:relative;width:40px;height:40px;flex-shrink:0;display:inline-flex;animation:emFloat 6s ease-in-out infinite;transform-origin:50% 90%}
+  .brand .em-wrap::before{content:"";position:absolute;inset:8%;border-radius:50%;background:radial-gradient(circle,rgba(242,199,214,.75),rgba(156,189,226,.25) 55%,transparent 72%);animation:emHalo 6s ease-in-out infinite;pointer-events:none}
+  .brand .em-svg{position:relative;width:100%;height:100%;overflow:visible;filter:drop-shadow(0 3px 6px rgba(10,61,74,.35))}
+  .brand .lf{transform-origin:60px 112px;transform-box:view-box}
+  .brand .l1{animation:emSwayLs 3.4s ease-in-out infinite}.brand .r1{animation:emSwayRs 3.6s ease-in-out infinite .2s}
+  .brand .l2{animation:emSwayL 4.2s ease-in-out infinite .1s}.brand .r2{animation:emSwayR 4.4s ease-in-out infinite .35s}
+  .brand .l3{animation:emSwayL 4.8s ease-in-out infinite .5s}.brand .r3{animation:emSwayR 4.6s ease-in-out infinite .65s}
+  .brand .b1{animation:emSwayLs 5s ease-in-out infinite .3s}.brand .b2{animation:emSwayRs 5.2s ease-in-out infinite .4s}
+  .brand .c{animation:emRise 3.6s ease-in-out infinite}
+  .brand-txt{display:flex;flex-direction:column;line-height:1}
+  .brand .brand-name{font-family:'EB Garamond',Georgia,serif;font-weight:500;font-size:1.45rem;letter-spacing:.2em;color:var(--night);transition:letter-spacing .38s cubic-bezier(.2,.9,.3,1.2),color .38s,text-shadow .38s}
+  .brand-txt small{font-size:.56rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2);margin-top:.28rem}
+  .brand.is-pressed,.brand:active{transform:translateY(-3px) scale(1.06);background-color:rgba(255,255,255,.6);box-shadow:0 14px 28px rgba(10,61,74,.22),0 3px 8px rgba(10,61,74,.12),inset 0 1px 0 rgba(255,255,255,.9);transition-duration:.18s}
+  .brand.is-pressed .brand-name,.brand:active .brand-name{letter-spacing:.24em;color:var(--deep);text-shadow:0 6px 14px rgba(10,61,74,.25)}
+  @media (hover:hover) and (pointer:fine){
+    .brand:hover{transform:translateY(-3px) scale(1.06);background-color:rgba(255,255,255,.6);box-shadow:0 14px 28px rgba(10,61,74,.22),0 3px 8px rgba(10,61,74,.12),inset 0 1px 0 rgba(255,255,255,.9)}
+    .brand:hover .brand-name{letter-spacing:.24em;color:var(--deep);text-shadow:0 6px 14px rgba(10,61,74,.25)}
+  }
+  @keyframes emFloat{0%,100%{transform:translateY(0) rotate(0)}25%{transform:translateY(-1.5px) rotate(-2.5deg)}50%{transform:translateY(-3px)}75%{transform:translateY(-1.5px) rotate(2.5deg)}}
+  @keyframes emSwayL{0%,100%{transform:rotate(0)}50%{transform:rotate(-7deg)}}
+  @keyframes emSwayR{0%,100%{transform:rotate(0)}50%{transform:rotate(7deg)}}
+  @keyframes emSwayLs{0%,100%{transform:rotate(0)}50%{transform:rotate(-4deg)}}
+  @keyframes emSwayRs{0%,100%{transform:rotate(0)}50%{transform:rotate(4deg)}}
+  @keyframes emRise{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.08)}}
+  @keyframes emHalo{0%,100%{opacity:0;transform:scale(.7)}50%{opacity:.55;transform:scale(1.15)}}
+  @media (max-width:420px){.brand-txt small{display:none}.brand .brand-name{font-size:1.25rem}.brand .em-wrap{width:34px;height:34px}}
+
+
+  /* Intro */
+  .intro{padding-block:clamp(1.8rem,5vw,3.4rem) 1.4rem}
+  .crumbs{display:flex;gap:.4rem;font-size:.76rem;color:var(--ink-2);margin-bottom:1rem}
+  .crumbs a{text-decoration:none}.crumbs a:hover{color:var(--deep);text-decoration:underline}
+  .eyebrow{display:inline-flex;align-items:center;gap:.45rem;font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--teal)}
+  .intro h1{font-size:clamp(2.5rem,6vw,4.4rem);margin:.6rem 0 .8rem}
+  .intro p{color:var(--ink-2);max-width:58ch}
+  .count{font-weight:800;color:var(--night)}
+
+  /* Filters */
+  .tools{position:sticky;top:calc(var(--hdr) + 8px);z-index:20;margin-top:1.6rem;padding:.6rem;border-radius:22px;display:flex;flex-wrap:wrap;align-items:center;gap:.6rem;
+    background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);border:1px solid var(--glass-edge);box-shadow:var(--glass-shadow)}
+  .chips{display:flex;gap:.4rem;overflow-x:auto;scrollbar-width:none;flex:1 1 auto;min-width:0;padding:2px}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{white-space:nowrap;font-size:.8rem;font-weight:700;padding:.5rem .95rem;border-radius:999px;color:var(--ink-2);background:rgba(226,244,240,.85);border:1px solid rgba(255,255,255,.9);transition:background .2s,color .2s,transform .2s}
+  .chip:hover{background:#fff;color:var(--night)}
+  .chip[aria-pressed="true"]{background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,0) 55%),var(--night);color:#fff;border-color:rgba(152,216,208,.55)}
+  .chip b{font-weight:800;opacity:.7;margin-left:.25rem}
+  .search{display:flex;align-items:center;gap:.5rem;flex:0 1 260px;min-width:180px;padding:.5rem .9rem;border-radius:999px;background:rgba(255,255,255,.85);border:1px solid rgba(10,61,74,.12)}
+  .search svg{width:16px;height:16px;color:var(--ink-2);flex-shrink:0}
+  .search input{border:0;outline:0;background:transparent;width:100%;min-width:0;font-size:.86rem}
+  .search input::placeholder{color:#5E8088}
+  @media (max-width:640px){.tools{position:static}.search{flex:1 1 100%}}
+
+  /* Grid */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px;padding-block:1.6rem 4rem}
+  .card{position:relative;display:flex;flex-direction:column;border-radius:24px;overflow:hidden;text-decoration:none;min-width:0;
+    background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);border:1px solid var(--glass-edge);box-shadow:var(--glass-shadow);
+    transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+  a.card:hover{transform:translateY(-6px);box-shadow:0 26px 50px -24px rgba(10,61,74,.55),inset 0 1px 0 #fff}
+  .media{position:relative;aspect-ratio:4/3;max-width:100%;overflow:hidden;background:linear-gradient(135deg,var(--mint-2),var(--aqua))}
+  .media img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
+  a.card:hover .media img{transform:scale(1.06)}
+  .media::after{content:"";position:absolute;inset:auto 0 0;height:45%;background:linear-gradient(transparent,rgba(4,34,43,.55))}
+  .cat{position:absolute;left:12px;top:12px;z-index:1;font-size:.68rem;font-weight:800;letter-spacing:.06em;color:var(--night);padding:.35rem .7rem;border-radius:999px;background:rgba(255,255,255,.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+  .tag{position:absolute;left:12px;bottom:12px;z-index:1;font-size:.72rem;font-weight:700;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.4)}
+  .body{display:flex;flex-direction:column;gap:.45rem;padding:1.05rem 1.15rem 1.15rem;flex:1}
+  .body h2{font-size:1.55rem}
+  .region{font-size:.74rem;font-weight:700;color:var(--teal)}
+  .desc{font-size:.84rem;color:var(--ink-2);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .foot-row{margin-top:auto;padding-top:.7rem;display:flex;align-items:center;justify-content:space-between;gap:.6rem;border-top:1px solid var(--line)}
+  .go{display:inline-flex;align-items:center;gap:.45rem;font-size:.8rem;font-weight:800;color:#fff;padding:.5rem .9rem;border-radius:999px;
+    background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,0) 55%),var(--night);border:1px solid rgba(152,216,208,.55)}
+  .go svg{width:14px;height:14px;transition:transform .3s var(--ease)}
+  a.card:hover .go svg{transform:translateX(4px)}
+  .live{display:inline-flex;align-items:center;gap:.35rem;font-size:.7rem;font-weight:800;color:#126B47}
+  .live::before{content:"";width:7px;height:7px;border-radius:50%;background:#22A06B;box-shadow:0 0 0 3px rgba(34,160,107,.18)}
+  .soon{font-size:.74rem;font-weight:700;color:var(--ink-2);padding:.45rem .8rem;border-radius:999px;background:rgba(226,244,240,.9);border:1px dashed rgba(10,61,74,.2)}
+  div.card{cursor:default}
+  div.card .media img{filter:saturate(.85)}
+  .empty{grid-column:1/-1;text-align:center;padding:3rem 1rem;color:var(--ink-2)}
+  @media (max-width:520px){.grid{grid-template-columns:1fr 1fr;gap:12px}.body{padding:.8rem}.body h2{font-size:1.15rem}.desc{display:none}.region{font-size:.68rem}
+    .foot-row{flex-direction:column;align-items:stretch}.go,.soon{justify-content:center;text-align:center}.live{display:none}.cat{font-size:.6rem;left:8px;top:8px}.tag{display:none}.media{aspect-ratio:1/1}}
+  @media (max-width:340px){.grid{grid-template-columns:1fr}}
+
+  .foot{border-top:1px solid var(--line);padding-block:1.6rem 2.2rem;font-size:.82rem;color:var(--ink-2)}
+  .foot .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem}
+  .foot a{text-decoration:none;font-weight:600}.foot a:hover{color:var(--deep)}
+  .reveal{transition:opacity .7s var(--ease),transform .7s var(--ease)}
+  .js .reveal:not(.in){opacity:0;transform:translateY(18px)}
+  @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.js .reveal:not(.in){opacity:1;transform:none}}
+  @media (max-width:360px){.back{padding:.6rem .75rem;font-size:.76rem}.brand .brand-name{font-size:1.1rem;letter-spacing:.16em}.brand .em-wrap{width:30px;height:30px}}
+
+  /* Category sections with headings */
+  #sections{padding-block:1.4rem 4rem;display:flex;flex-direction:column;gap:clamp(2.2rem,5vw,3.4rem)}
+  .group{scroll-margin-top:calc(var(--hdr) + 90px)}
+  .group-head{display:flex;align-items:center;gap:.9rem;margin-bottom:1.1rem;padding-bottom:.9rem;border-bottom:1px solid var(--line)}
+  .g-ic{width:48px;height:48px;flex-shrink:0;border-radius:15px;display:grid;place-items:center;color:#fff;background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,0) 55%),var(--deep);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 8px 18px -10px rgba(4,34,43,.5)}
+  .g-ic svg{width:24px;height:24px}
+  .group-head h2{font-size:clamp(1.7rem,3.2vw,2.3rem)}
+  .group-head p{font-size:.84rem;color:var(--ink-2)}
+  .group-head div{min-width:0;flex:1}
+  .g-n{flex-shrink:0;font-size:.74rem;font-weight:800;color:var(--deep);background:var(--mint);border:1px solid rgba(29,139,148,.25);border-radius:999px;padding:.3rem .75rem}
+  .grid{padding-block:0}
+  .body h3{font-family:var(--display);font-weight:600;font-size:1.45rem;line-height:1.1;color:var(--night)}
+  .ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;color:rgba(10,61,74,.55);
+    background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.6),transparent 55%),linear-gradient(135deg,#E2F4F0,#98D8D0 70%,#5BB5B4)}
+  .ph-ic{width:44px;height:44px}
+  .ph small{font-size:.66rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+  .media .tag{z-index:2}
+  @media (max-width:520px){.body h3{font-size:1.1rem}.g-ic{width:40px;height:40px;border-radius:12px}.g-n{display:none}.group-head p{font-size:.78rem}.ph-ic{width:34px;height:34px}.ph small{font-size:.56rem}}
+
+  /* =====================================================================
+     MOBILE MENU PANEL — same as the homepage menu panel
+     ===================================================================== */
+  .md-overlay{position:fixed;inset:0;z-index:140;background:rgba(4,34,43,.32);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s}
+  .md-overlay.open{opacity:1;visibility:visible}
+  .md-drawer{position:fixed;top:0;right:0;z-index:150;height:100%;width:82%;max-width:330px;display:flex;flex-direction:column;overflow-y:auto;overscroll-behavior:contain;
+    padding:calc(1.3rem + env(safe-area-inset-top,0px)) calc(1.1rem + env(safe-area-inset-right,0px)) calc(1.4rem + env(safe-area-inset-bottom,0px)) 1.1rem;
+    background:rgba(226,244,240,.88);backdrop-filter:blur(22px) saturate(160%);-webkit-backdrop-filter:blur(22px) saturate(160%);
+    border-left:1px solid rgba(255,255,255,.75);box-shadow:-14px 0 40px rgba(10,61,74,.18),inset 1px 0 0 rgba(255,255,255,.6);
+    transform:translateX(105%);transition:transform .38s cubic-bezier(.16,1,.3,1);visibility:hidden}
+  .md-drawer.open{transform:none;visibility:visible}
+  .md-head{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin-bottom:1.3rem}
+  .md-head .brand{margin-left:-.35rem}
+  .md-head .brand-txt small{display:none}
+  .md-close{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;color:var(--night);font-size:1.7rem;line-height:1;transition:background .2s,transform .2s}
+  .md-close:hover{background:rgba(255,255,255,.6);transform:rotate(90deg)}
+  .md-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6rem}
+  .md-tile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4rem;padding:.85rem .3rem .7rem;border-radius:18px;
+    background:linear-gradient(180deg,rgba(255,255,255,.3),rgba(255,255,255,.06) 48%,rgba(255,255,255,0) 52%),rgba(255,255,255,.62);
+    border:1px solid rgba(255,255,255,.85);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 6px 14px -8px rgba(10,61,74,.3);color:var(--night);
+    -webkit-tap-highlight-color:transparent;touch-action:manipulation;transform:translateZ(0);
+    transition:transform .34s cubic-bezier(.2,.9,.3,1.35),box-shadow .34s ease,background-color .3s}
+  .md-ico{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:rgba(152,216,208,.35)}
+  .md-ico svg{width:22px;height:22px;transition:transform .34s cubic-bezier(.2,.9,.3,1.35)}
+  .md-txt{font-size:.66rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;transition:letter-spacing .34s ease}
+  .md-tile.active{background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,0) 55%),#10606F;color:#fff;border-color:rgba(152,216,208,.55)}
+  .md-tile.active .md-ico{background:rgba(255,255,255,.16)}
+  .md-panel{margin-top:1rem;padding:.7rem;border-radius:20px;display:flex;flex-direction:column;gap:.4rem;
+    background:linear-gradient(135deg,rgba(255,255,255,.8),rgba(255,255,255,.5));border:1px solid rgba(255,255,255,.9);box-shadow:0 10px 30px -18px rgba(10,61,74,.4),inset 0 1px 0 #fff}
+  .md-link{display:flex;align-items:center;justify-content:space-between;gap:.6rem;padding:.62rem .8rem;border-radius:12px;background:rgba(226,244,240,.75);
+    font-size:.82rem;font-weight:700;color:var(--night);text-decoration:none;-webkit-tap-highlight-color:transparent;transform:translateZ(0);
+    transition:transform .34s cubic-bezier(.2,.9,.3,1.35),box-shadow .34s ease,background-color .3s,color .3s}
+  .md-link span:last-child{color:var(--teal)}
+  .md-link[aria-current="page"]{background:#fff;color:var(--deep);box-shadow:inset 3px 0 0 var(--teal)}
+  .md-foot{display:flex;justify-content:center;margin-top:.35rem;padding-top:.6rem;border-top:1px solid rgba(10,61,74,.1)}
+  .md-all{display:inline-flex;align-items:center;gap:.45rem;padding:.5rem 1.1rem;border-radius:999px;font-size:.74rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:#fff;
+    background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,0) 55%),#0A3D4A;border:1px solid rgba(152,216,208,.55);transform:translateZ(0);
+    transition:transform .34s cubic-bezier(.2,.9,.3,1.35),box-shadow .34s ease}
+  /* lift forward on hover (mouse) or while touched */
+  .md-tile.is-pressed{transform:translateY(-4px) scale(1.07);box-shadow:0 14px 26px rgba(10,61,74,.22),inset 0 1px 0 rgba(255,255,255,.9);z-index:2}
+  .md-tile.is-pressed svg{transform:scale(1.12)}.md-tile.is-pressed .md-txt{letter-spacing:.1em}
+  .md-link.is-pressed{transform:translateX(4px) scale(1.03);background:#fff;box-shadow:0 8px 18px rgba(10,61,74,.16);color:var(--deep)}
+  .md-all.is-pressed{transform:translateY(-2px) scale(1.06);box-shadow:0 10px 20px rgba(10,61,74,.25)}
+  @media (hover:hover) and (pointer:fine){
+    .md-tile:hover{transform:translateY(-4px) scale(1.07);box-shadow:0 14px 26px rgba(10,61,74,.22),inset 0 1px 0 rgba(255,255,255,.9);z-index:2}
+    .md-tile:hover svg{transform:scale(1.12)}.md-tile:hover .md-txt{letter-spacing:.1em}
+    .md-link:hover{transform:translateX(4px) scale(1.03);background:#fff;box-shadow:0 8px 18px rgba(10,61,74,.16);color:var(--deep)}
+    .md-all:hover{transform:translateY(-2px) scale(1.06);box-shadow:0 10px 20px rgba(10,61,74,.25)}
+  }
+  body.md-lock{overflow:hidden}
+  @media (min-width:981px){.md-overlay,.md-drawer{display:none}}
+
+  .hdr-actions{display:flex;align-items:center;gap:.5rem}
+  .menu-btn{display:none;width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.6);border:1px solid rgba(10,61,74,.18);align-items:center;justify-content:center;flex-direction:column;gap:4px}
+  .menu-btn span{width:18px;height:2px;border-radius:2px;background:var(--night)}
+  @media (max-width:980px){.menu-btn{display:flex}}
+  @media (max-width:420px){.back{display:none}}
+  [hidden]{display:none!important}
+
+/* ===== MISTROVA emblem logo (dot-grid) ===== */
+/* the tile itself never moves — only the amber dot inside it does */
+.em-wrap,.brand-emblem-wrap{width:46px!important;height:46px!important;flex-shrink:0;animation:none!important;transform:none!important}
+.brand-emblem-wrap::before,.em-wrap::before{display:none!important;animation:none!important}
+.em-svg,.brand-emblem-svg{width:100%!important;height:100%!important;overflow:visible;animation:none!important;transform:none!important;transition:none!important;filter:drop-shadow(0 4px 10px rgba(26,18,34,.3))!important}
+.em-svg *,.brand-emblem-svg *{animation:none}
+.em-trav{transform-box:fill-box;transform-origin:center;animation:emTrav 11s ease-in-out infinite!important}
+@keyframes emTrav{0%{transform:translate(0px,0px) scale(1)}10%{transform:translate(-24px,-24px) scale(0.5898)}20%{transform:translate(0px,-24px) scale(0.6417)}30%{transform:translate(24px,-24px) scale(0.5898)}40%{transform:translate(48px,0px) scale(0.6019)}50%{transform:translate(24px,24px) scale(0.5898)}60%{transform:translate(0px,24px) scale(0.6417)}70%{transform:translate(-24px,24px) scale(0.5898)}80%{transform:translate(-48px,0px) scale(0.6019)}90%{transform:translate(-24px,0px) scale(0.8009)}100%{transform:translate(0px,0px) scale(1)}}
+@media (prefers-reduced-motion:reduce){.em-trav{animation:none!important}}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js')</script>
+<header class="hdr" id="hdr">
+  <div class="wrap">
+    <a class="brand brand-press" href="../index.html" aria-label="MISTROVA home">
+      <span class="em-wrap" aria-hidden="true">
+        <svg class="em-svg" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><defs><linearGradient id="emgi81" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2C2039"/><stop offset="1" stop-color="#1A1222"/></linearGradient><clipPath id="emci81"><rect width="240" height="240" rx="54"/></clipPath></defs><g clip-path="url(#emci81)"><rect width="240" height="240" rx="54" fill="url(#emgi81)"/><g fill="#EFE7F2"><circle cx="24" cy="48" r="2.2" opacity="0.32"/><circle cx="48" cy="48" r="2.2" opacity="0.32"/><circle cx="72" cy="48" r="2.2" opacity="0.32"/><circle cx="96" cy="48" r="2.2" opacity="0.32"/><circle cx="120" cy="48" r="2.2" opacity="0.32"/><circle cx="144" cy="48" r="2.2" opacity="0.32"/><circle cx="168" cy="48" r="2.2" opacity="0.32"/><circle cx="192" cy="48" r="2.2" opacity="0.32"/><circle cx="216" cy="48" r="2.2" opacity="0.32"/><circle cx="24" cy="72" r="2.2" opacity="0.32"/><circle cx="48" cy="72" r="2.2" opacity="0.32"/><circle cx="72" cy="72" r="2.2" opacity="0.32"/><circle cx="96" cy="72" r="2.77" opacity="0.365"/><circle cx="120" cy="72" r="3.06" opacity="0.388"/><circle cx="144" cy="72" r="2.77" opacity="0.365"/><circle cx="168" cy="72" r="2.2" opacity="0.32"/><circle cx="192" cy="72" r="2.2" opacity="0.32"/><circle cx="216" cy="72" r="2.2" opacity="0.32"/><circle cx="24" cy="96" r="2.2" opacity="0.32"/><circle cx="48" cy="96" r="3.28" opacity="0.405"/><circle cx="72" cy="96" r="5.01" opacity="0.543"/><circle cx="96" cy="96" r="6.37" opacity="0.65"/><circle cx="120" cy="96" r="6.93" opacity="0.694"/><circle cx="144" cy="96" r="6.37" opacity="0.65"/><circle cx="168" cy="96" r="5.01" opacity="0.543"/><circle cx="192" cy="96" r="3.28" opacity="0.405"/><circle cx="216" cy="96" r="2.2" opacity="0.32"/><circle cx="24" cy="120" r="2.2" opacity="0.32"/><circle cx="48" cy="120" r="4.35" opacity="0.49"/><circle cx="72" cy="120" r="6.5" opacity="0.66"/><circle cx="96" cy="120" r="8.65" opacity="0.83"/><circle cx="120" cy="120" r="10.8" opacity="1"/><circle cx="144" cy="120" r="8.65" opacity="0.83"/><circle cx="168" cy="120" r="6.5" opacity="0.66"/><circle cx="192" cy="120" r="4.35" opacity="0.49"/><circle cx="216" cy="120" r="2.2" opacity="0.32"/><circle cx="24" cy="144" r="2.2" opacity="0.32"/><circle cx="48" cy="144" r="3.28" opacity="0.405"/><circle cx="72" cy="144" r="5.01" opacity="0.543"/><circle cx="96" cy="144" r="6.37" opacity="0.65"/><circle cx="120" cy="144" r="6.93" opacity="0.694"/><circle cx="144" cy="144" r="6.37" opacity="0.65"/><circle cx="168" cy="144" r="5.01" opacity="0.543"/><circle cx="192" cy="144" r="3.28" opacity="0.405"/><circle cx="216" cy="144" r="2.2" opacity="0.32"/><circle cx="24" cy="168" r="2.2" opacity="0.32"/><circle cx="48" cy="168" r="2.2" opacity="0.32"/><circle cx="72" cy="168" r="2.2" opacity="0.32"/><circle cx="96" cy="168" r="2.77" opacity="0.365"/><circle cx="120" cy="168" r="3.06" opacity="0.388"/><circle cx="144" cy="168" r="2.77" opacity="0.365"/><circle cx="168" cy="168" r="2.2" opacity="0.32"/><circle cx="192" cy="168" r="2.2" opacity="0.32"/><circle cx="216" cy="168" r="2.2" opacity="0.32"/><circle cx="24" cy="192" r="2.2" opacity="0.32"/><circle cx="48" cy="192" r="2.2" opacity="0.32"/><circle cx="72" cy="192" r="2.2" opacity="0.32"/><circle cx="96" cy="192" r="2.2" opacity="0.32"/><circle cx="120" cy="192" r="2.2" opacity="0.32"/><circle cx="144" cy="192" r="2.2" opacity="0.32"/><circle cx="168" cy="192" r="2.2" opacity="0.32"/><circle cx="192" cy="192" r="2.2" opacity="0.32"/><circle cx="216" cy="192" r="2.2" opacity="0.32"/></g><circle class="em-trav" cx="120" cy="120" r="10.8" fill="#F0A202"/></g></svg>
+      </span>
+      <span class="brand-txt"><b class="brand-name">MISTROVA</b><small>Where nature takes root</small></span>
+    </a>
+    <div class="hdr-actions">
+    <a class="back" href="../index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Home</a>
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mdDrawer"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile menu panel (same as the homepage) -->
+<div class="md-overlay" id="mdOverlay" hidden></div>
+<aside class="md-drawer" id="mdDrawer" aria-label="Menu" aria-hidden="true">
+  <div class="md-head">
+    <a class="brand brand-press" href="../index.html" aria-label="MISTROVA home">
+      <span class="em-wrap" aria-hidden="true">
+        <svg class="em-svg" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><defs><linearGradient id="emgi82" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2C2039"/><stop offset="1" stop-color="#1A1222"/></linearGradient><clipPath id="emci82"><rect width="240" height="240" rx="54"/></clipPath></defs><g clip-path="url(#emci82)"><rect width="240" height="240" rx="54" fill="url(#emgi82)"/><g fill="#EFE7F2"><circle cx="24" cy="48" r="2.2" opacity="0.32"/><circle cx="48" cy="48" r="2.2" opacity="0.32"/><circle cx="72" cy="48" r="2.2" opacity="0.32"/><circle cx="96" cy="48" r="2.2" opacity="0.32"/><circle cx="120" cy="48" r="2.2" opacity="0.32"/><circle cx="144" cy="48" r="2.2" opacity="0.32"/><circle cx="168" cy="48" r="2.2" opacity="0.32"/><circle cx="192" cy="48" r="2.2" opacity="0.32"/><circle cx="216" cy="48" r="2.2" opacity="0.32"/><circle cx="24" cy="72" r="2.2" opacity="0.32"/><circle cx="48" cy="72" r="2.2" opacity="0.32"/><circle cx="72" cy="72" r="2.2" opacity="0.32"/><circle cx="96" cy="72" r="2.77" opacity="0.365"/><circle cx="120" cy="72" r="3.06" opacity="0.388"/><circle cx="144" cy="72" r="2.77" opacity="0.365"/><circle cx="168" cy="72" r="2.2" opacity="0.32"/><circle cx="192" cy="72" r="2.2" opacity="0.32"/><circle cx="216" cy="72" r="2.2" opacity="0.32"/><circle cx="24" cy="96" r="2.2" opacity="0.32"/><circle cx="48" cy="96" r="3.28" opacity="0.405"/><circle cx="72" cy="96" r="5.01" opacity="0.543"/><circle cx="96" cy="96" r="6.37" opacity="0.65"/><circle cx="120" cy="96" r="6.93" opacity="0.694"/><circle cx="144" cy="96" r="6.37" opacity="0.65"/><circle cx="168" cy="96" r="5.01" opacity="0.543"/><circle cx="192" cy="96" r="3.28" opacity="0.405"/><circle cx="216" cy="96" r="2.2" opacity="0.32"/><circle cx="24" cy="120" r="2.2" opacity="0.32"/><circle cx="48" cy="120" r="4.35" opacity="0.49"/><circle cx="72" cy="120" r="6.5" opacity="0.66"/><circle cx="96" cy="120" r="8.65" opacity="0.83"/><circle cx="120" cy="120" r="10.8" opacity="1"/><circle cx="144" cy="120" r="8.65" opacity="0.83"/><circle cx="168" cy="120" r="6.5" opacity="0.66"/><circle cx="192" cy="120" r="4.35" opacity="0.49"/><circle cx="216" cy="120" r="2.2" opacity="0.32"/><circle cx="24" cy="144" r="2.2" opacity="0.32"/><circle cx="48" cy="144" r="3.28" opacity="0.405"/><circle cx="72" cy="144" r="5.01" opacity="0.543"/><circle cx="96" cy="144" r="6.37" opacity="0.65"/><circle cx="120" cy="144" r="6.93" opacity="0.694"/><circle cx="144" cy="144" r="6.37" opacity="0.65"/><circle cx="168" cy="144" r="5.01" opacity="0.543"/><circle cx="192" cy="144" r="3.28" opacity="0.405"/><circle cx="216" cy="144" r="2.2" opacity="0.32"/><circle cx="24" cy="168" r="2.2" opacity="0.32"/><circle cx="48" cy="168" r="2.2" opacity="0.32"/><circle cx="72" cy="168" r="2.2" opacity="0.32"/><circle cx="96" cy="168" r="2.77" opacity="0.365"/><circle cx="120" cy="168" r="3.06" opacity="0.388"/><circle cx="144" cy="168" r="2.77" opacity="0.365"/><circle cx="168" cy="168" r="2.2" opacity="0.32"/><circle cx="192" cy="168" r="2.2" opacity="0.32"/><circle cx="216" cy="168" r="2.2" opacity="0.32"/><circle cx="24" cy="192" r="2.2" opacity="0.32"/><circle cx="48" cy="192" r="2.2" opacity="0.32"/><circle cx="72" cy="192" r="2.2" opacity="0.32"/><circle cx="96" cy="192" r="2.2" opacity="0.32"/><circle cx="120" cy="192" r="2.2" opacity="0.32"/><circle cx="144" cy="192" r="2.2" opacity="0.32"/><circle cx="168" cy="192" r="2.2" opacity="0.32"/><circle cx="192" cy="192" r="2.2" opacity="0.32"/><circle cx="216" cy="192" r="2.2" opacity="0.32"/></g><circle class="em-trav" cx="120" cy="120" r="10.8" fill="#F0A202"/></g></svg>
+      </span>
+      <span class="brand-txt"><b class="brand-name">MISTROVA</b><small>Where nature takes root</small></span>
+    </a>
+    <button type="button" class="md-close" id="mdClose" aria-label="Close menu">&times;</button>
+  </div>
+  <div class="md-grid" role="tablist" aria-label="Sections">
+      <button type="button" class="md-tile active" data-cat="explore" aria-label="Explore"><span class="md-ico"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg></span><span class="md-txt">Explore</span></button>
+      <button type="button" class="md-tile" data-cat="agriculture" aria-label="Agri"><span class="md-ico"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path></svg></span><span class="md-txt">Agri</span></button>
+      <button type="button" class="md-tile" data-cat="towns" aria-label="Towns"><span class="md-ico"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"></path></svg></span><span class="md-txt">Towns</span></button>
+      <button type="button" class="md-tile" data-cat="stay" aria-label="Stay"><span class="md-ico"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></span><span class="md-txt">Stay</span></button>
+      <button type="button" class="md-tile" data-cat="eat" aria-label="Dine"><span class="md-ico"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg></span><span class="md-txt">Dine</span></button>
+      <button type="button" class="md-tile" data-cat="essentials" aria-label="Guide"><span class="md-ico"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg></span><span class="md-txt">Guide</span></button>
+  </div>
+  <nav class="md-panel" id="mdPanel" aria-label="Section links"></nav>
+</aside>
+
+<main class="wrap">
+  <section class="intro">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span aria-hidden="true">/</span><span>Explore</span></nav>
+    <span class="eyebrow">Explore Wayanad</span>
+    <h1>All <span class="accent">destinations</span></h1>
+    <p>Peaks and viewpoints, waterfalls, lakes, dams and river islands, wildlife sanctuaries and heritage sites — <span class="count" id="count"></span>. Tap a place to open its full guide with timings, fees, live weather and how to reach.</p>
+    <div class="tools">
+      <div class="chips" id="chips" role="group" aria-label="Filter by type"></div>
+      <label class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="q" type="search" placeholder="Search places or areas…" aria-label="Search destinations"></label>
+    </div>
+  </section>
+  <div id="sections" aria-live="polite"></div>
+</main>
+
+<footer class="foot">
+  <div class="wrap"><span>© <span id="yr">2026</span> MISTROVA · Wayanad, Kerala</span><nav aria-label="Footer"><a href="../index.html">Home</a> · <a href="../index.html#live-pulse">Live Pulse</a> · <a href="../index.html#essentials">Essentials</a></nav></div>
+</footer>
+
+<script>
+(function () {
+  const esc = (v) => String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const wrap = document.getElementById('sections'), chips = document.getElementById('chips'), q = document.getElementById('q');
+  const slug = (c) => c.toLowerCase().replace(/&/g, '').replace(/\W+/g, '-').replace(/^-|-$/g, '');
+  const cats = ['All', ...CATEGORIES];
+  let active = 'All';
+  try { const h = decodeURIComponent(location.hash.slice(1)); const hit = h && CATEGORIES.find(c => slug(c) === h) || h && CATEGORIES.find(c => slug(c).startsWith(h)); if (hit) active = hit; } catch (e) {}
+  const live = DESTINATIONS.filter(d => d.page).length;
+  document.getElementById('count').textContent = `${DESTINATIONS.length} places in ${CATEGORIES.length} groups, ${live} with a full guide so far`;
+  const arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+  const ICON = {
+    'Peaks & Viewpoints': '<path d="M3 20l6-11 4 6 2-3 6 8z"/>',
+    'Waterfalls': '<path d="M6 3v8M10 3v12M14 3v9M18 3v6"/><path d="M4 19c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 4-1.5"/>',
+    'Lakes, Dams & River Islands': '<path d="M2 15c2.5-2 5-2 7.5 0s5 2 7.5 0 3.5-1.5 5-1"/><path d="M2 19c2.5-2 5-2 7.5 0s5 2 7.5 0 3.5-1.5 5-1"/><path d="M9 11c0-3 1.5-6 3-7 1.5 1 3 4 3 7"/>',
+    'Wildlife Sanctuaries': '<path d="M12 22v-6M8 16h8l-2.5-4H16l-4-6-4 6h2.5z"/>',
+    'Heritage': '<path d="M3 21h18M5 21V10M19 21V10M9 21v-6h6v6M2 10l10-6 10 6"/>'
+  };
+  const BLURB = {
+    'Peaks & Viewpoints': 'Summits, ridges and lookouts across the Western Ghats.',
+    'Waterfalls': 'Cascades in tea valleys and forest — best after the monsoon.',
+    'Lakes, Dams & River Islands': 'Reservoirs, a rainforest lake and the Kabini river islands.',
+    'Wildlife Sanctuaries': 'Elephant corridors, safaris and protected forest.',
+    'Heritage': 'Ancient caves, temples and memorials.'
+  };
+  const glyph = (c, cls) => `<svg class="${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON[c] || ''}</svg>`;
+
+  function drawChips() {
+    chips.innerHTML = cats.map(c => {
+      const n = c === 'All' ? DESTINATIONS.length : DESTINATIONS.filter(d => d.cat === c).length;
+      return `<button type="button" class="chip" aria-pressed="${c === active}" data-c="${esc(c)}">${esc(c)}<b>${n}</b></button>`;
+    }).join('');
+  }
+  function card(d) {
+    const media = d.image
+      ? `<img src="${esc(d.image)}" alt="${esc(d.name)}" loading="lazy" decoding="async" onerror="this.remove()">`
+      : `<span class="ph">${glyph(d.cat, 'ph-ic')}<small>Photo coming soon</small></span>`;
+    const inner = `
+      <div class="media">${media}<span class="tag">${esc(d.tag)}</span></div>
+      <div class="body">
+        <span class="region">${esc(d.region)}</span>
+        <h3>${esc(d.name)}</h3>
+        <p class="desc">${esc(d.desc)}</p>
+        <div class="foot-row">${d.page ? `<span class="live">Full guide</span><span class="go">Explore ${arrow}</span>` : `<span class="soon">Guide coming soon</span>`}</div>
+      </div>`;
+    return d.page
+      ? `<a class="card reveal" href="${esc(d.page)}" aria-label="${esc(d.name)} — open guide">${inner}</a>`
+      : `<div class="card reveal" aria-label="${esc(d.name)} — guide coming soon">${inner}</div>`;
+  }
+  function draw() {
+    const term = q.value.trim().toLowerCase();
+    const match = (d) => !term || [d.name, d.region, d.tag, d.cat, d.desc].join(' ').toLowerCase().includes(term);
+    const html = CATEGORIES.filter(c => active === 'All' || c === active).map(c => {
+      const list = DESTINATIONS.filter(d => d.cat === c && match(d));
+      if (!list.length) return '';
+      return `<section class="group" id="${slug(c)}" aria-labelledby="h-${slug(c)}">
+        <header class="group-head">
+          <span class="g-ic">${glyph(c, '')}</span>
+          <div><h2 id="h-${slug(c)}">${esc(c)}</h2><p>${esc(BLURB[c] || '')}</p></div>
+          <span class="g-n">${list.length} ${list.length === 1 ? 'place' : 'places'}</span>
+        </header>
+        <div class="grid">${list.map(card).join('')}</div>
+      </section>`;
+    }).join('');
+    wrap.innerHTML = html || '<p class="empty">No places match that search.</p>';
+    observe();
+  }
+  chips.addEventListener('click', e => {
+    const b = e.target.closest('.chip'); if (!b) return;
+    active = b.dataset.c; drawChips(); draw();
+    try { history.replaceState(null, '', active === 'All' ? location.pathname : '#' + slug(active)); } catch (err) {}
+  });
+  q.addEventListener('input', draw);
+  addEventListener('hashchange', () => { const h = location.hash.slice(1); const hit = CATEGORIES.find(c => slug(c) === h); active = hit || 'All'; drawChips(); draw(); });
+
+  let io = null;
+  function observe() {
+    const els = wrap.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) { els.forEach(el => el.classList.add('in')); return; }
+    io = io || new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } }), { threshold: .08 });
+    els.forEach((el, i) => { el.style.transitionDelay = (i % 6) * 50 + 'ms'; io.observe(el); });
+  }
+  drawChips(); draw();
+
+  const hdr = document.getElementById('hdr');
+  addEventListener('scroll', () => hdr.classList.toggle('scrolled', scrollY > 10), { passive: true });
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  document.querySelectorAll('.brand-press').forEach(el => {
+    const on = () => el.classList.add('is-pressed'), off = () => el.classList.remove('is-pressed');
+    el.addEventListener('pointerdown', on);
+    ['pointerup', 'pointercancel', 'pointerleave', 'lostpointercapture'].forEach(t => el.addEventListener(t, off));
+    el.addEventListener('touchstart', on, { passive: true });
+    el.addEventListener('touchend', off, { passive: true });
+    el.addEventListener('touchcancel', off, { passive: true });
+  });
+})();
+</script>
+<script>
+/* Mobile menu panel — same sections and links as the homepage */
+(function () {
+  var B = window.MD_BASE || '../';          // path back to the site root
+  var HERE = location.pathname.split('/').pop();
+  var MENU = {
+    explore: { links: [['Chembra Peak & Heart Lake', 'explore/chembra-peak.html'], ['Banasura Sagar Dam', 'explore/banasura-sagar-dam.html'], ['Edakkal Caves', 'explore/edakkal-caves.html'], ['Pookode Lake', 'explore/pookode-lake.html'], ['Muthanga Wildlife Sanctuary', 'explore/muthanga-wildlife-sanctuary.html']], all: 'explore/all-explore.html' },
+    agriculture: { links: [['Tea Estates', 'agriculture/tea-estates.html'], ['Coffee & Spice', 'agriculture/coffee-spice.html'], ['Farms & Farmstays', 'agriculture/farms.html'], ['Research & Gardens', 'agriculture/research.html'], ['GI Crops', 'agriculture/gi-crops.html'], ['Co-ops', 'agriculture/cooperatives.html']], all: 'agriculture/all-agri.html' },
+    towns: { links: [['Ambalavayal', 'towns/ambalavayal.html'], ['Kalpetta (District HQ)', 'towns/all-towns.html#g1'], ['Sulthan Bathery', 'towns/all-towns.html#g1'], ['Mananthavady', 'towns/all-towns.html#g1'], ['Vythiri & Lakkidi', 'towns/all-towns.html#g2']], all: 'towns/all-towns.html' },
+    stay: { links: [['Resorts & Spas', 'index.html#curated-showcase'], ['Treehouses & Glamping', 'index.html#curated-showcase'], ['Plantation Homestays', 'index.html#curated-showcase'], ['Heritage Stays', 'index.html#curated-showcase']], all: 'index.html#curated-showcase' },
+    eat: { links: [['Malabar Food & Cafés', 'index.html#curated-showcase'], ['Coffee Cafés', 'index.html#curated-showcase'], ['Local Messes', 'index.html#curated-showcase'], ['Cinemas', 'index.html#curated-showcase']], all: 'index.html#curated-showcase' },
+    essentials: { links: [['Live Weather & Traffic', 'index.html#live-pulse'], ['Hospitals', 'index.html#essentials'], ['Police Stations', 'index.html#essentials'], ['Emergency 112', 'index.html#essentials']], all: 'index.html#essentials' }
+  };
+  var drawer = document.getElementById('mdDrawer'), overlay = document.getElementById('mdOverlay'), panel = document.getElementById('mdPanel');
+  var opener = document.getElementById('menuBtn');
+  if (!drawer || !opener) return;
+  var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+  function fill(cat) {
+    var m = MENU[cat] || MENU.explore;
+    panel.innerHTML = m.links.map(function (l) {
+      var cur = l[1].split('/').pop() === HERE ? ' aria-current="page"' : '';
+      return '<a class="md-link" href="' + B + l[1] + '"' + cur + '><span>' + esc(l[0]) + '</span><span>→</span></a>';
+    }).join('') + '<div class="md-foot"><a class="md-all" href="' + B + m.all + '">View All <span>→</span></a></div>';
+    drawer.querySelectorAll('.md-tile').forEach(function (t) { t.classList.toggle('active', t.dataset.cat === cat); t.setAttribute('aria-selected', t.dataset.cat === cat); });
+  }
+  function open() { overlay.hidden = false; requestAnimationFrame(function () { overlay.classList.add('open'); drawer.classList.add('open'); }); drawer.setAttribute('aria-hidden', 'false'); opener.setAttribute('aria-expanded', 'true'); document.body.classList.add('md-lock'); }
+  function close() { overlay.classList.remove('open'); drawer.classList.remove('open'); drawer.setAttribute('aria-hidden', 'true'); opener.setAttribute('aria-expanded', 'false'); document.body.classList.remove('md-lock'); setTimeout(function () { if (!drawer.classList.contains('open')) overlay.hidden = true; }, 320); }
+  opener.addEventListener('click', function (e) { e.preventDefault(); e.stopImmediatePropagation(); drawer.classList.contains('open') ? close() : open(); }, true);
+  overlay.addEventListener('click', close);
+  document.getElementById('mdClose').addEventListener('click', close);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+  drawer.addEventListener('click', function (e) { var t = e.target.closest('.md-tile'); if (t) { var was = t.classList.contains('active'), m = MENU[t.dataset.cat]; if (was && m) { location.href = B + m.all; return; } fill(t.dataset.cat); } if (e.target.closest('.md-link, .md-all')) close(); });
+  fill('explore');
+  // lift while touched (hover handled in CSS)
+  var SEL = '.md-tile, .md-link, .md-all, .brand-press';
+  var clear = function () { drawer.querySelectorAll('.is-pressed').forEach(function (x) { x.classList.remove('is-pressed'); }); };
+  var press = function (ev) { var t = ev.target.closest && ev.target.closest(SEL); if (t && drawer.contains(t)) { clear(); t.classList.add('is-pressed'); } };
+  drawer.addEventListener('pointerdown', press);
+  drawer.addEventListener('touchstart', press, { passive: true });
+  ['pointerup', 'pointercancel', 'touchend', 'touchcancel'].forEach(function (t) { document.addEventListener(t, clear, { passive: true }); });
+  drawer.addEventListener('pointerout', function (ev) { var t = ev.target.closest && ev.target.closest(SEL); if (t && !t.contains(ev.relatedTarget)) t.classList.remove('is-pressed'); });
+})();
+</script>
+</body>
+</html>

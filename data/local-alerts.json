@@ -1,0 +1,25 @@
+{
+  "_help": "Your team edits this file. level: critical | warning | info. Dates are ISO 8601 with +05:30 for India time. Leave expires as null for standing advisories. Remove an entry when it no longer applies.",
+  "alerts": [
+    {
+      "id": "local-nh766-night",
+      "level": "critical",
+      "category": "ROAD",
+      "title": "NH 766 forest stretch night travel restriction",
+      "detail": "Through-traffic across the Bandipur forest stretch is restricted 9:00 PM – 6:00 AM daily. Plan Mysuru trips by day.",
+      "issued": "2026-11-01T09:00:00+05:30",
+      "expires": null,
+      "author": "MISTROVA desk"
+    },
+    {
+      "id": "local-chembra-trek",
+      "level": "warning",
+      "category": "TREKKING",
+      "title": "Chembra Peak trek — check before you go",
+      "detail": "Permits are issued by the Forest Department at Meppadi and treks may be suspended in heavy rain or mist.",
+      "issued": "2026-11-10T08:00:00+05:30",
+      "expires": "2026-11-30T18:00:00+05:30",
+      "author": "MISTROVA desk"
+    }
+  ]
+}

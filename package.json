@@ -1,0 +1,12 @@
+{
+  "name": "mistrova",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "update-alerts": "node scripts/update-alerts.mjs",
+    "update-traffic": "node scripts/update-traffic.mjs"
+  },
+  "dependencies": {
+    "fast-xml-parser": "^4.5.0"
+  }
+}
