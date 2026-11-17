@@ -1,1 +1,39 @@
-{ "provider": "TomTom", "status": "pending" }
+{
+  "provider": "TomTom",
+  "status": "ok",
+  "ascent": {
+    "from": "Thamarassery",
+    "to": "Vythiri",
+    "lengthKm": 30.6,
+    "travelMin": 63,
+    "freeFlowMin": 63,
+    "delayMin": 0,
+    "avgSpeedKmh": 29.1,
+    "sections": []
+  },
+  "descent": {
+    "from": "Vythiri",
+    "to": "Thamarassery",
+    "lengthKm": 30.6,
+    "travelMin": 55,
+    "freeFlowMin": 55,
+    "delayMin": 0,
+    "avgSpeedKmh": 33.3,
+    "sections": []
+  },
+  "updated": "2026-11-17T12:05:40.820Z",
+  "incidents": [
+    {
+      "type": "Traffic jam",
+      "description": "Slow traffic",
+      "magnitude": "minor",
+      "delayMin": 3,
+      "road": "NH766, SH29",
+      "fromTo": "Vattoli Road → Koyilandi Thamarassery Road",
+      "where": "near Thamarassery town",
+      "start": "2026-11-17T12:03:15Z",
+      "end": "2026-11-17T12:24:15Z"
+    }
+  ],
+  "incidentsChecked": "2026-11-17T12:05:40.855Z"
+}
