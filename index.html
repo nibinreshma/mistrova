@@ -1671,6 +1671,15 @@ nav.desktop-nav .nav-link.is-current::after { content: ""; position: absolute; l
 .em-trav{transform-box:fill-box;transform-origin:center;animation:emTrav 11s ease-in-out infinite!important}
 @keyframes emTrav{0%{transform:translate(0px,0px) scale(1)}10%{transform:translate(-24px,-24px) scale(0.5898)}20%{transform:translate(0px,-24px) scale(0.6417)}30%{transform:translate(24px,-24px) scale(0.5898)}40%{transform:translate(48px,0px) scale(0.6019)}50%{transform:translate(24px,24px) scale(0.5898)}60%{transform:translate(0px,24px) scale(0.6417)}70%{transform:translate(-24px,24px) scale(0.5898)}80%{transform:translate(-48px,0px) scale(0.6019)}90%{transform:translate(-24px,0px) scale(0.8009)}100%{transform:translate(0px,0px) scale(1)}}
 @media (prefers-reduced-motion:reduce){.em-trav{animation:none!important}}
+
+/* ===== traffic corridor switch ===== */
+.tr-corridor{display:flex;gap:.4rem;margin:0 0 .55rem}
+.tr-cor-btn{appearance:none;border:1px solid rgba(10,61,74,.14);background:rgba(255,255,255,.6);
+  color:var(--ink-2,#2F5D66);font:inherit;font-size:.72rem;font-weight:700;letter-spacing:.04em;
+  padding:.34rem .7rem;border-radius:999px;cursor:pointer;transition:.2s ease}
+.tr-cor-btn:hover{background:#fff}
+.tr-cor-btn.active{background:var(--deep,#10606F);border-color:var(--deep,#10606F);color:#fff}
+.tr-cor-btn:focus-visible{outline:2px solid var(--teal,#1D8B94);outline-offset:2px}
 </style>
 
 
@@ -1990,8 +1999,12 @@ nav.desktop-nav .nav-link.is-current::after { content: ""; position: absolute; l
               <strong id="trSpeed">24.5 km/h</strong>
             </div>
           </div>
+          <div class="tr-corridor" role="group" aria-label="Corridor">
+            <button type="button" class="tr-cor-btn active" data-cor="ghat" aria-pressed="true">Ghat pass</button>
+            <button type="button" class="tr-cor-btn" data-cor="traverse" aria-pressed="false">Full NH 766</button>
+          </div>
           <div class="tr-title-row">
-            <h3 class="pass-title">Thamarassery Churam Pass (NH 766)</h3>
+            <h3 class="pass-title" id="trTitle">Thamarassery Churam Pass (NH 766)</h3>
             <div class="tr-dir" role="group" aria-label="Direction">
               <button type="button" class="tr-dir-btn active" data-dir="ascent" aria-pressed="true">To Wayanad ↑</button>
               <button type="button" class="tr-dir-btn" data-dir="descent" aria-pressed="false">To Kozhikode ↓</button>
@@ -5269,7 +5282,8 @@ nav.desktop-nav .nav-link.is-current::after { content: ""; position: absolute; l
       if (!segs) return;
       const ROUTE_D = flow.getAttribute('d');
       const SVGNS = 'http://www.w3.org/2000/svg';
-      let data = null, dir = 'ascent';
+      let data = null, dir = 'ascent', corridor = 'ghat';
+      const titleEl = $('trTitle');
       const esc = (v) => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
       const colourFor = (s) => s.kind === 'ROAD_CLOSURE' || s.magnitude === 'closure' || s.magnitude === 'major' ? '#ef4444'
@@ -5282,8 +5296,11 @@ nav.desktop-nav .nav-link.is-current::after { content: ""; position: absolute; l
       }
 
       function render() {
-        const r = data && data[dir];
+        // prefer the selected corridor; fall back to the old top-level shape
+        const src = (data && data.corridors && data.corridors[corridor]) || data;
+        const r = src && src[dir];
         if (!r) return;
+        if (titleEl && src && src.label) titleEl.textContent = src.label;
         speedEl.textContent = `${r.avgSpeedKmh} km/h`;
         delayEl.textContent = `${r.delayMin} min`;
         pill.classList.toggle('is-clear', r.delayMin <= 2);
@@ -5325,6 +5342,14 @@ nav.desktop-nav .nav-link.is-current::after { content: ""; position: absolute; l
           ? items.slice(0, 3).map(n => `<div class="t-badge"><span class="t-dot ${n.dot}"></span> ${esc(n.text)} ${n.small ? `<small>• ${esc(n.small)}</small>` : ''}</div>`).join('')
           : '<div class="t-badge"><span class="t-dot green"></span> No jams or incidents reported on the Churam</div>';
       }
+
+      document.querySelectorAll('.tr-cor-btn').forEach(btn => btn.addEventListener('click', () => {
+        corridor = btn.dataset.cor;
+        document.querySelectorAll('.tr-cor-btn').forEach(b => {
+          const on = b === btn; b.classList.toggle('active', on); b.setAttribute('aria-pressed', on);
+        });
+        render();
+      }));
 
       document.querySelectorAll('.tr-dir-btn').forEach(btn => btn.addEventListener('click', () => {
         dir = btn.dataset.dir;

@@ -13,8 +13,14 @@ const OUT = new URL('../data/traffic.json', import.meta.url);
 // Route ends: town centres, so TomTom snaps to the right roads even if slightly off.
 const ENDS = {
   thamarassery: { name: 'Thamarassery', lat: 11.4140, lon: 75.9370 },
-  vythiri:      { name: 'Vythiri',      lat: 11.5530, lon: 76.0410 }
+  vythiri:      { name: 'Vythiri',      lat: 11.5530, lon: 76.0410 },
+  muthanga:     { name: 'Muthanga',     lat: 11.6700, lon: 76.4200 }
 };
+// Two corridors: the ghat in detail, and the full NH 766 traverse across the district.
+const CORRIDORS = [
+  { id: 'ghat',     label: 'Thamarassery Churam Pass (NH 766)', up: 'thamarassery', down: 'vythiri' },
+  { id: 'traverse', label: 'Muthanga ⇄ Thamarassery (NH 766)',  up: 'thamarassery', down: 'muthanga' }
+];
 // Rough landmarks used only to describe where a jam is ("near Lakkidi").
 // Tweak these if a label ever looks off.
 const LANDMARKS = [
@@ -22,10 +28,16 @@ const LANDMARKS = [
   { name: 'Adivaram (Churam foot)', lat: 11.4900, lon: 75.9600 },
   { name: 'Churam hairpin bends', lat: 11.5050, lon: 75.9900 },
   { name: 'Lakkidi viewpoint', lat: 11.5180, lon: 76.0220 },
-  { name: 'Vythiri town', lat: 11.5530, lon: 76.0410 }
+  { name: 'Vythiri town', lat: 11.5530, lon: 76.0410 },
+  { name: 'Chundale junction', lat: 11.5730, lon: 76.0620 },
+  { name: 'Kalpetta', lat: 11.6080, lon: 76.0830 },
+  { name: 'Muttil', lat: 11.6160, lon: 76.1260 },
+  { name: 'Meenangadi', lat: 11.6270, lon: 76.1620 },
+  { name: 'Sulthan Bathery', lat: 11.6650, lon: 76.2600 },
+  { name: 'Muthanga check-post', lat: 11.6700, lon: 76.4200 }
 ];
-// Incident search box around the corridor: minLon,minLat,maxLon,maxLat
-const BBOX = '75.90,11.38,76.12,11.60';
+// Incident search box across the whole NH 766 corridor: minLon,minLat,maxLon,maxLat
+const BBOX = '75.90,11.38,76.50,11.75';
 const INCIDENT_EVERY_MS = 30 * 60 * 1000;
 
 const ICON = { 0: 'Incident', 1: 'Accident', 2: 'Fog', 3: 'Dangerous conditions', 4: 'Rain', 5: 'Ice', 6: 'Traffic jam',
@@ -132,8 +144,17 @@ if (!KEY) {
 
 const out = { ...previous, provider: 'TomTom' };
 try {
-  out.ascent = await route(ENDS.thamarassery, ENDS.vythiri);   // Kozhikode side → Wayanad
-  out.descent = await route(ENDS.vythiri, ENDS.thamarassery);  // Wayanad → Kozhikode side
+  out.corridors = {};
+  for (const c of CORRIDORS) {
+    out.corridors[c.id] = {
+      label: c.label,
+      ascent:  await route(ENDS[c.up],   ENDS[c.down]),   // towards Wayanad / inland
+      descent: await route(ENDS[c.down], ENDS[c.up])      // back towards Kozhikode
+    };
+  }
+  // keep the original top-level pair pointing at the ghat, so older pages still work
+  out.ascent = out.corridors.ghat.ascent;
+  out.descent = out.corridors.ghat.descent;
   out.updated = new Date().toISOString();
   out.status = 'ok';
 } catch (e) {
