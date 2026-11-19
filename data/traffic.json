@@ -5,10 +5,10 @@
     "from": "Thamarassery",
     "to": "Vythiri",
     "lengthKm": 30.6,
-    "travelMin": 53,
-    "freeFlowMin": 53,
+    "travelMin": 51,
+    "freeFlowMin": 51,
     "delayMin": 0,
-    "avgSpeedKmh": 34.9,
+    "avgSpeedKmh": 35.7,
     "sections": []
   },
   "descent": {
@@ -18,12 +18,12 @@
     "travelMin": 48,
     "freeFlowMin": 48,
     "delayMin": 0,
-    "avgSpeedKmh": 38,
+    "avgSpeedKmh": 38.3,
     "sections": []
   },
-  "updated": "2026-11-18T19:15:16.973Z",
+  "updated": "2026-11-19T01:21:50.604Z",
   "incidents": [],
-  "incidentsChecked": "2026-11-18T19:15:17.030Z",
+  "incidentsChecked": "2026-11-19T01:21:50.654Z",
   "corridors": {
     "ghat": {
       "label": "Thamarassery Churam Pass (NH 766)",
@@ -31,10 +31,10 @@
         "from": "Thamarassery",
         "to": "Vythiri",
         "lengthKm": 30.6,
-        "travelMin": 53,
-        "freeFlowMin": 53,
+        "travelMin": 51,
+        "freeFlowMin": 51,
         "delayMin": 0,
-        "avgSpeedKmh": 34.9,
+        "avgSpeedKmh": 35.7,
         "sections": []
       },
       "descent": {
@@ -44,7 +44,7 @@
         "travelMin": 48,
         "freeFlowMin": 48,
         "delayMin": 0,
-        "avgSpeedKmh": 38,
+        "avgSpeedKmh": 38.3,
         "sections": []
       }
     },
@@ -54,20 +54,20 @@
         "from": "Thamarassery",
         "to": "Muthanga",
         "lengthKm": 84.5,
-        "travelMin": 166,
-        "freeFlowMin": 166,
+        "travelMin": 174,
+        "freeFlowMin": 174,
         "delayMin": 0,
-        "avgSpeedKmh": 30.6,
+        "avgSpeedKmh": 29.2,
         "sections": []
       },
       "descent": {
         "from": "Muthanga",
         "to": "Thamarassery",
         "lengthKm": 84.5,
-        "travelMin": 171,
-        "freeFlowMin": 171,
+        "travelMin": 182,
+        "freeFlowMin": 182,
         "delayMin": 0,
-        "avgSpeedKmh": 29.7,
+        "avgSpeedKmh": 27.9,
         "sections": []
       }
     }
