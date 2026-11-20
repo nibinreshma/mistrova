@@ -1680,6 +1680,327 @@ nav.desktop-nav .nav-link.is-current::after { content: ""; position: absolute; l
 .tr-cor-btn:hover{background:#fff}
 .tr-cor-btn.active{background:var(--deep,#10606F);border-color:var(--deep,#10606F);color:#fff}
 .tr-cor-btn:focus-visible{outline:2px solid var(--teal,#1D8B94);outline-offset:2px}
+
+/* =====================================================================
+     MOBILE MENU PANEL — brand tokens, scoped to the panel only.
+     The homepage does not define these at :root, so without this the
+     shared panel's colours fall back and render white on white.
+     ===================================================================== */
+  .md-overlay, .md-drawer {
+    --paper: #EEF8F5;
+    --mint: #E2F4F0;
+    --mint-2: #CDEBE5;
+    --aqua: #98D8D0;
+    --teal: #1D8B94;
+    --deep: #10606F;
+    --night: #0A3D4A;
+    --abyss: #04222B;
+    --coral: #F4B9A7;
+    --ink: #0A3D4A;
+    --ink-2: #2F5D66;
+    --line: rgba(10,61,74,.12);
+    --r-xl: 30px;
+    --r-lg: 22px;
+    --r-md: 18px;
+    --r-sm: 12px;
+    --display: 'EB Garamond',Georgia,serif;
+    --sans: 'Plus Jakarta Sans',system-ui,sans-serif;
+    --hdr: 76px;
+  }
+
+  /* The homepage styles .brand as a block, which stretches the emblem to the
+     full panel width. Pin the head layout inside the panel so it matches the
+     subpages exactly. */
+  .md-drawer .md-head { display: flex !important; align-items: center !important;
+    justify-content: space-between !important; gap: .6rem !important; }
+  .md-drawer .md-head .brand { display: flex !important; flex-direction: row !important;
+    align-items: center !important; gap: .6rem !important; width: auto !important;
+    text-align: left !important; }
+  .md-drawer .md-head .em-wrap { display: block !important; flex: 0 0 auto !important;
+    width: 46px !important; height: 46px !important; }
+  .md-drawer .md-head .em-svg { width: 46px !important; height: 46px !important; }
+  .md-drawer .md-head .brand-txt { display: flex !important; flex-direction: column !important;
+    align-items: flex-start !important; }
+
+  /* Homepage base styles leak into the panel: white inherited text, a native
+     close button, and a different font stack. Pin them to the subpage values. */
+  .md-drawer { color: var(--ink) !important; font-family: var(--sans) !important; }
+  .md-drawer *, .md-overlay * { font-family: inherit; }
+  .md-drawer .md-close { -webkit-appearance: none !important; appearance: none !important;
+    background: transparent !important; border: 0 !important; padding: 0 !important;
+    width: 40px !important; height: 40px !important; border-radius: 50% !important;
+    display: grid !important; place-items: center !important;
+    color: var(--night) !important; font-size: 1.7rem !important; line-height: 1 !important;
+    font-family: var(--sans) !important; cursor: pointer !important; }
+  .md-drawer .md-close:hover { background: rgba(255,255,255,.6) !important; }
+  .md-drawer .md-link { font-size: .82rem !important; font-weight: 700 !important;
+    padding: .62rem .8rem !important; color: var(--night) !important; }
+  .md-drawer .md-all { font-size: .74rem !important; font-weight: 800 !important;
+    padding: .5rem 1.1rem !important; color: #fff !important; }
+
+  /* =====================================================================
+     MOBILE MENU PANEL — same as the homepage menu panel
+     ===================================================================== */
+  .md-overlay{position:fixed;inset:0;z-index:140;background:rgba(4,34,43,.32);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s}
+  .md-overlay.open{opacity:1;visibility:visible}
+  .md-drawer{position:fixed;top:0;right:0;z-index:150;height:100%;width:82%;max-width:330px;display:flex;flex-direction:column;overflow-y:auto;overscroll-behavior:contain;
+    padding:calc(1.3rem + env(safe-area-inset-top,0px)) calc(1.1rem + env(safe-area-inset-right,0px)) calc(1.4rem + env(safe-area-inset-bottom,0px)) 1.1rem;
+    background:rgba(226,244,240,.88);backdrop-filter:blur(22px) saturate(160%);-webkit-backdrop-filter:blur(22px) saturate(160%);
+    border-left:1px solid rgba(255,255,255,.75);box-shadow:-14px 0 40px rgba(10,61,74,.18),inset 1px 0 0 rgba(255,255,255,.6);
+    transform:translateX(105%);transition:transform .38s cubic-bezier(.16,1,.3,1);visibility:hidden}
+  .md-drawer.open{transform:none;visibility:visible}
+  .md-head{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin-bottom:1.3rem}
+  .md-head .brand{margin-left:-.35rem}
+  .md-head .brand-txt small{display:none}
+  .md-close{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;color:var(--night);font-size:1.7rem;line-height:1;transition:background .2s,transform .2s}
+  .md-close:hover{background:rgba(255,255,255,.6);transform:rotate(90deg)}
+  .md-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6rem}
+  .md-tile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4rem;padding:.85rem .3rem .7rem;border-radius:18px;
+    background:linear-gradient(180deg,rgba(255,255,255,.3),rgba(255,255,255,.06) 48%,rgba(255,255,255,0) 52%),rgba(255,255,255,.62);
+    border:1px solid rgba(255,255,255,.85);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 6px 14px -8px rgba(10,61,74,.3);color:var(--night);
+    -webkit-tap-highlight-color:transparent;touch-action:manipulation;transform:translateZ(0);
+    transition:transform .34s cubic-bezier(.2,.9,.3,1.35),box-shadow .34s ease,background-color .3s}
+  .md-ico{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:rgba(152,216,208,.35)}
+  .md-ico svg{width:22px;height:22px;transition:transform .34s cubic-bezier(.2,.9,.3,1.35)}
+  .md-txt{font-size:.66rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;transition:letter-spacing .34s ease}
+  .md-tile.active{background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,0) 55%),#10606F;color:#fff;border-color:rgba(152,216,208,.55)}
+  .md-tile.active .md-ico{background:rgba(255,255,255,.16)}
+  .md-panel{margin-top:1rem;padding:.7rem;border-radius:20px;display:flex;flex-direction:column;gap:.4rem;
+    background:linear-gradient(135deg,rgba(255,255,255,.8),rgba(255,255,255,.5));border:1px solid rgba(255,255,255,.9);box-shadow:0 10px 30px -18px rgba(10,61,74,.4),inset 0 1px 0 #fff}
+  .md-link{display:flex;align-items:center;justify-content:space-between;gap:.6rem;padding:.62rem .8rem;border-radius:12px;background:rgba(226,244,240,.75);
+    font-size:.82rem;font-weight:700;color:var(--night);text-decoration:none;-webkit-tap-highlight-color:transparent;transform:translateZ(0);
+    transition:transform .34s cubic-bezier(.2,.9,.3,1.35),box-shadow .34s ease,background-color .3s,color .3s}
+  .md-link span:last-child{color:var(--teal)}
+  .md-link[aria-current="page"]{background:#fff;color:var(--deep);box-shadow:inset 3px 0 0 var(--teal)}
+  .md-foot{display:flex;justify-content:center;margin-top:.35rem;padding-top:.6rem;border-top:1px solid rgba(10,61,74,.1)}
+  .md-all{display:inline-flex;align-items:center;gap:.45rem;padding:.5rem 1.1rem;border-radius:999px;font-size:.74rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:#fff;
+    background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,0) 55%),#0A3D4A;border:1px solid rgba(152,216,208,.55);transform:translateZ(0);
+    transition:transform .34s cubic-bezier(.2,.9,.3,1.35),box-shadow .34s ease}
+  /* lift forward on hover (mouse) or while touched */
+  .md-tile.is-pressed{transform:translateY(-4px) scale(1.07);box-shadow:0 14px 26px rgba(10,61,74,.22),inset 0 1px 0 rgba(255,255,255,.9);z-index:2}
+  .md-tile.is-pressed svg{transform:scale(1.12)}.md-tile.is-pressed .md-txt{letter-spacing:.1em}
+  .md-link.is-pressed{transform:translateX(4px) scale(1.03);background:#fff;box-shadow:0 8px 18px rgba(10,61,74,.16);color:var(--deep)}
+  .md-all.is-pressed{transform:translateY(-2px) scale(1.06);box-shadow:0 10px 20px rgba(10,61,74,.25)}
+  @media (hover:hover) and (pointer:fine){
+    .md-tile:hover{transform:translateY(-4px) scale(1.07);box-shadow:0 14px 26px rgba(10,61,74,.22),inset 0 1px 0 rgba(255,255,255,.9);z-index:2}
+    .md-tile:hover svg{transform:scale(1.12)}.md-tile:hover .md-txt{letter-spacing:.1em}
+    .md-link:hover{transform:translateX(4px) scale(1.03);background:#fff;box-shadow:0 8px 18px rgba(10,61,74,.16);color:var(--deep)}
+    .md-all:hover{transform:translateY(-2px) scale(1.06);box-shadow:0 10px 20px rgba(10,61,74,.25)}
+  }
+  body.md-lock{overflow:hidden}
+  @media (min-width:981px){.md-overlay,.md-drawer{display:none}}
+
+  /* Gallery: empty photo slots */
+  .shot-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;cursor:default;
+    background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.65),transparent 55%),linear-gradient(135deg,#E2F4F0,#98D8D0 70%,#5BB5B4);border:1px dashed rgba(10,61,74,.2)}
+  .shot-empty .se-ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:rgba(255,255,255,.55);color:#10606F}
+  .shot-empty .se-ic svg{width:22px;height:22px}
+  .shot-empty .se-t{font-size:.64rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:rgba(10,61,74,.55)}
+  .near-note{font-size:.76rem;color:var(--ink-2);margin-top:.9rem}
+  .near-note:empty{display:none}
+
+  /* ===== TOWN PAGE ===== */
+  .tw em{font-style:italic;font-weight:500;color:var(--teal)}
+  .tw-hero{position:relative;overflow:hidden;color:#E2F4F0;background:radial-gradient(80% 100% at 15% 0%,rgba(29,139,148,.5),transparent 60%),linear-gradient(155deg,#04222B 0%,#0A3D4A 60%,#10606F 100%);padding-block:clamp(2rem,5vw,3.6rem) clamp(2.2rem,5vw,3.6rem)}
+  .tw-contour{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.5}
+  .tw-contour path{fill:none;stroke:rgba(152,216,208,.18);stroke-width:1.5}
+  .tw-hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(1.4rem,4vw,3rem);align-items:end}
+  .tw-crumbs{display:flex;flex-wrap:wrap;gap:.45rem;font-size:.76rem;color:rgba(226,244,240,.7);margin-bottom:1.2rem}
+  .tw-crumbs a{text-decoration:none}.tw-crumbs a:hover{color:#fff;text-decoration:underline}
+  .tw-kicker{display:flex;align-items:center;gap:.6rem;font-size:.72rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#98D8D0}
+  .tw-kicker b{font-family:var(--display);font-size:1rem;letter-spacing:0;color:#F4B9A7;border:1px solid rgba(244,185,167,.5);border-radius:999px;padding:.05rem .6rem;font-weight:600}
+  .tw-hero h1{color:#fff;font-size:clamp(2.6rem,7vw,5rem);font-weight:500;line-height:1.02;margin:.7rem 0 .2rem}
+  .tw-sub{font-family:var(--display);font-size:clamp(1.1rem,2.4vw,1.6rem);font-style:italic;color:#98D8D0;margin-bottom:1rem}
+  .tw-lede{max-width:58ch;font-size:clamp(.96rem,1.4vw,1.06rem);line-height:1.7;color:rgba(226,244,240,.86)}
+  .tw-card{background:linear-gradient(160deg,rgba(255,255,255,.14),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.22);border-radius:24px;padding:1.3rem;backdrop-filter:blur(18px) saturate(150%);-webkit-backdrop-filter:blur(18px) saturate(150%);box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 24px 50px -24px rgba(0,0,0,.6)}
+  .tw-card-k{font-size:.68rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#F4B9A7;margin-bottom:.8rem}
+  .tw-card dl{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.14);border-radius:14px;overflow:hidden}
+  .tw-card dl div{background:rgba(4,34,43,.55);padding:.8rem .85rem}
+  .tw-card dt{font-size:.64rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(226,244,240,.65)}
+  .tw-card dd{font-family:var(--display);font-size:1.3rem;color:#fff;margin-top:.15rem;line-height:1.1}
+
+  /* distance strip */
+  .tw-dist{background:var(--night);color:#E2F4F0;padding-block:.9rem}
+  .tw-dist-in{display:flex;gap:.4rem 2rem;flex-wrap:wrap;align-items:center}
+  .tw-dist b{font-size:.66rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#98D8D0;margin-right:.4rem}
+  .tw-dist span{display:inline-flex;align-items:baseline;gap:.4rem;font-size:.86rem}
+  .tw-dist span i{font-style:normal;font-family:var(--display);font-size:1.15rem;color:#fff}
+  .tw-dist small{display:block;width:100%;font-size:.7rem;color:rgba(226,244,240,.5);margin-top:.2rem}
+
+  .tw-sec{padding-block:clamp(2.2rem,5vw,3.6rem)}
+  .tw-sec.alt{background:linear-gradient(180deg,rgba(152,216,208,.22),rgba(152,216,208,.05))}
+  .tw-head{max-width:660px;margin-bottom:clamp(1.2rem,3vw,2rem)}
+  .tw-k{font-size:.7rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--teal);margin-bottom:.5rem}
+  .tw-head h2{font-size:clamp(1.8rem,4vw,2.7rem);font-weight:500}
+  .tw-head p{margin-top:.6rem;color:var(--ink-2);font-size:.92rem}
+
+  /* why come */
+  .tw-why{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem}
+  .tw-why article{padding:1.3rem 1.2rem;border-radius:22px;background:var(--card);border:1px solid var(--glass-edge);box-shadow:var(--glass-shadow);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur)}
+  .tw-why svg{width:24px;height:24px;color:var(--teal);padding:7px;box-sizing:content-box;border-radius:12px;background:var(--mint)}
+  .tw-why h3{font-size:1.18rem;margin:.75rem 0 .3rem}
+  .tw-why p{font-size:.85rem;line-height:1.6;color:var(--ink-2)}
+
+  /* sights list */
+  .tw-sights{list-style:none;border-top:2px solid var(--night)}
+  .tw-sight{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:.2rem 1rem;align-items:center;padding:1rem .2rem;border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink);transition:background .2s}
+  .tw-sight:hover{background:rgba(255,255,255,.6)}
+  .tw-sight .km{grid-row:1/span 2;display:grid;place-items:center;width:62px;height:62px;border-radius:18px;background:var(--mint);color:var(--deep);font-family:var(--display);font-size:1.1rem;line-height:1.05;text-align:center}
+  .tw-sight .km small{display:block;font-family:var(--sans);font-size:.6rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--teal)}
+  .tw-sight h3{grid-column:2;font-size:1.25rem;font-weight:600}
+  .tw-sight p{grid-column:2;font-size:.85rem;color:var(--ink-2);line-height:1.5}
+  .tw-sight .go{grid-column:3;grid-row:1/span 2;font-weight:800;color:var(--teal);transition:transform .2s}
+  .tw-sight:hover .go{transform:translateX(4px)}
+  .tw-sight.dim{pointer-events:none}
+  .tw-sight.dim .go{color:var(--ink-2);opacity:.5}
+
+  /* agriculture links */
+  .tw-agri{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem}
+  .tw-agri a{display:flex;flex-direction:column;gap:.35rem;padding:1.2rem;border-radius:20px;text-decoration:none;color:#fff;background:linear-gradient(150deg,#1D8B94,#0A3D4A);box-shadow:0 16px 34px -20px rgba(4,34,43,.8);transition:transform .3s var(--ease)}
+  .tw-agri a:hover{transform:translateY(-4px)}
+  .tw-agri b{font-family:var(--display);font-size:1.9rem;font-weight:500;line-height:1}
+  .tw-agri span{font-size:.95rem;font-weight:700}
+  .tw-agri small{font-size:.78rem;color:rgba(226,244,240,.8);line-height:1.45}
+
+  /* experiences */
+  .tw-exp{display:flex;flex-wrap:wrap;gap:.5rem}
+  .tw-exp li{list-style:none;display:inline-flex;align-items:center;gap:.5rem;padding:.55rem 1rem;border-radius:999px;background:var(--card);border:1px solid var(--line);font-size:.86rem;font-weight:600}
+  .tw-exp li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--teal)}
+
+  /* two-column body */
+  .tw-cols{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(1.2rem,3vw,2.4rem);align-items:start}
+  .tw-panel{border-radius:24px;padding:1.4rem;background:var(--card);border:1px solid var(--glass-edge);box-shadow:var(--glass-shadow);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur)}
+  .tw-panel h3{font-size:1.35rem;margin-bottom:.8rem}
+  .tw-routes{list-style:none;display:flex;flex-direction:column;gap:.7rem}
+  .tw-routes li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.8rem;align-items:start;font-size:.88rem;line-height:1.55}
+  .tw-routes b{display:inline-flex;align-items:center;justify-content:center;min-width:64px;padding:.25rem .5rem;border-radius:999px;background:var(--night);color:#fff;font-size:.68rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+  .tw-ess{list-style:none;display:flex;flex-direction:column}
+  .tw-ess li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.3rem .8rem;padding:.75rem 0;border-bottom:1px dashed var(--line)}
+  .tw-ess li:last-child{border-bottom:0}
+  .tw-ess .nm{grid-column:1;font-weight:700;font-size:.95rem}
+  .tw-ess .ty{grid-column:1;font-size:.74rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--teal)}
+  .tw-ess .nt{grid-column:1;font-size:.82rem;color:var(--ink-2);line-height:1.5}
+  .tw-ess a.tel{grid-column:2;grid-row:1/span 3;align-self:center;display:inline-flex;align-items:center;gap:.35rem;padding:.45rem .8rem;border-radius:999px;background:var(--mint);color:var(--deep);text-decoration:none;font-size:.78rem;font-weight:800;white-space:nowrap}
+  .tw-ess a.tel:hover{background:var(--night);color:#fff}
+  .tw-ess svg{width:13px;height:13px}
+
+  /* nearby towns */
+  .tw-towns{display:flex;flex-wrap:wrap;gap:.6rem}
+  .tw-towns span{display:inline-flex;align-items:baseline;gap:.5rem;padding:.6rem 1rem;border-radius:14px;background:var(--card);border:1px solid var(--line);font-size:.88rem;font-weight:600}
+  .tw-towns i{font-style:normal;font-family:var(--display);font-size:1.05rem;color:var(--teal)}
+
+  @media (max-width:980px){
+    .tw-hero-grid{grid-template-columns:1fr}
+    .tw-why{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .tw-agri{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .tw-cols{grid-template-columns:1fr}
+  }
+  @media (max-width:600px){
+    .tw-why{grid-template-columns:1fr}
+    .tw-agri{grid-template-columns:1fr}
+    .tw-card dd{font-size:1.1rem}
+    .tw-sight{grid-template-columns:auto minmax(0,1fr)}
+    .tw-sight .km{width:52px;height:52px;font-size:.95rem}
+    .tw-sight .go{display:none}
+    .tw-dist-in{gap:.3rem 1.2rem}
+  }
+  .tw-live{display:flex;align-items:center;gap:.7rem;margin-top:.8rem;padding:.6rem .9rem;border-radius:14px;background:rgba(4,34,43,.5);border:1px solid rgba(152,216,208,.25)}
+  .tw-live .wxi{font-size:1.5rem;line-height:1}
+  .tw-live b{display:block;font-family:var(--display);font-size:1.5rem;color:#fff;line-height:1}
+  .tw-live span:not(.wxi){font-size:.74rem;color:rgba(226,244,240,.7)}
+
+/* ---- All Towns hub ---------------------------------------------------- */
+.th-ki{width:15px;height:15px;vertical-align:-2px;margin-right:.45rem;stroke:currentColor;fill:none;stroke-width:2}
+
+/* jump-to strip: label, then one even row of chips across the content width */
+.th-jumpbar .tw-dist-in{flex-wrap:nowrap;gap:1.4rem;align-items:center}
+.th-jumpbar > .wrap > b{flex:0 0 auto}
+.th-jump{flex:1 1 auto;min-width:0;display:grid;grid-template-columns:repeat(var(--n,4),minmax(0,1fr));gap:.6rem}
+
+.th-jump .th-chip{display:flex;align-items:center;justify-content:center;gap:.5rem;min-width:0;
+  padding:.46rem .9rem;border-radius:999px;background:rgba(255,255,255,.72);
+  border:1px solid rgba(255,255,255,.28);color:var(--ink);
+  font-size:.78rem;font-weight:600;line-height:1.3;text-align:center;text-decoration:none;
+  transition:background .22s ease,border-color .22s ease,transform .22s ease}
+.th-jump .th-chip span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.th-jump .th-chip b{flex:0 0 auto;font-size:.72rem;color:var(--teal);margin:0}
+.th-jump .th-chip:hover{background:#fff;border-color:var(--aqua);transform:translateY(-1px)}
+.th-jump .th-chip:focus-visible{outline:2px solid var(--aqua);outline-offset:2px}
+
+@media (max-width:860px){
+  .th-jumpbar .tw-dist-in{flex-wrap:wrap;gap:.6rem}
+  .th-jump{flex:1 1 100%;grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:430px){
+  .th-jump{grid-template-columns:1fr}
+}
+
+.th-cardnote{margin:.85rem 0 0;font-size:.72rem;line-height:1.5;color:rgba(226,244,240,.6)}
+
+.th-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(282px,1fr));gap:1.1rem}
+
+.th-card{position:relative;display:flex;flex-direction:column;gap:.5rem;padding:1.5rem 1.4rem 1.3rem;
+  border-radius:var(--r-lg);background:rgba(255,255,255,.78);border:1px solid rgba(255,255,255,.9);
+  box-shadow:0 10px 30px rgba(4,34,43,.06);text-decoration:none;color:inherit;
+  transition:transform .28s cubic-bezier(.16,1,.3,1),box-shadow .28s ease,border-color .28s ease}
+.th-card h3{margin:0;font-family:var(--display);font-size:1.5rem;line-height:1.15;color:var(--ink);font-weight:500}
+.th-tag{margin:0;font-size:.7rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--teal)}
+.th-line{margin:.35rem 0 0;font-size:.86rem;line-height:1.55;color:var(--ink-2)}
+
+.th-elev{position:absolute;top:1.1rem;right:1.1rem;padding:.26rem .6rem;border-radius:999px;
+  background:var(--mint-2);color:var(--deep);font-size:.68rem;font-weight:800;letter-spacing:.04em}
+
+.th-hi{list-style:none;margin:.7rem 0 0;padding:0;display:flex;flex-wrap:wrap;gap:.38rem}
+.th-hi li{padding:.26rem .6rem;border-radius:999px;background:var(--mint);color:var(--ink-2);
+  font-size:.7rem;line-height:1.3;font-weight:600}
+
+.th-go,.th-soon{margin-top:auto;padding-top:.95rem;font-size:.76rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase}
+.th-go{color:var(--teal)}
+.th-go span{display:inline-block;transition:transform .25s ease}
+.th-soon{color:var(--ink-2);opacity:.62;font-weight:700;letter-spacing:.07em}
+
+.th-live{border-color:var(--aqua);background:rgba(255,255,255,.92)}
+.th-live:hover,.th-live:focus-visible{transform:translateY(-4px);border-color:var(--teal);
+  box-shadow:0 18px 44px rgba(4,34,43,.14)}
+.th-live:hover .th-go span{transform:translateX(5px)}
+.th-live:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+
+.tw-sec.alt .th-card{background:rgba(255,255,255,.86)}
+
+/* the two closing panels: equal columns, equal height, one shared label column */
+@media (min-width:981px){
+  .th-howto{grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch}
+  .th-howto .tw-panel{display:flex;flex-direction:column}
+  .th-howto .tw-routes{flex:1}
+  .th-howto .tw-routes li{grid-template-columns:132px minmax(0,1fr);align-items:start}
+  .th-howto .tw-routes b{width:100%;min-width:0;white-space:nowrap;margin-top:.1rem}
+}
+@media (max-width:980px){
+  .th-howto .tw-routes li{grid-template-columns:1fr;gap:.4rem}
+  .th-howto .tw-routes b{width:max-content}
+}
+@media (max-width:640px){
+  .th-grid{grid-template-columns:1fr;gap:.9rem}
+  .th-card{padding:1.3rem 1.15rem 1.1rem}
+  .th-card h3{font-size:1.35rem}
+  .th-elev{top:.95rem;right:.95rem}
+}
+@media (prefers-reduced-motion:reduce){
+  .th-card,.th-go span,.tw-dist-in .th-chip{transition:none}
+  .th-live:hover{transform:none}
+}
+
+
+/* ===== MISTROVA emblem logo (dot-grid) ===== */
+/* the tile itself never moves — only the amber dot inside it does */
+.em-wrap,.brand-emblem-wrap{width:46px!important;height:46px!important;flex-shrink:0;animation:none!important;transform:none!important}
+.brand-emblem-wrap::before,.em-wrap::before{display:none!important;animation:none!important}
+.em-svg,.brand-emblem-svg{width:100%!important;height:100%!important;overflow:visible;animation:none!important;transform:none!important;transition:none!important;filter:drop-shadow(0 4px 10px rgba(26,18,34,.3))!important}
+.em-svg *,.brand-emblem-svg *{animation:none}
+.em-trav{transform-box:fill-box;transform-origin:center;animation:emTrav 11s ease-in-out infinite!important}
+@keyframes emTrav{0%{transform:translate(0px,0px) scale(1)}10%{transform:translate(-24px,-24px) scale(0.5898)}20%{transform:translate(0px,-24px) scale(0.6417)}30%{transform:translate(24px,-24px) scale(0.5898)}40%{transform:translate(48px,0px) scale(0.6019)}50%{transform:translate(24px,24px) scale(0.5898)}60%{transform:translate(0px,24px) scale(0.6417)}70%{transform:translate(-24px,24px) scale(0.5898)}80%{transform:translate(-48px,0px) scale(0.6019)}90%{transform:translate(-24px,0px) scale(0.8009)}100%{transform:translate(0px,0px) scale(1)}}
+@media (prefers-reduced-motion:reduce){.em-trav{animation:none!important}}
+
 </style>
 
 
@@ -2451,67 +2772,28 @@ nav.desktop-nav .nav-link.is-current::after { content: ""; position: absolute; l
   <!-- Mobile Menu Drawer -->
     <!-- Mobile Menu Drawer (Fully Harmonized with Desktop Navigation) -->
     <!-- Stylish Floating Mobile App-Icon Drawer -->
-  <div class="mobile-drawer floating-app-drawer" id="mobileDrawer">
-    <div class="mobile-drawer-header">
-      <div class="drawer-brand brand-press" style="display:flex; align-items:center; gap:0.75rem;">
-        <div class="brand-emblem-wrap" style="width:38px; height:38px;">
-          <svg class="brand-emblem-svg" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><defs><linearGradient id="emgh332" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2C2039"/><stop offset="1" stop-color="#1A1222"/></linearGradient><clipPath id="emch332"><rect width="240" height="240" rx="54"/></clipPath></defs><g clip-path="url(#emch332)"><rect width="240" height="240" rx="54" fill="url(#emgh332)"/><g fill="#EFE7F2"><circle cx="24" cy="48" r="2.2" opacity="0.32"/><circle cx="48" cy="48" r="2.2" opacity="0.32"/><circle cx="72" cy="48" r="2.2" opacity="0.32"/><circle cx="96" cy="48" r="2.2" opacity="0.32"/><circle cx="120" cy="48" r="2.2" opacity="0.32"/><circle cx="144" cy="48" r="2.2" opacity="0.32"/><circle cx="168" cy="48" r="2.2" opacity="0.32"/><circle cx="192" cy="48" r="2.2" opacity="0.32"/><circle cx="216" cy="48" r="2.2" opacity="0.32"/><circle cx="24" cy="72" r="2.2" opacity="0.32"/><circle cx="48" cy="72" r="2.2" opacity="0.32"/><circle cx="72" cy="72" r="2.2" opacity="0.32"/><circle cx="96" cy="72" r="2.77" opacity="0.365"/><circle cx="120" cy="72" r="3.06" opacity="0.388"/><circle cx="144" cy="72" r="2.77" opacity="0.365"/><circle cx="168" cy="72" r="2.2" opacity="0.32"/><circle cx="192" cy="72" r="2.2" opacity="0.32"/><circle cx="216" cy="72" r="2.2" opacity="0.32"/><circle cx="24" cy="96" r="2.2" opacity="0.32"/><circle cx="48" cy="96" r="3.28" opacity="0.405"/><circle cx="72" cy="96" r="5.01" opacity="0.543"/><circle cx="96" cy="96" r="6.37" opacity="0.65"/><circle cx="120" cy="96" r="6.93" opacity="0.694"/><circle cx="144" cy="96" r="6.37" opacity="0.65"/><circle cx="168" cy="96" r="5.01" opacity="0.543"/><circle cx="192" cy="96" r="3.28" opacity="0.405"/><circle cx="216" cy="96" r="2.2" opacity="0.32"/><circle cx="24" cy="120" r="2.2" opacity="0.32"/><circle cx="48" cy="120" r="4.35" opacity="0.49"/><circle cx="72" cy="120" r="6.5" opacity="0.66"/><circle cx="96" cy="120" r="8.65" opacity="0.83"/><circle cx="120" cy="120" r="10.8" opacity="1"/><circle cx="144" cy="120" r="8.65" opacity="0.83"/><circle cx="168" cy="120" r="6.5" opacity="0.66"/><circle cx="192" cy="120" r="4.35" opacity="0.49"/><circle cx="216" cy="120" r="2.2" opacity="0.32"/><circle cx="24" cy="144" r="2.2" opacity="0.32"/><circle cx="48" cy="144" r="3.28" opacity="0.405"/><circle cx="72" cy="144" r="5.01" opacity="0.543"/><circle cx="96" cy="144" r="6.37" opacity="0.65"/><circle cx="120" cy="144" r="6.93" opacity="0.694"/><circle cx="144" cy="144" r="6.37" opacity="0.65"/><circle cx="168" cy="144" r="5.01" opacity="0.543"/><circle cx="192" cy="144" r="3.28" opacity="0.405"/><circle cx="216" cy="144" r="2.2" opacity="0.32"/><circle cx="24" cy="168" r="2.2" opacity="0.32"/><circle cx="48" cy="168" r="2.2" opacity="0.32"/><circle cx="72" cy="168" r="2.2" opacity="0.32"/><circle cx="96" cy="168" r="2.77" opacity="0.365"/><circle cx="120" cy="168" r="3.06" opacity="0.388"/><circle cx="144" cy="168" r="2.77" opacity="0.365"/><circle cx="168" cy="168" r="2.2" opacity="0.32"/><circle cx="192" cy="168" r="2.2" opacity="0.32"/><circle cx="216" cy="168" r="2.2" opacity="0.32"/><circle cx="24" cy="192" r="2.2" opacity="0.32"/><circle cx="48" cy="192" r="2.2" opacity="0.32"/><circle cx="72" cy="192" r="2.2" opacity="0.32"/><circle cx="96" cy="192" r="2.2" opacity="0.32"/><circle cx="120" cy="192" r="2.2" opacity="0.32"/><circle cx="144" cy="192" r="2.2" opacity="0.32"/><circle cx="168" cy="192" r="2.2" opacity="0.32"/><circle cx="192" cy="192" r="2.2" opacity="0.32"/><circle cx="216" cy="192" r="2.2" opacity="0.32"/></g><circle class="em-trav" cx="120" cy="120" r="10.8" fill="#F0A202"/></g></svg>
-        </div>
-        <span class="drawer-brand-name">MISTROVA</span>
-      </div>
-      <button class="close-drawer-btn" id="closeDrawerBtn" aria-label="Close menu">&times;</button>
-    </div>
-
-        <!-- 3x2 Modern Vector Icon Grid for Mobile -->
-    <div class="mobile-app-icon-grid">
-      <button type="button" class="app-icon-item active" data-cat="explore" aria-label="Explore">
-        <div class="app-ico-svg-wrap">
-          <svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
-        </div>
-        <span class="app-txt">Explore</span>
-      </button>
-      <button type="button" class="app-icon-item" data-cat="agriculture" aria-label="Agriculture">
-        <div class="app-ico-svg-wrap">
-          <svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path></svg>
-        </div>
-        <span class="app-txt">Agri</span>
-      </button>
-      <button type="button" class="app-icon-item" data-cat="towns" aria-label="Towns">
-        <div class="app-ico-svg-wrap">
-          <svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"></path></svg>
-        </div>
-        <span class="app-txt">Towns</span>
-      </button>
-      <button type="button" class="app-icon-item" data-cat="stay" aria-label="Stays">
-        <div class="app-ico-svg-wrap">
-          <svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-        </div>
-        <span class="app-txt">Stay</span>
-      </button>
-      <button type="button" class="app-icon-item" data-cat="eat" aria-label="Dine">
-        <div class="app-ico-svg-wrap">
-          <svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
-        </div>
-        <span class="app-txt">Dine</span>
-      </button>
-      <button type="button" class="app-icon-item" data-cat="essentials" aria-label="Guide">
-        <div class="app-ico-svg-wrap">
-          <svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
-        </div>
-        <span class="app-txt">Guide</span>
-      </button>
-    </div>
-
-    <!-- Dynamic Sub-Drawer Menu Panel Below App Icons -->
-    <div class="app-sub-panel-box" id="appSubPanel">
-      <a href="explore/chembra-peak.html" class="app-sub-link"><span>Chembra Peak & Heart Lake</span><span>→</span></a>
-      <a href="explore/banasura-sagar-dam.html" class="app-sub-link"><span>Banasura Sagar Dam</span><span>→</span></a>
-      <a href="explore/edakkal-caves.html" class="app-sub-link"><span>Edakkal Prehistoric Caves</span><span>→</span></a>
-      <a href="explore/all-explore.html#waterfalls" class="app-sub-link"><span>Waterfalls & Forest Trails</span><span>→</span></a>
-      <div class="dropdown-footer" style="margin-top:0.5rem; padding-top:0.5rem; border-top:1px solid rgba(162, 177, 162,0.18); display:flex; justify-content:center;">
-        <a href="explore/all-explore.html" class="dropdown-viewall"><span>View All</span><span class="va-arrow">→</span></a>
-      </div>
-    </div>
+  <!-- Mobile menu panel — the shared component used on every page -->
+<div class="md-overlay" id="mdOverlay" hidden></div>
+<aside class="md-drawer" id="mdDrawer" aria-label="Menu" aria-hidden="true">
+  <div class="md-head">
+    <a class="brand brand-press" href="index.html" aria-label="MISTROVA home">
+      <span class="em-wrap" aria-hidden="true">
+        <svg class="em-svg" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><defs><linearGradient id="emgi342" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2C2039"/><stop offset="1" stop-color="#1A1222"/></linearGradient><clipPath id="emci342"><rect width="240" height="240" rx="54"/></clipPath></defs><g clip-path="url(#emci342)"><rect width="240" height="240" rx="54" fill="url(#emgi342)"/><g fill="#EFE7F2"><circle cx="24" cy="48" r="2.2" opacity="0.32"/><circle cx="48" cy="48" r="2.2" opacity="0.32"/><circle cx="72" cy="48" r="2.2" opacity="0.32"/><circle cx="96" cy="48" r="2.2" opacity="0.32"/><circle cx="120" cy="48" r="2.2" opacity="0.32"/><circle cx="144" cy="48" r="2.2" opacity="0.32"/><circle cx="168" cy="48" r="2.2" opacity="0.32"/><circle cx="192" cy="48" r="2.2" opacity="0.32"/><circle cx="216" cy="48" r="2.2" opacity="0.32"/><circle cx="24" cy="72" r="2.2" opacity="0.32"/><circle cx="48" cy="72" r="2.2" opacity="0.32"/><circle cx="72" cy="72" r="2.2" opacity="0.32"/><circle cx="96" cy="72" r="2.77" opacity="0.365"/><circle cx="120" cy="72" r="3.06" opacity="0.388"/><circle cx="144" cy="72" r="2.77" opacity="0.365"/><circle cx="168" cy="72" r="2.2" opacity="0.32"/><circle cx="192" cy="72" r="2.2" opacity="0.32"/><circle cx="216" cy="72" r="2.2" opacity="0.32"/><circle cx="24" cy="96" r="2.2" opacity="0.32"/><circle cx="48" cy="96" r="3.28" opacity="0.405"/><circle cx="72" cy="96" r="5.01" opacity="0.543"/><circle cx="96" cy="96" r="6.37" opacity="0.65"/><circle cx="120" cy="96" r="6.93" opacity="0.694"/><circle cx="144" cy="96" r="6.37" opacity="0.65"/><circle cx="168" cy="96" r="5.01" opacity="0.543"/><circle cx="192" cy="96" r="3.28" opacity="0.405"/><circle cx="216" cy="96" r="2.2" opacity="0.32"/><circle cx="24" cy="120" r="2.2" opacity="0.32"/><circle cx="48" cy="120" r="4.35" opacity="0.49"/><circle cx="72" cy="120" r="6.5" opacity="0.66"/><circle cx="96" cy="120" r="8.65" opacity="0.83"/><circle cx="120" cy="120" r="10.8" opacity="1"/><circle cx="144" cy="120" r="8.65" opacity="0.83"/><circle cx="168" cy="120" r="6.5" opacity="0.66"/><circle cx="192" cy="120" r="4.35" opacity="0.49"/><circle cx="216" cy="120" r="2.2" opacity="0.32"/><circle cx="24" cy="144" r="2.2" opacity="0.32"/><circle cx="48" cy="144" r="3.28" opacity="0.405"/><circle cx="72" cy="144" r="5.01" opacity="0.543"/><circle cx="96" cy="144" r="6.37" opacity="0.65"/><circle cx="120" cy="144" r="6.93" opacity="0.694"/><circle cx="144" cy="144" r="6.37" opacity="0.65"/><circle cx="168" cy="144" r="5.01" opacity="0.543"/><circle cx="192" cy="144" r="3.28" opacity="0.405"/><circle cx="216" cy="144" r="2.2" opacity="0.32"/><circle cx="24" cy="168" r="2.2" opacity="0.32"/><circle cx="48" cy="168" r="2.2" opacity="0.32"/><circle cx="72" cy="168" r="2.2" opacity="0.32"/><circle cx="96" cy="168" r="2.77" opacity="0.365"/><circle cx="120" cy="168" r="3.06" opacity="0.388"/><circle cx="144" cy="168" r="2.77" opacity="0.365"/><circle cx="168" cy="168" r="2.2" opacity="0.32"/><circle cx="192" cy="168" r="2.2" opacity="0.32"/><circle cx="216" cy="168" r="2.2" opacity="0.32"/><circle cx="24" cy="192" r="2.2" opacity="0.32"/><circle cx="48" cy="192" r="2.2" opacity="0.32"/><circle cx="72" cy="192" r="2.2" opacity="0.32"/><circle cx="96" cy="192" r="2.2" opacity="0.32"/><circle cx="120" cy="192" r="2.2" opacity="0.32"/><circle cx="144" cy="192" r="2.2" opacity="0.32"/><circle cx="168" cy="192" r="2.2" opacity="0.32"/><circle cx="192" cy="192" r="2.2" opacity="0.32"/><circle cx="216" cy="192" r="2.2" opacity="0.32"/></g><circle class="em-trav" cx="120" cy="120" r="10.8" fill="#F0A202"/></g></svg>
+      </span>
+      <span class="brand-txt"><b class="brand-name">MISTROVA</b><small>Where nature takes root</small></span>
+    </a>
+    <button type="button" class="md-close" id="mdClose" aria-label="Close menu">&times;</button>
+  </div>
+  <div class="md-grid" role="tablist" aria-label="Sections">
+      <button type="button" class="md-tile active" data-cat="explore" aria-label="Explore"><span class="md-ico"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg></span><span class="md-txt">Explore</span></button>
+      <button type="button" class="md-tile" data-cat="agriculture" aria-label="Agri"><span class="md-ico"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path></svg></span><span class="md-txt">Agri</span></button>
+      <button type="button" class="md-tile" data-cat="towns" aria-label="Towns"><span class="md-ico"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"></path></svg></span><span class="md-txt">Towns</span></button>
+      <button type="button" class="md-tile" data-cat="stay" aria-label="Stay"><span class="md-ico"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></span><span class="md-txt">Stay</span></button>
+      <button type="button" class="md-tile" data-cat="eat" aria-label="Dine"><span class="md-ico"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg></span><span class="md-txt">Dine</span></button>
+      <button type="button" class="md-tile" data-cat="essentials" aria-label="Guide"><span class="md-ico"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg></span><span class="md-txt">Guide</span></button>
+  </div>
+  <nav class="md-panel" id="mdPanel" aria-label="Section links"></nav>
+</aside>
   </div>
 
   <!-- Search Modal -->
@@ -3116,19 +3398,22 @@ nav.desktop-nav .nav-link.is-current::after { content: ""; position: absolute; l
     const hamburgerBtn = document.getElementById('hamburgerBtn');
     const closeDrawerBtn = document.getElementById('closeDrawerBtn');
 
-    hamburgerBtn.addEventListener('click', () => {
-      mobileDrawer.classList.add('open');
-      hamburgerBtn.classList.add('menu-open');
-    });
-    closeDrawerBtn.addEventListener('click', () => {
-      mobileDrawer.classList.remove('open');
-      hamburgerBtn.classList.remove('menu-open');
-    });
+    // the shared menu panel now owns opening and closing; this only runs for the old markup
+    if (mobileDrawer && hamburgerBtn && closeDrawerBtn) {
+      hamburgerBtn.addEventListener('click', () => {
+        mobileDrawer.classList.add('open');
+        hamburgerBtn.classList.add('menu-open');
+      });
+      closeDrawerBtn.addEventListener('click', () => {
+        mobileDrawer.classList.remove('open');
+        hamburgerBtn.classList.remove('menu-open');
+      });
+    }
 
     // Auto-close drawer on menu link click
     document.querySelectorAll('.mobile-nav-link').forEach(link => {
       link.addEventListener('click', () => {
-        mobileDrawer.classList.remove('open');
+        if (mobileDrawer) mobileDrawer.classList.remove('open');
         const hBtn = document.getElementById('hamburgerBtn');
         if(hBtn) hBtn.classList.remove('menu-open');
       });
@@ -5447,6 +5732,50 @@ nav.desktop-nav .nav-link.is-current::after { content: ""; position: absolute; l
   document.querySelectorAll('[data-open-agri]').forEach(function (a) {
     a.addEventListener('click', function (e) { var m = document.getElementById('agriModal'); if (m) { e.preventDefault(); m.classList.add('active'); } });
   });
+})();
+</script>
+<script>window.MD_BASE = './';</script>
+<script>
+/* Mobile menu panel — same sections and links as the homepage */
+(function () {
+  var B = window.MD_BASE || './';          // path back to the site root
+  var HERE = location.pathname.split('/').pop();
+  var MENU = {
+    explore: { links: [['Chembra Peak & Heart Lake', 'explore/chembra-peak.html'], ['Banasura Sagar Dam', 'explore/banasura-sagar-dam.html'], ['Edakkal Caves', 'explore/edakkal-caves.html'], ['Pookode Lake', 'explore/pookode-lake.html'], ['Muthanga Wildlife Sanctuary', 'explore/muthanga-wildlife-sanctuary.html']], all: 'explore/all-explore.html' },
+    agriculture: { links: [['Tea Estates', 'agriculture/tea-estates.html'], ['Coffee & Spice', 'agriculture/coffee-spice.html'], ['Farms & Farmstays', 'agriculture/farms.html'], ['Research & Gardens', 'agriculture/research.html'], ['GI Crops', 'agriculture/gi-crops.html'], ['Co-ops', 'agriculture/cooperatives.html']], all: 'agriculture/all-agri.html' },
+    towns: { links: [['Ambalavayal', 'towns/ambalavayal.html'], ['Kalpetta (District HQ)', 'towns/all-towns.html#g1'], ['Sulthan Bathery', 'towns/all-towns.html#g1'], ['Mananthavady', 'towns/all-towns.html#g1'], ['Vythiri & Lakkidi', 'towns/all-towns.html#g2']], all: 'towns/all-towns.html' },
+    stay: { links: [['Resorts & Spas', 'index.html#curated-showcase'], ['Treehouses & Glamping', 'index.html#curated-showcase'], ['Plantation Homestays', 'index.html#curated-showcase'], ['Heritage Stays', 'index.html#curated-showcase']], all: 'index.html#curated-showcase' },
+    eat: { links: [['Malabar Food & Cafés', 'index.html#curated-showcase'], ['Coffee Cafés', 'index.html#curated-showcase'], ['Local Messes', 'index.html#curated-showcase'], ['Cinemas', 'index.html#curated-showcase']], all: 'index.html#curated-showcase' },
+    essentials: { links: [['Live Weather & Traffic', 'index.html#live-pulse'], ['Hospitals', 'index.html#essentials'], ['Police Stations', 'index.html#essentials'], ['Emergency 112', 'index.html#essentials']], all: 'index.html#essentials' }
+  };
+  var drawer = document.getElementById('mdDrawer'), overlay = document.getElementById('mdOverlay'), panel = document.getElementById('mdPanel');
+  var opener = document.getElementById('menuBtn') || document.getElementById('hamburgerBtn');
+  if (!drawer || !opener) return;
+  var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+  function fill(cat) {
+    var m = MENU[cat] || MENU.explore;
+    panel.innerHTML = m.links.map(function (l) {
+      var cur = l[1].split('/').pop() === HERE ? ' aria-current="page"' : '';
+      return '<a class="md-link" href="' + B + l[1] + '"' + cur + '><span>' + esc(l[0]) + '</span><span>→</span></a>';
+    }).join('') + '<div class="md-foot"><a class="md-all" href="' + B + m.all + '">View All <span>→</span></a></div>';
+    drawer.querySelectorAll('.md-tile').forEach(function (t) { t.classList.toggle('active', t.dataset.cat === cat); t.setAttribute('aria-selected', t.dataset.cat === cat); });
+  }
+  function open() { overlay.hidden = false; requestAnimationFrame(function () { overlay.classList.add('open'); drawer.classList.add('open'); }); drawer.setAttribute('aria-hidden', 'false'); opener.setAttribute('aria-expanded', 'true'); document.body.classList.add('md-lock'); }
+  function close() { overlay.classList.remove('open'); drawer.classList.remove('open'); drawer.setAttribute('aria-hidden', 'true'); opener.setAttribute('aria-expanded', 'false'); document.body.classList.remove('md-lock'); setTimeout(function () { if (!drawer.classList.contains('open')) overlay.hidden = true; }, 320); }
+  opener.addEventListener('click', function (e) { e.preventDefault(); e.stopImmediatePropagation(); drawer.classList.contains('open') ? close() : open(); }, true);
+  overlay.addEventListener('click', close);
+  document.getElementById('mdClose').addEventListener('click', close);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+  drawer.addEventListener('click', function (e) { var t = e.target.closest('.md-tile'); if (t) { var m = MENU[t.dataset.cat]; if (m && m.all) { location.href = B + m.all; return; } fill(t.dataset.cat); } if (e.target.closest('.md-link, .md-all')) close(); });
+  fill('explore');
+  // lift while touched (hover handled in CSS)
+  var SEL = '.md-tile, .md-link, .md-all, .brand-press';
+  var clear = function () { drawer.querySelectorAll('.is-pressed').forEach(function (x) { x.classList.remove('is-pressed'); }); };
+  var press = function (ev) { var t = ev.target.closest && ev.target.closest(SEL); if (t && drawer.contains(t)) { clear(); t.classList.add('is-pressed'); } };
+  drawer.addEventListener('pointerdown', press);
+  drawer.addEventListener('touchstart', press, { passive: true });
+  ['pointerup', 'pointercancel', 'touchend', 'touchcancel'].forEach(function (t) { document.addEventListener(t, clear, { passive: true }); });
+  drawer.addEventListener('pointerout', function (ev) { var t = ev.target.closest && ev.target.closest(SEL); if (t && !t.contains(ev.relatedTarget)) t.classList.remove('is-pressed'); });
 })();
 </script>
 </body>
