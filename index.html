@@ -3617,7 +3617,7 @@ nav.desktop-nav .nav-link.is-current::after { content: ""; position: absolute; l
   if (!track || !stage) return;
 
   // Town pages are published one at a time; the rest go to the All Towns hub.
-  const TOWN_PAGES = new Set(['ambalavayal', 'kalpetta', 'bathery', 'mananthavady', 'vythiri', 'meppadi', 'meenangadi', 'pulpally', 'panamaram']);
+  const TOWN_PAGES = new Set(['ambalavayal', 'kalpetta', 'bathery', 'mananthavady', 'vythiri', 'meppadi', 'meenangadi', 'pulpally', 'panamaram', 'lakkidi', 'padinjarathara', 'pozhuthana', 'muttil']);
   const townHref = (t) => TOWN_PAGES.has(t.id) ? 'towns/' + t.id + '.html' : 'towns/all-towns.html';
   const TOWNS_LEN = townsData.length;
   let currentIndex = TOWNS_LEN; // Center of 3x sets [0..17, 18..35, 36..53]
