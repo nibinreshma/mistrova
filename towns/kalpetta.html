@@ -710,20 +710,32 @@
 .fm-cap span{color:var(--ink-2);letter-spacing:.04em;text-transform:none;font-size:.7rem}
 
 /* ---------- body ---------- */
+/* Ragged right, not justified: a 480px column cannot justify without rivers. */
 .fm-body{columns:2;column-gap:clamp(28px,4vw,54px);font-size:.95rem;line-height:1.68;
-  color:var(--ink-2);text-align:justify;hyphens:auto}
-@media (max-width:760px){.fm-body{columns:1;text-align:left}}
+  color:var(--ink-2);text-align:left;hyphens:none}
+.fm-body>*{break-inside:avoid-column}
+@media (max-width:760px){.fm-body{columns:1}}
 .fm-body p{margin:0 0 1rem}
 .fm-body p:first-of-type::first-letter{float:left;font-family:var(--display);font-size:3.3rem;
   line-height:.84;padding:.1rem .5rem 0 0;color:var(--deep)}
 
 /* ---------- section heads ---------- */
-.fm-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:.9rem;margin:0 0 1.5rem}
-.fm-head b{font-family:var(--mono);font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;
-  color:var(--teal);font-weight:700}
-.fm-head h2{margin:0;font-family:var(--display);font-weight:500;line-height:1.05;
-  font-size:clamp(1.7rem,3.4vw,2.5rem);color:var(--ink)}
-.fm-head p{flex:1 1 320px;margin:0;font-size:.84rem;line-height:1.55;color:var(--ink-2);min-width:0}
+/* Figure number in its own column; title and standfirst share the second,
+   so the standfirst starts on the title's left edge instead of being
+   squeezed onto the same line. */
+.fm-head{display:grid;grid-template-columns:auto minmax(0,1fr);
+  column-gap:clamp(.8rem,1.6vw,1.2rem);row-gap:.55rem;margin:0 0 1.7rem}
+.fm-head b{grid-column:1;grid-row:1;align-self:baseline;font-family:var(--mono);font-size:.66rem;
+  letter-spacing:.26em;text-transform:uppercase;color:var(--teal);font-weight:700;white-space:nowrap}
+.fm-head h2{grid-column:2;grid-row:1;margin:0;font-family:var(--display);font-weight:500;
+  line-height:1.05;font-size:clamp(1.7rem,3.4vw,2.5rem);color:var(--ink);text-wrap:balance}
+.fm-head p{grid-column:2;grid-row:2;margin:0;max-width:66ch;font-size:.84rem;
+  line-height:1.6;color:var(--ink-2);min-width:0}
+@media (max-width:560px){
+  .fm-head{grid-template-columns:minmax(0,1fr);row-gap:.4rem}
+  .fm-head b,.fm-head h2,.fm-head p{grid-column:1}
+  .fm-head b{grid-row:auto}.fm-head h2{grid-row:auto}.fm-head p{grid-row:auto}
+}
 
 /* ---------- measured rows ---------- */
 .fm-rows{margin:0;padding:0;list-style:none}
@@ -731,7 +743,8 @@
   padding:.95rem 0;border-top:1px dotted var(--rule)}
 .fm-row:last-child{border-bottom:1px dotted var(--rule)}
 .fm-row .km{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;color:var(--deep);
-  font-weight:700;white-space:nowrap}
+  font-weight:700;white-space:nowrap;text-align:right;font-variant-numeric:tabular-nums}
+@media (max-width:620px){.fm-row .km{text-align:left}}
 .fm-row h3{margin:0 0 .18rem;font-family:var(--display);font-weight:500;font-size:1.18rem;color:var(--ink)}
 .fm-row p{margin:0;font-size:.82rem;line-height:1.5;color:var(--ink-2)}
 .fm-row .tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;
@@ -747,14 +760,29 @@
 .fm-panel{border:1.5px solid var(--rule);padding:clamp(18px,2.4vw,26px);background:rgba(255,255,255,.5)}
 .fm-panel h3{margin:0 0 1rem;font-family:var(--mono);font-size:.66rem;letter-spacing:.24em;
   text-transform:uppercase;color:var(--teal);font-weight:700}
-.fm-list{margin:0;padding:0;list-style:none}
-.fm-list li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.9rem;padding:.7rem 0;
-  border-top:1px dotted var(--rule);font-size:.86rem;line-height:1.5;color:var(--ink-2)}
-.fm-list li:first-child{border-top:0;padding-top:0}
-.fm-list b{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--deep);white-space:nowrap;padding-top:.2rem}
+/* One grid for the whole list, not one per row, so every entry's text
+   starts on the same line however long its label is. */
+.fm-list{margin:0;padding:0;list-style:none;
+  display:grid;grid-template-columns:max-content minmax(0,1fr);
+  column-gap:0;
+  font-size:.86rem;line-height:1.5;color:var(--ink-2)}
+.fm-list li{display:contents}
+/* the gutter is padding, not a column gap, so the two dotted rules meet */
+.fm-list>li>b{grid-column:1;font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--deep);white-space:nowrap;
+  border-top:1px dotted var(--rule);
+  padding:.88rem clamp(.8rem,1.4vw,1.1rem) .7rem 0}
+.fm-list>li>div{grid-column:2;min-width:0;border-top:1px dotted var(--rule);padding:.7rem 0}
+.fm-list>li:first-child>b{border-top:0;padding-top:.18rem}
+.fm-list>li:first-child>div{border-top:0;padding-top:0}
 .fm-list strong{display:block;font-family:var(--sans);font-weight:700;color:var(--ink);font-size:.9rem}
-@media (max-width:460px){.fm-list li{grid-template-columns:minmax(0,1fr);gap:.25rem}}
+.fm-list a{color:inherit}
+@media (max-width:460px){
+  .fm-list{grid-template-columns:minmax(0,1fr)}
+  .fm-list>li>b{grid-column:1;padding:.8rem 0 .1rem 0}
+  .fm-list>li>div{grid-column:1;border-top:0;padding:0 0 .7rem}
+  .fm-list>li:first-child>b{padding-top:0}
+}
 
 /* ---------- stat strip ---------- */
 .fm-strip{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--rule);
