@@ -10,6 +10,250 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <meta name="theme-color" content="#0A3D4A">
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script>
+/* =====================================================================
+   DESTINATION DETAILS — the only part you change for each new page.
+   Copy this file, rename it (e.g. meenmutty-falls.html), and edit below.
+   Text in [square brackets] is a placeholder still to be confirmed.
+   ===================================================================== */
+const DEST = {
+  "name": "Chembra Peak",
+  "category": "Peaks & Viewpoints",
+  "area": "Meppadi",
+  "elevation": "2,100 m",
+  "stampLabel": "Highest point · Meppadi",
+  "headlineAccent": "Wayanad's Highest Summit",
+  "tagline": "A misty climb through tea gardens and shola grassland to a heart-shaped lake that never runs dry.",
+  "heroImage": "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=1800&q=80",
+  "heroCredit": "Replace with your own photo",
+  "factsPill": "Trek at a glance",
+  "factsTitle": [
+    "Know before",
+    "you climb"
+  ],
+  "factsNote": "Fees and timings are set by the Forest Department and can change — confirm at the Meppadi forest office.",
+  "facts": [
+    {
+      "icon": "route",
+      "label": "Trek distance",
+      "value": "≈ 4.5 km",
+      "note": "Base to Heart Lake, one way"
+    },
+    {
+      "icon": "pin",
+      "label": "Road distance",
+      "value": "≈ 20 km",
+      "note": "From Kalpetta · about 40 min"
+    },
+    {
+      "icon": "clock",
+      "label": "Timings",
+      "value": "7:00 AM – 2:00 PM",
+      "note": "Last permit around 2 PM · arrive early"
+    },
+    {
+      "icon": "ticket",
+      "label": "Entry fee",
+      "value": "₹4,000 / group",
+      "note": "Up to 5 Indians + forest guide · foreigners ₹8,000"
+    },
+    {
+      "icon": "hour",
+      "label": "Time needed",
+      "value": "3 – 4 hours",
+      "note": "Return trip to Heart Lake"
+    },
+    {
+      "icon": "mtn",
+      "label": "Difficulty",
+      "value": "Moderate",
+      "level": 2,
+      "note": "Steep, slippery grass in places"
+    }
+  ],
+  "glance": [
+    {
+      "label": "Best season",
+      "value": "October – May"
+    }
+  ],
+  "seasonNote": "Mist-free mornings",
+  "bestMonths": [
+    10,
+    11,
+    12,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "aboutTitle": [
+    "Mist, Grassland",
+    "and a Lake Shaped Like a Heart."
+  ],
+  "about": [
+    "Chembra Peak is the highest point in Wayanad, rising to about 2,100 metres above sea level on the Meppadi side of the district. The trail climbs through tea estates and open shola grassland before reaching the ridge.",
+    "About halfway up sits Hridhayathadakam, a small lake shaped like a heart, which is said never to dry up even in summer. From the upper slopes the view opens out across the Wayanad plateau and, on clear days, towards the Nilgiris and the Kozhikode plains.",
+    "Treks run only with a forest-department guide, and groups now turn back at the heart-shaped lake — the summit itself is off-limits. Permits are issued at the forest office counter near Meppadi on the day, first come, first served."
+  ],
+  "highlights": [
+    "Heart-shaped lake (Hridhayathadakam)",
+    "Shola grassland trail",
+    "Views over the Wayanad plateau",
+    "Tea estates at the foothills"
+  ],
+  "gallery": [
+    {
+      "src": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=75",
+      "alt": "Mist over the ridge"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=75",
+      "alt": "Valley view"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=900&q=75",
+      "alt": "Mountain lake"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1511497584788-87676104235f?auto=format&fit=crop&w=900&q=75",
+      "alt": "Forest trail"
+    }
+  ],
+  "galleryTitle": [
+    "Through the",
+    "mist"
+  ],
+  "reach": [
+    {
+      "from": "Meppadi town",
+      "km": "8–13 km",
+      "detail": "≈ 20–30 min by jeep or taxi to the forest office and trailhead"
+    },
+    {
+      "from": "Kalpetta",
+      "km": "≈ 20 km",
+      "detail": "≈ 40 min via Meppadi"
+    },
+    {
+      "from": "Kozhikode railway station",
+      "km": "≈ 91 km",
+      "detail": "≈ 2.5–3 hr via the Thamarassery Churam (NH 766)"
+    },
+    {
+      "from": "Calicut International Airport",
+      "km": "≈ 95 km",
+      "detail": "≈ 3 hr by road"
+    }
+  ],
+  "rules": [
+    "Permit and forest guide are compulsory — one permit covers a group of up to 5.",
+    "Trekking stops at the heart-shaped lake; the summit is closed to visitors.",
+    "Daily visitor numbers are capped. Permits go first come, first served.",
+    "Plastic is not allowed on the trail. Carry water in reusable bottles.",
+    "Treks can be suspended in heavy rain or for wildlife movement — check before you go."
+  ],
+  "tips": [
+    "Start early. Mist often rolls in by late morning.",
+    "Wear shoes with good grip; the grassland is slippery after rain.",
+    "Carry a light rain jacket, even in the dry season.",
+    "Leeches are common in the wet months. Leech socks help."
+  ],
+  "map": {
+    "query": "Chembra Peak, Meppadi, Wayanad, Kerala"
+  },
+  "weather": {
+    "base": {
+      "name": "Meppadi (base)",
+      "lat": 11.556,
+      "lon": 76.134
+    },
+    "peak": {
+      "name": "Chembra Peak",
+      "lat": 11.5133,
+      "lon": 76.0864
+    }
+  },
+  "nearby": {
+    "places": [
+      {
+        "name": "Thusharagiri Waterfalls",
+        "note": "Waterfalls · ≈ 8 km by road",
+        "href": "thusharagiri-waterfalls.html"
+      },
+      {
+        "name": "Pookode Lake",
+        "note": "Lakes, Dams & River Islands · ≈ 9 km by road",
+        "href": "pookode-lake.html"
+      },
+      {
+        "name": "Lakkidi Viewpoint",
+        "note": "Peaks & Viewpoints · ≈ 9 km by road",
+        "href": "lakkidi-viewpoint.html"
+      }
+    ],
+    "stays": [
+      {
+        "name": "Chembra Peak Resort",
+        "note": "Hotel · Meppadi",
+        "href": "https://www.google.com/maps/search/?api=1&query=Chembra%20Peak%20Resort%2C%20Meppadi%2C%20Wayanad"
+      },
+      {
+        "name": "After The Rains",
+        "note": "Resort · Rippon, Meppadi",
+        "href": "https://www.google.com/maps/search/?api=1&query=After%20The%20Rains%2C%20Rippon%2C%20Meppadi%2C%20Wayanad"
+      },
+      {
+        "name": "Wayanad Ranches Resort",
+        "note": "Resort · Valathur, Rippon",
+        "href": "https://www.google.com/maps/search/?api=1&query=Wayanad%20Ranches%20Resort%2C%20Valathur%2C%20Rippon%2C%20Wayanad"
+      },
+      {
+        "name": "Tearoute Homestay",
+        "note": "Homestay · near the forest range office",
+        "href": "https://www.google.com/maps/search/?api=1&query=Tearoute%20Homestay%2C%20near%20the%20forest%20range%20office%2C%20Wayanad"
+      }
+    ],
+    "food": [
+      {
+        "name": "Grace Bakery & Restaurant",
+        "note": "Vegetarian · post office junction, Meppadi",
+        "href": "https://www.google.com/maps/search/?api=1&query=Grace%20Bakery%20%26%20Restaurant%2C%20post%20office%20junction%2C%20Meppadi%2C%20Wayanad"
+      },
+      {
+        "name": "Hotel Paris",
+        "note": "Meat & fish · Meppadi town",
+        "href": "https://www.google.com/maps/search/?api=1&query=Hotel%20Paris%2C%20Meppadi%20town%2C%20Wayanad"
+      },
+      {
+        "name": "Coffee Creek Restaurant",
+        "note": "Waterfall Road, Meppadi",
+        "href": "https://www.google.com/maps/search/?api=1&query=Coffee%20Creek%20Restaurant%2C%20Waterfall%20Road%2C%20Meppadi%2C%20Wayanad"
+      },
+      {
+        "name": "Vanitha Hotel",
+        "note": "Lunch meals · Meppadi bus stand",
+        "href": "https://www.google.com/maps/search/?api=1&query=Vanitha%20Hotel%2C%20Meppadi%20bus%20stand%2C%20Wayanad"
+      }
+    ]
+  },
+  "safety": {
+    "hospital": {
+      "name": "Aster DM WIMS Medical College",
+      "note": "Meppadi · 24/7 emergency & trauma"
+    },
+    "police": {
+      "name": "Meppadi Police Station",
+      "note": "Meppadi"
+    },
+    "office": {
+      "name": "Meppadi Forest Office (VSS counter)",
+      "note": "Trek permits · at the base"
+    }
+  }
+};
 </script>
 <style>
   /* Layout: airy split hero (headline left, arched photo right with floating cards)
@@ -533,6 +777,17 @@
   .shot-empty .se-ic svg{width:22px;height:22px}
   .shot-empty .se-t{font-size:.64rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:rgba(10,61,74,.55)}
   .near-note{font-size:.76rem;color:var(--ink-2);margin-top:.9rem}
+  .near-note:empty{display:none}
+
+/* ===== MISTROVA emblem logo (dot-grid) ===== */
+/* the tile itself never moves — only the amber dot inside it does */
+.em-wrap,.brand-emblem-wrap{width:46px!important;height:46px!important;flex-shrink:0;animation:none!important;transform:none!important}
+.brand-emblem-wrap::before,.em-wrap::before{display:none!important;animation:none!important}
+.em-svg,.brand-emblem-svg{width:100%!important;height:100%!important;overflow:visible;animation:none!important;transform:none!important;transition:none!important;filter:drop-shadow(0 4px 10px rgba(26,18,34,.3))!important}
+.em-svg *,.brand-emblem-svg *{animation:none}
+.em-trav{transform-box:fill-box;transform-origin:center;animation:emTrav 11s ease-in-out infinite!important}
+@keyframes emTrav{0%{transform:translate(0px,0px) scale(1)}10%{transform:translate(-24px,-24px) scale(0.5898)}20%{transform:translate(0px,-24px) scale(0.6417)}30%{transform:translate(24px,-24px) scale(0.5898)}40%{transform:translate(48px,0px) scale(0.6019)}50%{transform:translate(24px,24px) scale(0.5898)}60%{transform:translate(0px,24px) scale(0.6417)}70%{transform:translate(-24px,24px) scale(0.5898)}80%{transform:translate(-48px,0px) scale(0.6019)}90%{transform:translate(-24px,0px) scale(0.8009)}100%{transform:translate(0px,0px) scale(1)}}
+@media (prefers-reduced-motion:reduce){.em-trav{animation:none!important}}
 
   /* ===== TOWN PAGE ===== */
   .tw em{font-style:italic;font-weight:500;color:var(--teal)}
@@ -727,17 +982,6 @@
 
 </style>
 </head>
-/* ===== MISTROVA emblem logo (dot-grid) ===== */
-/* the tile itself never moves — only the amber dot inside it does */
-.em-wrap,.brand-emblem-wrap{width:46px!important;height:46px!important;flex-shrink:0;animation:none!important;transform:none!important}
-.brand-emblem-wrap::before,.em-wrap::before{display:none!important;animation:none!important}
-.em-svg,.brand-emblem-svg{width:100%!important;height:100%!important;overflow:visible;animation:none!important;transform:none!important;transition:none!important;filter:drop-shadow(0 4px 10px rgba(26,18,34,.3))!important}
-.em-svg *,.brand-emblem-svg *{animation:none}
-.em-trav{transform-box:fill-box;transform-origin:center;animation:emTrav 11s ease-in-out infinite!important}
-@keyframes emTrav{0%{transform:translate(0px,0px) scale(1)}10%{transform:translate(-24px,-24px) scale(0.5898)}20%{transform:translate(0px,-24px) scale(0.6417)}30%{transform:translate(24px,-24px) scale(0.5898)}40%{transform:translate(48px,0px) scale(0.6019)}50%{transform:translate(24px,24px) scale(0.5898)}60%{transform:translate(0px,24px) scale(0.6417)}70%{transform:translate(-24px,24px) scale(0.5898)}80%{transform:translate(-48px,0px) scale(0.6019)}90%{transform:translate(-24px,0px) scale(0.8009)}100%{transform:translate(0px,0px) scale(1)}}
-@media (prefers-reduced-motion:reduce){.em-trav{animation:none!important}}
-</style>
-</head>
 <body>
 <script>document.documentElement.classList.add('js')</script>
 
@@ -822,23 +1066,6 @@
   <nav class="md-panel" id="mdPanel" aria-label="Section links"></nav>
 </aside>
 
-<main>
-  <!-- HERO -->
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div class="hero-copy">
-        <nav class="crumbs" aria-label="Breadcrumb">
-          <a href="../index.html">Home</a><span aria-hidden="true">/</span><a href="all-explore.html">Explore</a><span aria-hidden="true">/</span><a id="crumbCat" href="all-explore.html"></a>
-        </nav>
-        <span class="pill"><i><svg><use href="#i-leaf"/></svg></i><span id="heroPill"></span></span>
-        <h1><span id="heroName"></span><span class="accent" id="heroAccent"></span></h1>
-        <p class="lead" id="heroLead"></p>
-        <div class="cta-row">
-          <a class="btn-main" id="heroDir" target="_blank" rel="noopener">Get directions <i><svg><use href="#i-up"/></svg></i></a>
-          <a class="btn-link" href="#plan">Plan your visit <svg><use href="#i-arrow"/></svg></a>
-        </div>
-        <div class="proof">
-          <div class="faces" id="faces"></div>
 
 <main id="main" class="tw">
   <header class="tw-hero">
@@ -868,7 +1095,7 @@
           <div><dt>Taluks</dt><dd>3</dd></div>
           <div><dt>Pages live</dt><dd>2</dd></div>
         </dl>
-        <p class="th-cardnote">Elevations are approximate. Town pages are being written one at a time — Ambalavayal is the first.</p>
+        <p class="th-cardnote">Elevations are approximate. Town pages are being written one at a time — 2 of the 18 are live so far.</p>
       </aside>
     </div>
   </header>
