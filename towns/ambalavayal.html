@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Ambalavayal — MISTROVA</title>
+  <title>Ambalavayal — a town sheet | MISTROVA</title>
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-  <meta name="description" content="Ambalavayal, Wayanad — what to see, how to get there, farms and nurseries, essentials and live weather for the plateau town beside Edakkal Caves and the Heritage Museum.">
+  <meta name="description" content="Ambalavayal, Wayanad: elevation, what sits within a short drive, how to reach it by road, essentials and live weather.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <meta name="theme-color" content="#0A3D4A">
@@ -655,6 +655,149 @@
 .em-trav{transform-box:fill-box;transform-origin:center;animation:emTrav 11s ease-in-out infinite!important}
 @keyframes emTrav{0%{transform:translate(0px,0px) scale(1)}10%{transform:translate(-24px,-24px) scale(0.5898)}20%{transform:translate(0px,-24px) scale(0.6417)}30%{transform:translate(24px,-24px) scale(0.5898)}40%{transform:translate(48px,0px) scale(0.6019)}50%{transform:translate(24px,24px) scale(0.5898)}60%{transform:translate(0px,24px) scale(0.6417)}70%{transform:translate(-24px,24px) scale(0.5898)}80%{transform:translate(-48px,0px) scale(0.6019)}90%{transform:translate(-24px,0px) scale(0.8009)}100%{transform:translate(0px,0px) scale(1)}}
 @media (prefers-reduced-motion:reduce){.em-trav{animation:none!important}}
+
+/* =====================================================================
+   FIELD MANUAL — town sheet
+   Reference: makingsoftware.com (inspo) — a reference manual, not a
+   brochure: labelled diagram, mono callouts, dotted rules, edge rails,
+   two-column justified body. Palette stays MISTROVA's.
+   ===================================================================== */
+.fm{--rule:rgba(10,61,74,.28);--mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+  background:var(--paper);color:var(--ink)}
+.fm .wrap{max-width:1180px;margin:0 auto;padding-inline:max(20px,env(safe-area-inset-left,0px))}
+
+/* dotted separators, the manual's main punctuation */
+.fm-dot{border:0;border-top:1.5px dotted var(--rule);margin:0}
+.fm-sec{padding-block:clamp(56px,7vw,96px)}
+
+/* edge rails */
+.fm-rail{position:fixed;top:0;bottom:0;width:30px;display:none;place-items:center;
+  z-index:5;pointer-events:none}
+.fm-rail span{writing-mode:vertical-rl;font-family:var(--mono);font-size:.62rem;
+  letter-spacing:.34em;text-transform:uppercase;color:var(--teal);opacity:.6}
+.fm-rail.l{left:0}.fm-rail.r{right:0}.fm-rail.r span{transform:rotate(180deg)}
+@media (min-width:1340px){.fm-rail{display:grid}}
+
+/* ---------- masthead ---------- */
+.fm-mast{padding-top:clamp(28px,4vw,52px);padding-bottom:clamp(20px,3vw,34px)}
+.fm-kick{font-family:var(--mono);font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--teal);margin:0 0 .9rem}
+.fm-title{font-family:var(--display);font-weight:500;line-height:.92;margin:0;
+  font-size:clamp(3.4rem,11vw,8.2rem);letter-spacing:.02em;color:var(--ink)}
+.fm-sub{margin:.9rem 0 0;max-width:62ch;font-size:clamp(.95rem,1.6vw,1.08rem);
+  line-height:1.55;color:var(--ink-2)}
+.fm-sub em{font-style:italic;color:var(--teal)}
+
+/* ---------- fold: specimen table + diagram ---------- */
+.fm-fold{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(28px,4vw,44px);
+  padding-block:clamp(30px,4vw,48px)}
+@media (min-width:940px){.fm-fold{grid-template-columns:minmax(300px,.78fr) minmax(0,1.22fr);align-items:start}}
+
+.fm-spec{margin:0;display:grid;grid-template-columns:auto 1fr;gap:0}
+.fm-spec dt{font-family:var(--mono);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--teal);padding:.62rem 1rem .62rem 0;border-top:1px dotted var(--rule);align-self:center}
+.fm-spec dd{margin:0;padding:.62rem 0;border-top:1px dotted var(--rule);
+  font-family:var(--display);font-size:1.22rem;color:var(--ink);text-align:right}
+.fm-spec dd small{display:block;font-family:var(--sans);font-size:.68rem;color:var(--ink-2);
+  letter-spacing:.02em;margin-top:.1rem}
+.fm-note{margin:.9rem 0 0;font-size:.74rem;line-height:1.5;color:var(--ink-2);opacity:.85}
+
+.fm-fig{margin:0}
+.fm-fig svg{display:block;width:100%;height:auto}
+.fm-cap{display:flex;gap:.7rem;align-items:baseline;margin-top:.8rem;
+  font-family:var(--mono);font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--teal)}
+.fm-cap b{color:var(--ink);font-weight:700}
+.fm-cap span{color:var(--ink-2);letter-spacing:.04em;text-transform:none;font-size:.7rem}
+
+/* ---------- body ---------- */
+/* Ragged right, not justified: a 480px column cannot justify without rivers. */
+.fm-body{columns:2;column-gap:clamp(28px,4vw,54px);font-size:.95rem;line-height:1.68;
+  color:var(--ink-2);text-align:left;hyphens:none}
+.fm-body>*{break-inside:avoid-column}
+@media (max-width:760px){.fm-body{columns:1}}
+.fm-body p{margin:0 0 1rem}
+.fm-body p:first-of-type::first-letter{float:left;font-family:var(--display);font-size:3.3rem;
+  line-height:.84;padding:.1rem .5rem 0 0;color:var(--deep)}
+
+/* ---------- section heads ---------- */
+/* Figure number in its own column; title and standfirst share the second,
+   so the standfirst starts on the title's left edge instead of being
+   squeezed onto the same line. */
+.fm-head{display:grid;grid-template-columns:auto minmax(0,1fr);
+  column-gap:clamp(.8rem,1.6vw,1.2rem);row-gap:.55rem;margin:0 0 1.7rem}
+.fm-head b{grid-column:1;grid-row:1;align-self:baseline;font-family:var(--mono);font-size:.66rem;
+  letter-spacing:.26em;text-transform:uppercase;color:var(--teal);font-weight:700;white-space:nowrap}
+.fm-head h2{grid-column:2;grid-row:1;margin:0;font-family:var(--display);font-weight:500;
+  line-height:1.05;font-size:clamp(1.7rem,3.4vw,2.5rem);color:var(--ink);text-wrap:balance}
+.fm-head p{grid-column:2;grid-row:2;margin:0;max-width:66ch;font-size:.84rem;
+  line-height:1.6;color:var(--ink-2);min-width:0}
+@media (max-width:560px){
+  .fm-head{grid-template-columns:minmax(0,1fr);row-gap:.4rem}
+  .fm-head b,.fm-head h2,.fm-head p{grid-column:1}
+  .fm-head b{grid-row:auto}.fm-head h2{grid-row:auto}.fm-head p{grid-row:auto}
+}
+
+/* ---------- measured rows ---------- */
+.fm-rows{margin:0;padding:0;list-style:none}
+.fm-row{display:grid;grid-template-columns:72px minmax(0,1fr) auto;gap:1rem;align-items:baseline;
+  padding:.95rem 0;border-top:1px dotted var(--rule)}
+.fm-row:last-child{border-bottom:1px dotted var(--rule)}
+.fm-row .km{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;color:var(--deep);
+  font-weight:700;white-space:nowrap;text-align:right;font-variant-numeric:tabular-nums}
+@media (max-width:620px){.fm-row .km{text-align:left}}
+.fm-row h3{margin:0 0 .18rem;font-family:var(--display);font-weight:500;font-size:1.18rem;color:var(--ink)}
+.fm-row p{margin:0;font-size:.82rem;line-height:1.5;color:var(--ink-2)}
+.fm-row .tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--teal);white-space:nowrap}
+@media (max-width:620px){
+  .fm-row{grid-template-columns:62px minmax(0,1fr);gap:.8rem}
+  .fm-row .tag{grid-column:2;margin-top:.3rem}
+}
+
+/* ---------- two-up panels ---------- */
+.fm-two{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(22px,3vw,34px)}
+@media (min-width:860px){.fm-two{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.fm-panel{border:1.5px solid var(--rule);padding:clamp(18px,2.4vw,26px);background:rgba(255,255,255,.5)}
+.fm-panel h3{margin:0 0 1rem;font-family:var(--mono);font-size:.66rem;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--teal);font-weight:700}
+/* One grid for the whole list, not one per row, so every entry's text
+   starts on the same line however long its label is. */
+.fm-list{margin:0;padding:0;list-style:none;
+  display:grid;grid-template-columns:max-content minmax(0,1fr);
+  column-gap:0;
+  font-size:.86rem;line-height:1.5;color:var(--ink-2)}
+.fm-list li{display:contents}
+/* the gutter is padding, not a column gap, so the two dotted rules meet */
+.fm-list>li>b{grid-column:1;font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--deep);white-space:nowrap;
+  border-top:1px dotted var(--rule);
+  padding:.88rem clamp(.8rem,1.4vw,1.1rem) .7rem 0}
+.fm-list>li>div{grid-column:2;min-width:0;border-top:1px dotted var(--rule);padding:.7rem 0}
+.fm-list>li:first-child>b{border-top:0;padding-top:.18rem}
+.fm-list>li:first-child>div{border-top:0;padding-top:0}
+.fm-list strong{display:block;font-family:var(--sans);font-weight:700;color:var(--ink);font-size:.9rem}
+.fm-list a{color:inherit}
+@media (max-width:460px){
+  .fm-list{grid-template-columns:minmax(0,1fr)}
+  .fm-list>li>b{grid-column:1;padding:.8rem 0 .1rem 0}
+  .fm-list>li>div{grid-column:1;border-top:0;padding:0 0 .7rem}
+  .fm-list>li:first-child>b{padding-top:0}
+}
+
+/* ---------- stat strip ---------- */
+.fm-strip{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--rule);
+  border:1.5px solid var(--rule)}
+@media (min-width:760px){.fm-strip{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.fm-strip div{background:var(--paper);padding:1.15rem 1rem}
+.fm-strip dt{font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--teal)}
+.fm-strip dd{margin:.35rem 0 0;font-family:var(--display);font-size:1.75rem;line-height:1;color:var(--ink)}
+.fm-strip dd small{display:block;font-family:var(--sans);font-size:.68rem;color:var(--ink-2);margin-top:.3rem}
+
+/* ---------- footer note ---------- */
+.fm-src{font-family:var(--mono);font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--teal)}
+.fm-srcbody{margin:.7rem 0 0;max-width:72ch;font-size:.8rem;line-height:1.6;color:var(--ink-2)}
+
+@media (prefers-reduced-motion:reduce){.fm *{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
@@ -707,7 +850,7 @@
       <a href="../index.html">Home</a>
       <a href="../explore/all-explore.html">Explore</a>
       <a href="../agriculture/all-agri.html">Agriculture</a>
-      <a href="../index.html#towns" aria-current="page">Towns</a>
+      <a href="../index.html#towns" >Towns</a>
       <a href="../index.html#stay">Stay</a>
       <a href="../index.html#eat">Eat</a>
       <a href="../index.html#essentials">Essentials</a>
@@ -742,95 +885,149 @@
 </aside>
 
 
-<main class="tw">
-  <section class="tw-hero">
-    <svg class="tw-contour" viewBox="0 0 1200 500" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M-20 420 C 180 380 300 300 520 320 S 900 380 1220 300"/>
-      <path d="M-20 370 C 180 330 300 250 520 270 S 900 330 1220 250"/>
-      <path d="M-20 320 C 180 280 300 200 520 220 S 900 280 1220 200"/>
-      <path d="M-20 270 C 180 230 300 150 520 170 S 900 230 1220 150"/>
-      <path d="M-20 220 C 180 180 300 100 520 120 S 900 180 1220 100"/>
-    </svg>
-    <div class="wrap tw-hero-grid">
-      <div>
-        <nav class="tw-crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="../index.html#towns">Towns</a><span>/</span><span aria-current="page">Ambalavayal</span></nav>
-        <p class="tw-kicker"><b>01</b> Towns · South Wayanad</p>
-        <h1>Ambalavayal</h1>
-        <p class="tw-sub">the village that keeps Wayanad’s memory</p>
-        <p class="tw-lede">A small plateau town between Sulthan Bathery and the Karapuzha valley, with the heritage museum, Edakkal Caves and Phantom Rock within a few kilometres — and, behind them, the research station, farms and nurseries that supply much of the district’s planting material.</p>
+<main id="main" class="fm">
+  <div class="fm-rail l" aria-hidden="true"><span>MISTROVA · Wayanad field manual</span></div>
+  <div class="fm-rail r" aria-hidden="true"><span>Sheet 06 · Ambalavayal</span></div>
+
+  <header class="wrap fm-mast">
+    <p class="fm-kick">Sheet 06 · Towns · Wayanad district</p>
+    <h1 class="fm-title">Ambalavayal</h1>
+    <p class="fm-sub">The horticultural belt of the southern plateau, and the way in to the Edakkal caves.
+      This sheet is a reference, not a brochure: <em>what the town is, what sits around it, and how you reach it.</em></p>
+  </header>
+  <hr class="fm-dot">
+
+  <section class="wrap fm-fold">
+    <div>
+      <dl class="fm-spec"><dt>Status</dt><dd>Grama panchayat<small>Sulthan Bathery block, 22 wards</small></dd><dt>Elevation</dt><dd>~980 m<small>the high southern plateau</small></dd><dt>Panchayat area</dt><dd>60.65 km²<small>6,065 hectares</small></dd><dt>Population</dt><dd>35,207<small>panchayat figure; the village alone is 16,988 (2011)</small></dd><dt>PIN</dt><dd>673593<small>vehicle series KL-73</small></dd><dt>STD code</dt><dd>04936<small>Sulthan Bathery constituency</small></dd></dl>
+      <p class="fm-note">The panchayat covers the villages of Ambalavayal and Thomattuchal. Its own records note human settlement here from before 2000 BC — the Edakkal petroglyphs, the dolmens and the other remains in this country are the evidence.</p>
+    </div>
+    <figure class="fm-fig reveal">
+      <svg viewBox="0 0 720 470" role="img" aria-label="Approach diagram: the roads into Ambalavayal, with road distances" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .rd{stroke:#10606F;stroke-width:2.4;fill:none}
+      .rd.minor{stroke:#98D8D0;stroke-width:1.8;stroke-dasharray:5 4}
+      .lb{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10px;letter-spacing:.16em;fill:#1D8B94}
+      .lb.dk{fill:#0A3D4A}
+      .tick{stroke:#1D8B94;stroke-width:1;stroke-dasharray:3 3}
+      .dist{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:9px;letter-spacing:.1em;fill:#2F5D66}
+    </style>
+  </defs>
+  <circle cx="360" cy="238" r="150" fill="none" stroke="#98D8D0" stroke-width="1" stroke-dasharray="2 6" opacity=".7"/>
+  <path class="rd" d="M360 238 L411 97"/>
+  <circle cx="411" cy="97" r="4" fill="#1D8B94"/>
+  <text class="lb" x="417" y="76" text-anchor="start">SULTHAN BATHERY</text>
+  <text class="dist" x="417" y="91" text-anchor="start">12 KM · NORTH-EAST</text>
+  <path class="rd" d="M360 238 L230 163"/>
+  <circle cx="230" cy="163" r="4" fill="#1D8B94"/>
+  <text class="lb" x="216" y="149" text-anchor="end">KALPETTA</text>
+  <text class="dist" x="216" y="164" text-anchor="end">25 KM · VIA MUTTIL</text>
+  <path class="rd minor" d="M360 238 L334 90"/>
+  <circle cx="334" cy="90" r="4" fill="#98D8D0"/>
+  <text class="lb" x="331" y="69" text-anchor="end">MEENANGADI</text>
+  <text class="dist" x="331" y="84" text-anchor="end">10 KM · NORTH</text>
+  <path class="rd minor" d="M360 238 L219 289"/>
+  <circle cx="219" cy="289" r="4" fill="#98D8D0"/>
+  <text class="lb" x="204" y="311" text-anchor="end">MEPPADI</text>
+  <text class="dist" x="204" y="326" text-anchor="end">25 KM · TEA BELT</text>
+  <path class="rd minor" d="M360 238 L386 386"/>
+  <circle cx="386" cy="386" r="4" fill="#98D8D0"/>
+  <text class="lb" x="389" y="417" text-anchor="start">MUPPAINAD</text>
+  <text class="dist" x="389" y="432" text-anchor="start">VADUVANCHAL · SOUTH</text>
+  <rect x="342" y="220" width="36" height="36" fill="#0A3D4A"/>
+  <rect x="350" y="228" width="20" height="20" fill="#F4B9A7"/>
+  <text class="lb dk" x="360" y="208" text-anchor="middle" font-size="13" letter-spacing=".2em">AMBALAVAYAL</text>
+  <text class="dist" x="360" y="276" text-anchor="middle">980 m · 11.62°N 76.21°E</text>
+  <text class="lb" x="40" y="440">FIG. 1 — APPROACHES</text>
+  <line class="tick" x1="40" y1="452" x2="680" y2="452"/>
+</svg>
+      <figcaption class="fm-cap"><b>Fig. 1</b><span>The roads into Ambalavayal, by direction. Distances are by road, not as the crow flies.</span></figcaption>
+    </figure>
+  </section>
+  <hr class="fm-dot">
+
+  <section class="wrap fm-sec">
+    <div class="fm-body reveal"><p>Ambalavayal is the market town of the southern plateau, and the plateau here is high — around nine hundred and eighty metres, open, and cooler at night than anywhere east of it. That altitude, with the deep red soil, is why this is the district’s horticultural belt: the Regional Agricultural Research Station sits here, and so do most of the nurseries that supply the rest of Wayanad.</p><p>It is also the oldest inhabited ground in the district. The Edakkal caves — a cleft in Ambukuthi Mala, six kilometres from the town, with carvings on its walls that run back to the Neolithic — are the best-known prehistoric site in Kerala. Dolmens and rock shelters are scattered through the country around them.</p><p>The town itself is a junction and a bazaar: a few hundred metres of shops where the Bathery and Meppadi roads meet, the panchayat office, the Heritage Museum with its collection from the local sites. Most of what brings people here is in the fields and hills around it rather than in the town.</p><p>It makes a good base if you want the quieter half of a Wayanad trip. Bathery is twelve kilometres for the buses and the banks, Edakkal and Phantom Rock are close, and the roads south through Muppainad towards the Tamil Nadu border see very little traffic.</p></div>
+  </section>
+  <hr class="fm-dot">
+
+  <section class="wrap fm-sec">
+    <div class="fm-head reveal">
+      <b>Fig. 2</b><h2>Within a short drive</h2>
+      <p>Everything below is reachable and back in a day from the town, in road distance.</p>
+    </div>
+    <ul class="fm-rows"><li class="fm-row reveal"><span class="km">6 km</span>
+        <div><h3>Edakkal Caves</h3><p>Petroglyphs in a rock cleft on Ambukuthi Mala, some Neolithic. A steep climb from the car park; closed on Mondays.</p></div>
+        <span class="tag">BY ROAD</span></li><li class="fm-row reveal"><span class="km">2 km</span>
+        <div><h3>Wayanad Heritage Museum</h3><p>Ambalavayal’s museum of local antiquities — tribal tools, terracotta, hero stones and finds from the nearby sites.</p></div>
+        <span class="tag">BY ROAD</span></li><li class="fm-row reveal"><span class="km">4 km</span>
+        <div><h3>Phantom Rock</h3><p>A weathered rock formation on Cheengeri Mala, named for its skull-like profile.</p></div>
+        <span class="tag">BY ROAD</span></li><li class="fm-row reveal"><span class="km">3 km</span>
+        <div><h3>Regional Agricultural Research Station</h3><p>The RARS campus — the research station behind much of the district’s horticulture.</p></div>
+        <span class="tag">BY ROAD</span></li><li class="fm-row reveal"><span class="km">12 km</span>
+        <div><h3>Sulthan Bathery</h3><p>The nearest large town, with the Jain temple, the KSRTC depot and the full range of services.</p></div>
+        <span class="tag">BY ROAD</span></li><li class="fm-row reveal"><span class="km">10 km</span>
+        <div><h3>Meenangadi</h3><p>The carbon-neutral panchayat on the Kalpetta road, with Neolithic sites of its own.</p></div>
+        <span class="tag">BY ROAD</span></li></ul>
+  </section>
+  <hr class="fm-dot">
+
+  <section class="wrap fm-sec">
+    <div class="fm-head reveal">
+      <b>Fig. 3</b><h2>The growing country</h2>
+      <p>Ambalavayal grows what the rest of the district plants — this is nursery and research country.</p>
+    </div>
+    <dl class="fm-strip reveal"><div><dt>Block</dt><dd>Sulthan Bathery<small>22 wards</small></dd></div><div><dt>Panchayat area</dt><dd>60.65 km²<small>Ambalavayal and Thomattuchal villages</small></dd></div><div><dt>To Edakkal</dt><dd>6 km<small>then a steep climb</small></dd></div><div><dt>Settled</dt><dd>Before 2000 BC<small>on the panchayat’s own record</small></dd></div></dl>
+    <div class="fm-two" style="margin-top:clamp(22px,3vw,34px)">
+      <div class="fm-panel reveal">
+        <h3>Around the town</h3>
+        <ul class="fm-list"><li><b>Horticulture</b><div>Vegetables, fruit and nursery stock — the RARS campus and the nurseries around it supply the district.</div></li><li><b>Coffee &amp; pepper</b><div>Robusta with pepper through it on the smallholdings, as across the eastern plateau.</div></li><li><b>Paddy &amp; ginger</b><div>In the valley bottoms between the rises, where the vayal land still holds water.</div></li></ul>
       </div>
-      <aside class="tw-card" aria-label="Town at a glance">
-        <p class="tw-card-k">Town card</p>
-        <dl><div><dt>Elevation</dt><dd>980 m</dd></div><div><dt>Population</dt><dd>16,988</dd></div><div><dt>PIN</dt><dd>673593</dd></div><div><dt>STD code</dt><dd>04936</dd></div></dl>
-        <div class="tw-live" aria-live="polite"><span class="wxi" id="miniIcon">⛅</span><div><b id="miniTemp">--°</b><span id="miniTown">Live weather</span></div></div>
-        <p class="tw-card-k" style="margin:.9rem 0 0;color:rgba(226,244,240,.55);letter-spacing:.06em;text-transform:none;font-weight:500;font-size:.74rem">Population from the 2011 census.</p>
-      </aside>
-    </div>
-  </section>
-
-  <div class="tw-dist"><div class="wrap tw-dist-in"><b>By road</b><span>Sulthan Bathery <i>10 km</i></span><span>Kalpetta <i>25 km</i></span><span>Kozhikode <i>94 km</i></span><small>By road, approximate. Kozhikode is about 2 hours 50 minutes.</small></div></div>
-
-  <section class="tw-sec">
-    <div class="wrap">
-      <header class="tw-head reveal"><p class="tw-k">Why come</p><h2>A town you can <em>walk out of</em></h2></header>
-      <div class="tw-why reveal"><article><svg><use href="#i-book"/></svg><h3>The district’s museum</h3><p>The Wayanad Heritage Museum, run by the DTPC, holds tribal tools, pottery, bows and stone-age finds.</p></article><article><svg><use href="#i-mtn"/></svg><h3>Rock art and a rock</h3><p>Edakkal Caves sit on Ambukuthi hill above the town, and Phantom Rock is visible from almost anywhere in the village.</p></article><article><svg><use href="#i-flask"/></svg><h3>A research town</h3><p>The Regional Agricultural Research Station has worked here since 1946, with a farm and nursery open to visitors.</p></article><article><svg><use href="#i-users"/></svg><h3>Village tourism</h3><p>Responsible tourism started here in 2012 — village tours, a candle unit and a local souvenir made from rosary pea.</p></article></div>
-    </div>
-  </section>
-
-  <section class="tw-sec alt" id="around">
-    <div class="wrap">
-      <header class="tw-head reveal"><p class="tw-k">Around the town</p><h2>What’s within <em>a short drive</em></h2></header>
-      <ol class="tw-sights reveal"><li><a class="tw-sight" href="../explore/wayanad-heritage-museum.html"><span class="km">In town<small>here</small></span><h3>Wayanad Heritage Museum</h3><p>The DTPC museum of Wayanad’s tribal and pre-historic past.</p><span class="go" aria-hidden="true">→</span></a></li><li><a class="tw-sight" href="../explore/edakkal-caves.html"><span class="km">5 km<small>by road</small></span><h3>Edakkal Caves</h3><p>Neolithic carvings in a split-rock shelter on Ambukuthi hill.</p><span class="go" aria-hidden="true">→</span></a></li><li><a class="tw-sight" href="../explore/phantom-rock.html"><span class="km">7 km<small>by road</small></span><h3>Phantom Rock</h3><p>A skull-shaped outcrop above the plateau, visible across the village.</p><span class="go" aria-hidden="true">→</span></a></li><li><a class="tw-sight" href="../explore/karapuzha-dam.html"><span class="km">12 km<small>by road</small></span><h3>Karapuzha Dam</h3><p>Earthen dam with gardens, a hanging bridge and an adventure park.</p><span class="go" aria-hidden="true">→</span></a></li><li><a class="tw-sight" href="../explore/meenmutty-waterfalls.html"><span class="km">25 km<small>by road</small></span><h3>Meenmutty Waterfalls</h3><p>A three-tier forest waterfall, listed among the station’s nearest sights.</p><span class="go" aria-hidden="true">→</span></a></li></ol>
-    </div>
-  </section>
-
-  <section class="tw-sec">
-    <div class="wrap">
-      <header class="tw-head reveal"><p class="tw-k">Growing country</p><h2>Farms, nurseries &amp; <em>the research station</em></h2></header>
-      <div class="tw-agri reveal"><a href="../agriculture/nurseries.html"><b>11</b><span>Nurseries</span><small>More nurseries than any other town in the district.</small></a><a href="../agriculture/farms.html"><b>4</b><span>Farms &amp; stays</span><small>Tapovan, Beehive, Wayanad Green Park and TGG at Nenmeni.</small></a><a href="../agriculture/research.html"><b>3</b><span>Research bodies</span><small>RARS, the College of Agriculture and KVK Wayanad share one campus.</small></a><a href="../agriculture/coffee-spice.html"><b>400</b><span>Acres of coffee</span><small>The Kuppamudi coffee and spice estate at Kolagappara.</small></a></div>
-    </div>
-  </section>
-
-  <section class="tw-sec alt">
-    <div class="wrap">
-      <header class="tw-head reveal"><p class="tw-k">Village tourism</p><h2>Experiences run <em>from here</em></h2><p>Packages offered through the Responsible Tourism Mission at Ambalavayal.</p></header>
-      <ul class="tw-exp reveal"><li>Chekadi Village Tour</li><li>Pakkam Village Tour</li><li>Jain Tourism Circuit</li><li>Wayanad Heritage Walk</li><li>A Day at Chetyalathoor</li><li>A Day at Nellarachal</li></ul>
-    </div>
-  </section>
-
-  <section class="tw-sec" id="practical">
-    <div class="wrap tw-cols">
-      <div class="tw-panel reveal">
-        <h3>Getting here</h3>
-        <ul class="tw-routes"><li><b>From Kalpetta</b><span>Kalpetta → Meenangadi → Kolagappara Junction, then right to Ambalavayal.</span></li><li><b>From Bathery</b><span>Sulthan Bathery → Kolagappara Junction, then left. About 10 km.</span></li><li><b>From Mananthavady</b><span>Mananthavady → Panamaram → Meenangadi → Kolagappara Junction, then left.</span></li><li><b>From Kozhikode</b><span>Thamarassery ghat → Vythiri → Kalpetta → Meenangadi → Kolagappara. About 94 km, 2 h 50 min.</span></li><li><b>Around town</b><span>Buses run on the Bathery and Kalpetta roads; autos and jeeps wait at the town junction.</span></li></ul>
-      </div>
-      <div class="tw-panel reveal">
-        <h3>Essentials in town</h3>
-        <ul class="tw-ess"><li><span class="nm">Family Health Centre</span><span class="ty">Government hospital</span><span class="nt">Public health centre for Ambalavayal, Edakkal and the Kolagappara belt.</span><a class="tel" href="tel:04936260130"><svg><use href="#i-phone"/></svg>Call</a></li><li><span class="nm">St. Martin’s Hospital</span><span class="ty">Private · multi-specialty</span><span class="nt">Devikunnu Temple Road — 24-hour emergency, ICU and lab. Nearest private care to Edakkal Caves.</span></li><li><span class="nm">Ambalavayal Police Station</span><span class="ty">Police</span><span class="nt">Covers Ambalavayal, Edakkal Caves, Phantom Rock and the Karadipara–Kolagappara area.</span><a class="tel" href="tel:100"><svg><use href="#i-phone"/></svg>Call</a></li><li><span class="nm">Ambalavayal Village Office</span><span class="ty">Revenue</span><span class="nt">Kolagappara–Ambalavayal Road. Land records and certificates.</span><a class="tel" href="tel:08547616503"><svg><use href="#i-phone"/></svg>Call</a></li><li><span class="nm">Ambalavayal Grama Panchayat</span><span class="ty">Local body</span><span class="nt">Certificates, building permits, trade licences and civic complaints.</span></li><li><span class="nm">RARS Ambalavayal</span><span class="ty">Research station</span><span class="nt">Farm and nursery open to visitors, about ₹10 entry, 10 am–5 pm (last entry 4:30).</span><a class="tel" href="tel:04936260421"><svg><use href="#i-phone"/></svg>Call</a></li></ul>
+      <div class="fm-panel reveal">
+        <h3>Where to look next</h3>
+        <ul class="fm-list">
+          <li><b>Agri</b><div><a href="../agriculture/all-agri.html">Farms, estates and nurseries</a> — 129 entries across the district.</div></li>
+          <li><b>Explore</b><div><a href="../explore/all-explore.html">All destinations</a> — the peaks, caves, falls and lakes.</div></li>
+          <li><b>Towns</b><div><a href="all-towns.html">All 18 towns</a>, grouped by the part of the district they sit in.</div></li>
+        </ul>
       </div>
     </div>
   </section>
+  <hr class="fm-dot">
 
-  <section class="tw-sec alt">
-    <div class="wrap tw-cols">
-      <div class="tw-panel reveal">
-        <h3>Places of worship</h3>
-        <ul class="tw-routes"><li><b>Worship</b><span>St. Martin de Porres Forane Church — Syro-Malabar parish of the Mananthavady diocese, established 1968.</span></li><li><b>Worship</b><span>St. George Orthodox Church — Malankara Orthodox Syrian parish in the town.</span></li><li><b>Worship</b><span>Ambalavayal Juma Masjid — the main mosque of Ambalavayal town.</span></li></ul>
-      </div>
-      <div class="tw-panel reveal">
-        <h3>Nearest towns</h3>
-        <div class="tw-towns"><span>Sulthan Bathery <i>10 km</i></span><span>Meenangadi <i>≈ 8 km</i></span><span>Kolagappara <i>≈ 4 km</i></span><span>Kalpetta <i>25 km</i></span></div>
-        <p style="margin-top:.9rem;font-size:.8rem;color:var(--ink-2)">Pages for the other towns are on the way.</p>
-      </div>
+  <section class="wrap fm-sec">
+    <div class="fm-head reveal">
+      <b>Fig. 4</b><h2>Getting here, and getting out</h2>
+      <p>Nothing in Wayanad is far. The roads are slow, so read these in hours rather than kilometres.</p>
+    </div>
+    <div class="fm-two">
+      <div class="fm-panel reveal"><h3>By road</h3><ul class="fm-list"><li><b>FROM SULTHAN BATHERY</b><div>12 km north-east, about 20 minutes — the usual approach.</div></li><li><b>FROM KALPETTA</b><div>25 km via Muttil and the Meenangadi road, about 45 minutes.</div></li><li><b>FROM MEPPADI</b><div>25 km west through the tea, a quieter and slower road.</div></li><li><b>FROM MYSURU</b><div>~120 km via Gundlupet, Muthanga and Bathery. The Bandipur stretch is closed 9 pm–6 am.</div></li><li><b>AROUND TOWN</b><div>Buses run Bathery–Ambalavayal–Meppadi through the day; autos and jeeps at the junction for Edakkal.</div></li></ul></div>
+      <div class="fm-panel reveal"><h3>Nearest towns</h3><ul class="fm-list"><li><b>10 km</b><div><strong>Meenangadi</strong></div></li><li><b>12 km</b><div><strong>Sulthan Bathery</strong></div></li><li><b>25 km</b><div><strong>Kalpetta</strong></div></li><li><b>25 km</b><div><strong>Meppadi</strong></div></li><li><b>18 km</b><div><strong>Muttil</strong></div></li><li><b>35 km</b><div><strong>Pulpally</strong></div></li></ul></div>
     </div>
   </section>
+  <hr class="fm-dot">
 
-  <section class="tw-sec" id="map">
-    <div class="wrap">
-      <header class="tw-head reveal"><p class="tw-k">On the map</p><h2>Where it is, and <em>today’s weather</em></h2></header>
-      <div class="mapwx reveal">
+  <section class="wrap fm-sec">
+    <div class="fm-head reveal">
+      <b>Fig. 5</b><h2>Essentials</h2>
+      <p>A panchayat town’s services, with Bathery twelve kilometres away for the rest.</p>
+    </div>
+    <div class="fm-two">
+      <div class="fm-panel reveal"><h3>Services</h3><ul class="fm-list"><li><b>GOVT</b><div><strong>Community Health Centre, Ambalavayal</strong>The local CHC; the taluk hospital is at Bathery.</div></li><li><b>RESEARCH</b><div><strong>Regional Agricultural Research Station</strong>Kerala Agricultural University’s station for the high ranges.</div></li><li><b>POLICE</b><div><strong>Ambalavayal Police Station</strong>Covers the town, the Edakkal road and the southern villages.</div></li><li><b>CIVIC</b><div><strong>Ambalavayal Grama Panchayat</strong>22 wards across Ambalavayal and Thomattuchal villages.</div></li><li><b>MUSEUM</b><div><strong>Wayanad Heritage Museum</strong>Open through the day; the local antiquities collection.</div></li><li><b>TRANSPORT</b><div><strong>Ambalavayal bus stop</strong>On the Bathery–Meppadi route; no depot, but frequent services.</div></li></ul></div>
+      <div class="fm-panel reveal"><h3>Places of worship</h3><ul class="fm-list"><li><b>HINDU</b><div><strong>Ambalavayal temples</strong>Village temples through the panchayat, several tied to the older settlement sites.</div></li><li><b>MUSLIM</b><div><strong>Juma Masjid, Ambalavayal</strong>In the town, by the junction.</div></li><li><b>CHRISTIAN</b><div><strong>St. George Orthodox Church</strong>One of the parishes serving the migrant farming families of the belt.</div></li><li><b>NOTE</b><div><strong>Edakkal</strong>The caves are an archaeological site, not a shrine — and are closed on Mondays.</div></li></ul></div>
+    </div>
+  </section>
+  <hr class="fm-dot">
+
+  <section class="wrap fm-sec">
+    <div class="fm-head reveal">
+      <b>Fig. 6</b><h2>On the map, and right now</h2>
+      <p>The map is live, and the weather below it updates when the page loads.</p>
+    </div>
+    <div class="mapwx reveal">
       <div class="mapcard">
-        <iframe id="mapFrame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map"></iframe>
+        <iframe id="mapFrame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map of Ambalavayal"></iframe>
         <div class="map-bar"><span id="mapLabel"></span><a id="mapDir" target="_blank" rel="noopener"><svg><use href="#i-nav"/></svg>Directions</a></div>
       </div>
       <div class="wx" aria-live="polite">
@@ -838,7 +1035,6 @@
           <span class="pill"><i><svg><use href="#i-cloud"/></svg></i>Live weather</span>
           <div class="wx-switch" role="tablist" aria-label="Weather location">
             <button role="tab" aria-selected="true" data-w="base" id="wxTabBase">Base</button>
-            
           </div>
         </div>
         <div class="wx-place" id="wxPlace"></div>
@@ -858,8 +1054,16 @@
         <div class="wx-src"><span class="dot" id="wxDot"></span><span id="wxSrc"></span></div>
       </div>
     </div>
-      <p style="margin-top:1rem;font-size:.78rem;color:var(--ink-2)">Figures from the 2011 census, Kerala Tourism and Kerala Agricultural University. Timings and phone numbers change — confirm locally before you rely on them.</p>
-    </div>
+    <div class="tw-live" hidden aria-hidden="true"><span class="wxi" id="miniIcon"></span><div><b id="miniTemp"></b><span id="miniTown"></span></div></div>
+  </section>
+  <hr class="fm-dot">
+
+  <section class="wrap fm-sec">
+    <p class="fm-src">Sources &amp; caveats</p>
+    <p class="fm-srcbody">Area, ward count and panchayat population (60.65 km²; 22 wards; 35,207) are Ambalavayal Grama Panchayat’s published figures; the 2011 census figure of 16,988 is for Ambalavayal village alone, which is why the two differ. PIN, STD code and vehicle series are published figures. Elevation is approximate. Edakkal Caves close on Mondays and in heavy rain. Road distances are approximate and taken by the usual
+      route, not the shortest line. Hospital, office and transport details change — confirm locally
+      before you rely on them. Where a figure could not be verified it has been left out rather than
+      estimated.</p>
   </section>
 </main>
 <footer class="foot">
@@ -927,7 +1131,7 @@ document.getElementById('mapDir').href = 'https://www.google.com/maps/dir/?api=1
 (function liveWeather() {
   const W = DEST.weather, $ = (id) => document.getElementById(id);
   const spots = W.peak ? { base: W.base, peak: W.peak } : { base: W.base };
-  if (!W.peak) document.querySelector('.wx-switch').hidden = true;
+  if (!W.peak) { const sw = document.querySelector('.wx-switch'); if (sw) sw.hidden = true; }
   const data = {}; let which = 'base', lastOk = null, retry = null;
   const WMO = {0:['Clear sky','☀️'],1:['Mainly clear','🌤️'],2:['Partly cloudy','⛅'],3:['Overcast','☁️'],45:['Fog','🌫️'],48:['Fog','🌫️'],
     51:['Light drizzle','🌦️'],53:['Drizzle','🌦️'],55:['Heavy drizzle','🌧️'],61:['Light rain','🌦️'],63:['Rain','🌧️'],65:['Heavy rain','🌧️'],
