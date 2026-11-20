@@ -472,6 +472,25 @@ const DESTINATIONS = [
 .em-trav{transform-box:fill-box;transform-origin:center;animation:emTrav 11s ease-in-out infinite!important}
 @keyframes emTrav{0%{transform:translate(0px,0px) scale(1)}10%{transform:translate(-24px,-24px) scale(0.5898)}20%{transform:translate(0px,-24px) scale(0.6417)}30%{transform:translate(24px,-24px) scale(0.5898)}40%{transform:translate(48px,0px) scale(0.6019)}50%{transform:translate(24px,24px) scale(0.5898)}60%{transform:translate(0px,24px) scale(0.6417)}70%{transform:translate(-24px,24px) scale(0.5898)}80%{transform:translate(-48px,0px) scale(0.6019)}90%{transform:translate(-24px,0px) scale(0.8009)}100%{transform:translate(0px,0px) scale(1)}}
 @media (prefers-reduced-motion:reduce){.em-trav{animation:none!important}}
+
+/* ---------- main nav: the same header the rest of the site carries ---------- */
+.nav{display:flex;gap:.2rem;align-items:center}
+.nav a{font-size:.84rem;font-weight:600;color:var(--ink-2);text-decoration:none;
+  padding:.5rem .85rem;border-radius:999px;transition:color .2s,background .2s;white-space:nowrap}
+.nav a:hover{background:rgba(255,255,255,.6);color:var(--night)}
+.nav a[aria-current="page"]{background:var(--night);color:#fff}
+.hdr-cta{display:inline-flex;align-items:center;gap:.5rem;font-size:.82rem;font-weight:700;
+  text-decoration:none;color:#fff;padding:.65rem 1.1rem;border-radius:12px;white-space:nowrap;
+  background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,0) 55%),var(--night);
+  border:1px solid rgba(152,216,208,.55);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 6px 16px -6px rgba(4,34,43,.4);
+  transition:background .2s}
+.hdr-cta:hover{background:linear-gradient(180deg,rgba(255,255,255,.24),rgba(255,255,255,0) 55%),var(--deep)}
+.hdr-cta svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.2;
+  stroke-linecap:round;stroke-linejoin:round}
+.hdr-actions{display:flex;align-items:center;gap:.7rem}
+/* below 980px the shared menu panel takes over, exactly as on every other page */
+@media (max-width:980px){ .nav,.hdr-cta{display:none} }
 </style>
 </head>
 <body>
@@ -484,11 +503,20 @@ const DESTINATIONS = [
       </span>
       <span class="brand-txt"><b class="brand-name">MISTROVA</b><small>Where nature takes root</small></span>
     </a>
+    <nav class="nav" id="mainNav" aria-label="Main">
+      <a href="../index.html">Home</a>
+      <a href="all-explore.html" aria-current="page">Explore</a>
+      <a href="../agriculture/all-agri.html">Agriculture</a>
+      <a href="../towns/all-towns.html">Towns</a>
+      <a href="../index.html#stay">Stay</a>
+      <a href="../index.html#eat">Eat</a>
+      <a href="../index.html#essentials">Essentials</a>
+    </nav>
     <div class="hdr-actions">
-    <a class="back" href="../index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Home</a>
-    <button class="menu-btn" id="menuBtn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mdDrawer"><span></span><span></span><span></span></button>
+      <a class="hdr-cta" href="#peaks-viewpoints"><svg viewBox="0 0 24 24"><path d="M3 18l6-9 4 6 3-4 5 7z"/></svg>Browse by type</a>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mdDrawer"><span></span><span></span><span></span></button>
     </div>
-  </div>
+    </div>
 </header>
 
 <!-- Mobile menu panel (same as the homepage) -->
