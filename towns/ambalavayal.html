@@ -645,159 +645,6 @@
   .tw-live b{display:block;font-family:var(--display);font-size:1.5rem;color:#fff;line-height:1}
   .tw-live span:not(.wxi){font-size:.74rem;color:rgba(226,244,240,.7)}
 
-
-/* ===== MISTROVA emblem logo (dot-grid) ===== */
-/* the tile itself never moves — only the amber dot inside it does */
-.em-wrap,.brand-emblem-wrap{width:46px!important;height:46px!important;flex-shrink:0;animation:none!important;transform:none!important}
-.brand-emblem-wrap::before,.em-wrap::before{display:none!important;animation:none!important}
-.em-svg,.brand-emblem-svg{width:100%!important;height:100%!important;overflow:visible;animation:none!important;transform:none!important;transition:none!important;filter:drop-shadow(0 4px 10px rgba(26,18,34,.3))!important}
-.em-svg *,.brand-emblem-svg *{animation:none}
-.em-trav{transform-box:fill-box;transform-origin:center;animation:emTrav 11s ease-in-out infinite!important}
-@keyframes emTrav{0%{transform:translate(0px,0px) scale(1)}10%{transform:translate(-24px,-24px) scale(0.5898)}20%{transform:translate(0px,-24px) scale(0.6417)}30%{transform:translate(24px,-24px) scale(0.5898)}40%{transform:translate(48px,0px) scale(0.6019)}50%{transform:translate(24px,24px) scale(0.5898)}60%{transform:translate(0px,24px) scale(0.6417)}70%{transform:translate(-24px,24px) scale(0.5898)}80%{transform:translate(-48px,0px) scale(0.6019)}90%{transform:translate(-24px,0px) scale(0.8009)}100%{transform:translate(0px,0px) scale(1)}}
-@media (prefers-reduced-motion:reduce){.em-trav{animation:none!important}}
-
-/* =====================================================================
-   FIELD MANUAL — town sheet
-   Reference: makingsoftware.com (inspo) — a reference manual, not a
-   brochure: labelled diagram, mono callouts, dotted rules, edge rails,
-   two-column justified body. Palette stays MISTROVA's.
-   ===================================================================== */
-.fm{--rule:rgba(10,61,74,.28);--mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
-  background:var(--paper);color:var(--ink)}
-.fm .wrap{max-width:1180px;margin:0 auto;padding-inline:max(20px,env(safe-area-inset-left,0px))}
-
-/* dotted separators, the manual's main punctuation */
-.fm-dot{border:0;border-top:1.5px dotted var(--rule);margin:0}
-.fm-sec{padding-block:clamp(56px,7vw,96px)}
-
-/* edge rails */
-.fm-rail{position:fixed;top:0;bottom:0;width:30px;display:none;place-items:center;
-  z-index:5;pointer-events:none}
-.fm-rail span{writing-mode:vertical-rl;font-family:var(--mono);font-size:.62rem;
-  letter-spacing:.34em;text-transform:uppercase;color:var(--teal);opacity:.6}
-.fm-rail.l{left:0}.fm-rail.r{right:0}.fm-rail.r span{transform:rotate(180deg)}
-@media (min-width:1340px){.fm-rail{display:grid}}
-
-/* ---------- masthead ---------- */
-.fm-mast{padding-top:clamp(28px,4vw,52px);padding-bottom:clamp(20px,3vw,34px)}
-.fm-kick{font-family:var(--mono);font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;
-  color:var(--teal);margin:0 0 .9rem}
-.fm-title{font-family:var(--display);font-weight:500;line-height:.92;margin:0;
-  font-size:clamp(3.4rem,11vw,8.2rem);letter-spacing:.02em;color:var(--ink)}
-.fm-sub{margin:.9rem 0 0;max-width:62ch;font-size:clamp(.95rem,1.6vw,1.08rem);
-  line-height:1.55;color:var(--ink-2)}
-.fm-sub em{font-style:italic;color:var(--teal)}
-
-/* ---------- fold: specimen table + diagram ---------- */
-.fm-fold{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(28px,4vw,44px);
-  padding-block:clamp(30px,4vw,48px)}
-@media (min-width:940px){.fm-fold{grid-template-columns:minmax(300px,.78fr) minmax(0,1.22fr);align-items:start}}
-
-.fm-spec{margin:0;display:grid;grid-template-columns:auto 1fr;gap:0}
-.fm-spec dt{font-family:var(--mono);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--teal);padding:.62rem 1rem .62rem 0;border-top:1px dotted var(--rule);align-self:center}
-.fm-spec dd{margin:0;padding:.62rem 0;border-top:1px dotted var(--rule);
-  font-family:var(--display);font-size:1.22rem;color:var(--ink);text-align:right}
-.fm-spec dd small{display:block;font-family:var(--sans);font-size:.68rem;color:var(--ink-2);
-  letter-spacing:.02em;margin-top:.1rem}
-.fm-note{margin:.9rem 0 0;font-size:.74rem;line-height:1.5;color:var(--ink-2);opacity:.85}
-
-.fm-fig{margin:0}
-.fm-fig svg{display:block;width:100%;height:auto}
-.fm-cap{display:flex;gap:.7rem;align-items:baseline;margin-top:.8rem;
-  font-family:var(--mono);font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--teal)}
-.fm-cap b{color:var(--ink);font-weight:700}
-.fm-cap span{color:var(--ink-2);letter-spacing:.04em;text-transform:none;font-size:.7rem}
-
-/* ---------- body ---------- */
-/* Ragged right, not justified: a 480px column cannot justify without rivers. */
-.fm-body{columns:2;column-gap:clamp(28px,4vw,54px);font-size:.95rem;line-height:1.68;
-  color:var(--ink-2);text-align:left;hyphens:none}
-.fm-body>*{break-inside:avoid-column}
-@media (max-width:760px){.fm-body{columns:1}}
-.fm-body p{margin:0 0 1rem}
-.fm-body p:first-of-type::first-letter{float:left;font-family:var(--display);font-size:3.3rem;
-  line-height:.84;padding:.1rem .5rem 0 0;color:var(--deep)}
-
-/* ---------- section heads ---------- */
-/* Figure number in its own column; title and standfirst share the second,
-   so the standfirst starts on the title's left edge instead of being
-   squeezed onto the same line. */
-.fm-head{display:grid;grid-template-columns:auto minmax(0,1fr);
-  column-gap:clamp(.8rem,1.6vw,1.2rem);row-gap:.55rem;margin:0 0 1.7rem}
-.fm-head b{grid-column:1;grid-row:1;align-self:baseline;font-family:var(--mono);font-size:.66rem;
-  letter-spacing:.26em;text-transform:uppercase;color:var(--teal);font-weight:700;white-space:nowrap}
-.fm-head h2{grid-column:2;grid-row:1;margin:0;font-family:var(--display);font-weight:500;
-  line-height:1.05;font-size:clamp(1.7rem,3.4vw,2.5rem);color:var(--ink);text-wrap:balance}
-.fm-head p{grid-column:2;grid-row:2;margin:0;max-width:66ch;font-size:.84rem;
-  line-height:1.6;color:var(--ink-2);min-width:0}
-@media (max-width:560px){
-  .fm-head{grid-template-columns:minmax(0,1fr);row-gap:.4rem}
-  .fm-head b,.fm-head h2,.fm-head p{grid-column:1}
-  .fm-head b{grid-row:auto}.fm-head h2{grid-row:auto}.fm-head p{grid-row:auto}
-}
-
-/* ---------- measured rows ---------- */
-.fm-rows{margin:0;padding:0;list-style:none}
-.fm-row{display:grid;grid-template-columns:72px minmax(0,1fr) auto;gap:1rem;align-items:baseline;
-  padding:.95rem 0;border-top:1px dotted var(--rule)}
-.fm-row:last-child{border-bottom:1px dotted var(--rule)}
-.fm-row .km{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;color:var(--deep);
-  font-weight:700;white-space:nowrap;text-align:right;font-variant-numeric:tabular-nums}
-@media (max-width:620px){.fm-row .km{text-align:left}}
-.fm-row h3{margin:0 0 .18rem;font-family:var(--display);font-weight:500;font-size:1.18rem;color:var(--ink)}
-.fm-row p{margin:0;font-size:.82rem;line-height:1.5;color:var(--ink-2)}
-.fm-row .tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--teal);white-space:nowrap}
-@media (max-width:620px){
-  .fm-row{grid-template-columns:62px minmax(0,1fr);gap:.8rem}
-  .fm-row .tag{grid-column:2;margin-top:.3rem}
-}
-
-/* ---------- two-up panels ---------- */
-.fm-two{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(22px,3vw,34px)}
-@media (min-width:860px){.fm-two{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.fm-panel{border:1.5px solid var(--rule);padding:clamp(18px,2.4vw,26px);background:rgba(255,255,255,.5)}
-.fm-panel h3{margin:0 0 1rem;font-family:var(--mono);font-size:.66rem;letter-spacing:.24em;
-  text-transform:uppercase;color:var(--teal);font-weight:700}
-/* One grid for the whole list, not one per row, so every entry's text
-   starts on the same line however long its label is. */
-.fm-list{margin:0;padding:0;list-style:none;
-  display:grid;grid-template-columns:max-content minmax(0,1fr);
-  column-gap:0;
-  font-size:.86rem;line-height:1.5;color:var(--ink-2)}
-.fm-list li{display:contents}
-/* the gutter is padding, not a column gap, so the two dotted rules meet */
-.fm-list>li>b{grid-column:1;font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--deep);white-space:nowrap;
-  border-top:1px dotted var(--rule);
-  padding:.88rem clamp(.8rem,1.4vw,1.1rem) .7rem 0}
-.fm-list>li>div{grid-column:2;min-width:0;border-top:1px dotted var(--rule);padding:.7rem 0}
-.fm-list>li:first-child>b{border-top:0;padding-top:.18rem}
-.fm-list>li:first-child>div{border-top:0;padding-top:0}
-.fm-list strong{display:block;font-family:var(--sans);font-weight:700;color:var(--ink);font-size:.9rem}
-.fm-list a{color:inherit}
-@media (max-width:460px){
-  .fm-list{grid-template-columns:minmax(0,1fr)}
-  .fm-list>li>b{grid-column:1;padding:.8rem 0 .1rem 0}
-  .fm-list>li>div{grid-column:1;border-top:0;padding:0 0 .7rem}
-  .fm-list>li:first-child>b{padding-top:0}
-}
-
-/* ---------- stat strip ---------- */
-.fm-strip{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--rule);
-  border:1.5px solid var(--rule)}
-@media (min-width:760px){.fm-strip{grid-template-columns:repeat(4,minmax(0,1fr))}}
-.fm-strip div{background:var(--paper);padding:1.15rem 1rem}
-.fm-strip dt{font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--teal)}
-.fm-strip dd{margin:.35rem 0 0;font-family:var(--display);font-size:1.75rem;line-height:1;color:var(--ink)}
-.fm-strip dd small{display:block;font-family:var(--sans);font-size:.68rem;color:var(--ink-2);margin-top:.3rem}
-
-/* ---------- footer note ---------- */
-.fm-src{font-family:var(--mono);font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--teal)}
-.fm-srcbody{margin:.7rem 0 0;max-width:72ch;font-size:.8rem;line-height:1.6;color:var(--ink-2)}
-
-@media (prefers-reduced-motion:reduce){.fm *{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
@@ -842,7 +689,7 @@
   <div class="wrap">
     <a class="brand brand-press" href="../index.html" aria-label="MISTROVA home">
       <span class="em-wrap" aria-hidden="true">
-        <svg class="em-svg" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><defs><linearGradient id="emgj351" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2C2039"/><stop offset="1" stop-color="#1A1222"/></linearGradient><clipPath id="emcj351"><rect width="240" height="240" rx="54"/></clipPath></defs><g clip-path="url(#emcj351)"><rect width="240" height="240" rx="54" fill="url(#emgj351)"/><g fill="#EFE7F2"><circle cx="24" cy="48" r="2.2" opacity="0.32"/><circle cx="48" cy="48" r="2.2" opacity="0.32"/><circle cx="72" cy="48" r="2.2" opacity="0.32"/><circle cx="96" cy="48" r="2.2" opacity="0.32"/><circle cx="120" cy="48" r="2.2" opacity="0.32"/><circle cx="144" cy="48" r="2.2" opacity="0.32"/><circle cx="168" cy="48" r="2.2" opacity="0.32"/><circle cx="192" cy="48" r="2.2" opacity="0.32"/><circle cx="216" cy="48" r="2.2" opacity="0.32"/><circle cx="24" cy="72" r="2.2" opacity="0.32"/><circle cx="48" cy="72" r="2.2" opacity="0.32"/><circle cx="72" cy="72" r="2.2" opacity="0.32"/><circle cx="96" cy="72" r="2.77" opacity="0.365"/><circle cx="120" cy="72" r="3.06" opacity="0.388"/><circle cx="144" cy="72" r="2.77" opacity="0.365"/><circle cx="168" cy="72" r="2.2" opacity="0.32"/><circle cx="192" cy="72" r="2.2" opacity="0.32"/><circle cx="216" cy="72" r="2.2" opacity="0.32"/><circle cx="24" cy="96" r="2.2" opacity="0.32"/><circle cx="48" cy="96" r="3.28" opacity="0.405"/><circle cx="72" cy="96" r="5.01" opacity="0.543"/><circle cx="96" cy="96" r="6.37" opacity="0.65"/><circle cx="120" cy="96" r="6.93" opacity="0.694"/><circle cx="144" cy="96" r="6.37" opacity="0.65"/><circle cx="168" cy="96" r="5.01" opacity="0.543"/><circle cx="192" cy="96" r="3.28" opacity="0.405"/><circle cx="216" cy="96" r="2.2" opacity="0.32"/><circle cx="24" cy="120" r="2.2" opacity="0.32"/><circle cx="48" cy="120" r="4.35" opacity="0.49"/><circle cx="72" cy="120" r="6.5" opacity="0.66"/><circle cx="96" cy="120" r="8.65" opacity="0.83"/><circle cx="120" cy="120" r="10.8" opacity="1"/><circle cx="144" cy="120" r="8.65" opacity="0.83"/><circle cx="168" cy="120" r="6.5" opacity="0.66"/><circle cx="192" cy="120" r="4.35" opacity="0.49"/><circle cx="216" cy="120" r="2.2" opacity="0.32"/><circle cx="24" cy="144" r="2.2" opacity="0.32"/><circle cx="48" cy="144" r="3.28" opacity="0.405"/><circle cx="72" cy="144" r="5.01" opacity="0.543"/><circle cx="96" cy="144" r="6.37" opacity="0.65"/><circle cx="120" cy="144" r="6.93" opacity="0.694"/><circle cx="144" cy="144" r="6.37" opacity="0.65"/><circle cx="168" cy="144" r="5.01" opacity="0.543"/><circle cx="192" cy="144" r="3.28" opacity="0.405"/><circle cx="216" cy="144" r="2.2" opacity="0.32"/><circle cx="24" cy="168" r="2.2" opacity="0.32"/><circle cx="48" cy="168" r="2.2" opacity="0.32"/><circle cx="72" cy="168" r="2.2" opacity="0.32"/><circle cx="96" cy="168" r="2.77" opacity="0.365"/><circle cx="120" cy="168" r="3.06" opacity="0.388"/><circle cx="144" cy="168" r="2.77" opacity="0.365"/><circle cx="168" cy="168" r="2.2" opacity="0.32"/><circle cx="192" cy="168" r="2.2" opacity="0.32"/><circle cx="216" cy="168" r="2.2" opacity="0.32"/><circle cx="24" cy="192" r="2.2" opacity="0.32"/><circle cx="48" cy="192" r="2.2" opacity="0.32"/><circle cx="72" cy="192" r="2.2" opacity="0.32"/><circle cx="96" cy="192" r="2.2" opacity="0.32"/><circle cx="120" cy="192" r="2.2" opacity="0.32"/><circle cx="144" cy="192" r="2.2" opacity="0.32"/><circle cx="168" cy="192" r="2.2" opacity="0.32"/><circle cx="192" cy="192" r="2.2" opacity="0.32"/><circle cx="216" cy="192" r="2.2" opacity="0.32"/></g><circle class="em-trav" cx="120" cy="120" r="10.8" fill="#F0A202"/></g></svg>
+        <svg class="em-svg" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><defs><linearGradient id="emgj351" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#10606F"/><stop offset="1" stop-color="#0A3D4A"/></linearGradient><clipPath id="emcj351"><rect width="240" height="240" rx="54"/></clipPath></defs><g clip-path="url(#emcj351)"><rect width="240" height="240" rx="54" fill="url(#emgj351)"/><circle class="em-sun" cx="120" cy="84" r="26" fill="#F4B9A7"/><path class="em-t1" d="M40 190 C92 156 148 156 200 190" fill="none" stroke-linecap="round" stroke="#EEF8F5" stroke-width="16"/><path class="em-t2" d="M56 162 C100 134 140 134 184 162" fill="none" stroke-linecap="round" stroke="#98D8D0" stroke-width="15"/><path class="em-t3" d="M74 136 C106 116 134 116 166 136" fill="none" stroke-linecap="round" stroke="#98D8D0" stroke-width="14"/></g></svg>
       </span>
       <span class="brand-txt"><b class="brand-name">MISTROVA</b><small>Where nature takes root</small></span>
     </a>
@@ -867,7 +714,7 @@
   <div class="md-head">
     <a class="brand brand-press" href="../index.html" aria-label="MISTROVA home">
       <span class="em-wrap" aria-hidden="true">
-        <svg class="em-svg" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><defs><linearGradient id="emgj352" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2C2039"/><stop offset="1" stop-color="#1A1222"/></linearGradient><clipPath id="emcj352"><rect width="240" height="240" rx="54"/></clipPath></defs><g clip-path="url(#emcj352)"><rect width="240" height="240" rx="54" fill="url(#emgj352)"/><g fill="#EFE7F2"><circle cx="24" cy="48" r="2.2" opacity="0.32"/><circle cx="48" cy="48" r="2.2" opacity="0.32"/><circle cx="72" cy="48" r="2.2" opacity="0.32"/><circle cx="96" cy="48" r="2.2" opacity="0.32"/><circle cx="120" cy="48" r="2.2" opacity="0.32"/><circle cx="144" cy="48" r="2.2" opacity="0.32"/><circle cx="168" cy="48" r="2.2" opacity="0.32"/><circle cx="192" cy="48" r="2.2" opacity="0.32"/><circle cx="216" cy="48" r="2.2" opacity="0.32"/><circle cx="24" cy="72" r="2.2" opacity="0.32"/><circle cx="48" cy="72" r="2.2" opacity="0.32"/><circle cx="72" cy="72" r="2.2" opacity="0.32"/><circle cx="96" cy="72" r="2.77" opacity="0.365"/><circle cx="120" cy="72" r="3.06" opacity="0.388"/><circle cx="144" cy="72" r="2.77" opacity="0.365"/><circle cx="168" cy="72" r="2.2" opacity="0.32"/><circle cx="192" cy="72" r="2.2" opacity="0.32"/><circle cx="216" cy="72" r="2.2" opacity="0.32"/><circle cx="24" cy="96" r="2.2" opacity="0.32"/><circle cx="48" cy="96" r="3.28" opacity="0.405"/><circle cx="72" cy="96" r="5.01" opacity="0.543"/><circle cx="96" cy="96" r="6.37" opacity="0.65"/><circle cx="120" cy="96" r="6.93" opacity="0.694"/><circle cx="144" cy="96" r="6.37" opacity="0.65"/><circle cx="168" cy="96" r="5.01" opacity="0.543"/><circle cx="192" cy="96" r="3.28" opacity="0.405"/><circle cx="216" cy="96" r="2.2" opacity="0.32"/><circle cx="24" cy="120" r="2.2" opacity="0.32"/><circle cx="48" cy="120" r="4.35" opacity="0.49"/><circle cx="72" cy="120" r="6.5" opacity="0.66"/><circle cx="96" cy="120" r="8.65" opacity="0.83"/><circle cx="120" cy="120" r="10.8" opacity="1"/><circle cx="144" cy="120" r="8.65" opacity="0.83"/><circle cx="168" cy="120" r="6.5" opacity="0.66"/><circle cx="192" cy="120" r="4.35" opacity="0.49"/><circle cx="216" cy="120" r="2.2" opacity="0.32"/><circle cx="24" cy="144" r="2.2" opacity="0.32"/><circle cx="48" cy="144" r="3.28" opacity="0.405"/><circle cx="72" cy="144" r="5.01" opacity="0.543"/><circle cx="96" cy="144" r="6.37" opacity="0.65"/><circle cx="120" cy="144" r="6.93" opacity="0.694"/><circle cx="144" cy="144" r="6.37" opacity="0.65"/><circle cx="168" cy="144" r="5.01" opacity="0.543"/><circle cx="192" cy="144" r="3.28" opacity="0.405"/><circle cx="216" cy="144" r="2.2" opacity="0.32"/><circle cx="24" cy="168" r="2.2" opacity="0.32"/><circle cx="48" cy="168" r="2.2" opacity="0.32"/><circle cx="72" cy="168" r="2.2" opacity="0.32"/><circle cx="96" cy="168" r="2.77" opacity="0.365"/><circle cx="120" cy="168" r="3.06" opacity="0.388"/><circle cx="144" cy="168" r="2.77" opacity="0.365"/><circle cx="168" cy="168" r="2.2" opacity="0.32"/><circle cx="192" cy="168" r="2.2" opacity="0.32"/><circle cx="216" cy="168" r="2.2" opacity="0.32"/><circle cx="24" cy="192" r="2.2" opacity="0.32"/><circle cx="48" cy="192" r="2.2" opacity="0.32"/><circle cx="72" cy="192" r="2.2" opacity="0.32"/><circle cx="96" cy="192" r="2.2" opacity="0.32"/><circle cx="120" cy="192" r="2.2" opacity="0.32"/><circle cx="144" cy="192" r="2.2" opacity="0.32"/><circle cx="168" cy="192" r="2.2" opacity="0.32"/><circle cx="192" cy="192" r="2.2" opacity="0.32"/><circle cx="216" cy="192" r="2.2" opacity="0.32"/></g><circle class="em-trav" cx="120" cy="120" r="10.8" fill="#F0A202"/></g></svg>
+        <svg class="em-svg" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><defs><linearGradient id="emgj352" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#10606F"/><stop offset="1" stop-color="#0A3D4A"/></linearGradient><clipPath id="emcj352"><rect width="240" height="240" rx="54"/></clipPath></defs><g clip-path="url(#emcj352)"><rect width="240" height="240" rx="54" fill="url(#emgj352)"/><circle class="em-sun" cx="120" cy="84" r="26" fill="#F4B9A7"/><path class="em-t1" d="M40 190 C92 156 148 156 200 190" fill="none" stroke-linecap="round" stroke="#EEF8F5" stroke-width="16"/><path class="em-t2" d="M56 162 C100 134 140 134 184 162" fill="none" stroke-linecap="round" stroke="#98D8D0" stroke-width="15"/><path class="em-t3" d="M74 136 C106 116 134 116 166 136" fill="none" stroke-linecap="round" stroke="#98D8D0" stroke-width="14"/></g></svg>
       </span>
       <span class="brand-txt"><b class="brand-name">MISTROVA</b><small>Where nature takes root</small></span>
     </a>
@@ -912,7 +759,23 @@
       .lb.dk{fill:#0A3D4A}
       .tick{stroke:#1D8B94;stroke-width:1;stroke-dasharray:3 3}
       .dist{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:9px;letter-spacing:.1em;fill:#2F5D66}
-    </style>
+    
+/* ===== MISTROVA emblem logo (terraces and sun) ===== */
+.em-wrap,.brand-emblem-wrap{width:46px!important;height:46px!important;flex-shrink:0;animation:none!important;transform:none!important}
+.brand-emblem-wrap::before,.em-wrap::before{display:none!important;animation:none!important}
+.em-svg,.brand-emblem-svg{width:100%!important;height:100%!important;overflow:visible;animation:none!important;transform:none!important;transition:none!important;filter:drop-shadow(0 4px 10px rgba(10,61,74,.28))!important}
+.em-t1{stroke-dasharray:171;stroke-dashoffset:171;animation:emDraw171 0.7s cubic-bezier(.25,.9,.3,1) 0.1s forwards,emHue 7.5s linear 0.9s infinite!important}
+@keyframes emDraw171{to{stroke-dashoffset:0}}
+.em-t2{stroke-dasharray:137;stroke-dashoffset:137;animation:emDraw137 0.62s cubic-bezier(.25,.9,.3,1) 0.32s forwards,emHue 7.5s linear 1.4s infinite!important}
+@keyframes emDraw137{to{stroke-dashoffset:0}}
+.em-t3{stroke-dasharray:99;stroke-dashoffset:99;animation:emDraw99 0.55s cubic-bezier(.25,.9,.3,1) 0.52s forwards,emHue 7.5s linear 1.9s infinite!important}
+@keyframes emDraw99{to{stroke-dashoffset:0}}
+@keyframes emHue{0%{stroke:#EEF8F5}25%{stroke:#98D8D0}50%{stroke:#CDEBE5}75%{stroke:#F4B9A7}100%{stroke:#EEF8F5}}
+.em-sun{transform-box:fill-box;transform-origin:center;animation:emRise 1.1s cubic-bezier(.22,.9,.3,1) .35s backwards,emDrift 9s ease-in-out 1.45s infinite!important}
+@keyframes emRise{from{transform:translateY(34px) scale(.55);opacity:0}to{transform:translateY(0) scale(1);opacity:1}}
+@keyframes emDrift{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-4px) scale(1.05)}}
+@media (prefers-reduced-motion:reduce){.em-t1,.em-t2,.em-t3{animation:none!important;stroke-dashoffset:0!important}.em-sun{animation:none!important;transform:none!important;opacity:1!important}}
+</style>
   </defs>
   <circle cx="360" cy="238" r="150" fill="none" stroke="#98D8D0" stroke-width="1" stroke-dasharray="2 6" opacity=".7"/>
   <path class="rd" d="M360 238 L411 97"/>
