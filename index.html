@@ -2001,6 +2001,62 @@ nav.desktop-nav .nav-link.is-current::after { content: ""; position: absolute; l
 @keyframes emTrav{0%{transform:translate(0px,0px) scale(1)}10%{transform:translate(-24px,-24px) scale(0.5898)}20%{transform:translate(0px,-24px) scale(0.6417)}30%{transform:translate(24px,-24px) scale(0.5898)}40%{transform:translate(48px,0px) scale(0.6019)}50%{transform:translate(24px,24px) scale(0.5898)}60%{transform:translate(0px,24px) scale(0.6417)}70%{transform:translate(-24px,24px) scale(0.5898)}80%{transform:translate(-48px,0px) scale(0.6019)}90%{transform:translate(-24px,0px) scale(0.8009)}100%{transform:translate(0px,0px) scale(1)}}
 @media (prefers-reduced-motion:reduce){.em-trav{animation:none!important}}
 
+
+/* ===== Agriculture: the topic tiles become app icons on phones =====
+   Spec from Apple's Human Interface Guidelines (app icons): a square tile
+   masked to a concentric rounded rectangle, one simple centred glyph, no
+   text inside the icon (the label sits beneath it), and no hairline strokes,
+   which lose crispness at icon size. Four across, as the iOS Home Screen is.
+   Markup and links are untouched; this is presentation only. */
+@media (max-width:640px){
+  .agri-pages-row{
+    display:grid!important;
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+    column-gap:.55rem;row-gap:1.15rem;
+    overflow:visible!important;scroll-snap-type:none!important;
+    margin-inline:0!important;padding-inline:.1rem!important;padding-bottom:0!important}
+  .agri-pages-hint{display:none!important}          /* nothing scrolls now */
+
+  /* the tile is the icon: no card chrome, so no card inside a card */
+  .agri-page-card{
+    flex:none!important;scroll-snap-align:none!important;
+    display:flex!important;flex-direction:column;align-items:center;
+    gap:.45rem;padding:0!important;min-width:0;
+    background:none!important;border:0!important;box-shadow:none!important;
+    backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+    border-radius:0!important;
+    transition:transform .18s cubic-bezier(.22,1,.36,1),opacity .18s ease}
+  .agri-page-card:active{transform:scale(.93);opacity:.85}
+  .agri-page-card:hover,.agri-page-card:focus-visible{transform:none;background:none!important}
+  .agri-page-card:focus-visible{outline:none}
+  .agri-page-card:focus-visible .apc-ico{
+    outline:2px solid var(--aqua,#98D8D0);outline-offset:3px}
+
+  /* the icon itself: square, concentric radius, one centred glyph */
+  .agri-page-card .apc-ico{
+    width:100%;aspect-ratio:1;height:auto;display:grid;place-items:center;
+    border-radius:22%;
+    background:linear-gradient(165deg,#2F7D82 0%,#10606F 62%,#0A3D4A 100%);
+    border:0;box-shadow:inset 0 1px 0 rgba(255,255,255,.22),
+      0 6px 14px -8px rgba(4,34,43,.7);
+    color:#EAF7F4}
+  .agri-page-card .apc-ico svg{
+    width:46%;height:46%;stroke-width:1.9;stroke:currentColor;fill:none}
+
+  /* the label lives under the icon, in the body face, sentence case */
+  .agri-page-card .apc-t{
+    font-family:var(--sans,'Plus Jakarta Sans',system-ui,sans-serif);
+    font-size:.66rem;line-height:1.22;font-weight:600;letter-spacing:0;
+    text-transform:none;text-align:center;color:#EAF7F4;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
+    overflow:hidden;overflow-wrap:break-word;min-width:0;text-wrap:balance}
+  /* an app icon carries no strapline and no arrow */
+  .agri-page-card .apc-s,.agri-page-card .apc-go{display:none!important}
+}
+@media (max-width:640px) and (prefers-reduced-motion:reduce){
+  .agri-page-card{transition:none}
+  .agri-page-card:active{transform:none}
+}
 </style>
 
 
@@ -3592,20 +3648,20 @@ nav.desktop-nav .nav-link.is-current::after { content: ""; position: absolute; l
     (function initTownsCarousel() {
   const townsData = [
     { id: "kalpetta", name: "Kalpetta", region: "District HQ • Central Hub", elevation: "780m", image: "https://aftertherains.in/blog/wp-content/uploads/2022/08/Mountains-of-Wayanad-in-Kerala.png" },
-    { id: "bathery", name: "Sulthan Bathery", region: "Eastern Gate • Historic Hub", elevation: "930m", image: "https://www.mywayanad.com/wp-content/uploads/2022/08/Banasura-Sagar-Dam-3-Wayanad.jpg" },
+    { id: "bathery", name: "Sulthan Bathery", region: "Eastern Gate • Historic Hub", elevation: "901m", image: "https://www.mywayanad.com/wp-content/uploads/2022/08/Banasura-Sagar-Dam-3-Wayanad.jpg" },
     { id: "mananthavady", name: "Mananthavady", region: "Northern Gateway • Kabini River", elevation: "760m", image: "https://m.economictimes.com/thumb/height-450,width-600,imgsize-295184,msid-131986094/monsoon.jpg" },
     { id: "vythiri", name: "Vythiri", region: "Rainforest Ridge • Cloud Belt", elevation: "700m", image: "https://pinaak-prod.s3.ap-south-1.amazonaws.com/experiences/6a3bef31cbdb9f98b4a72d62/images/original_1782312754601136314.jpg" },
     { id: "meppadi", name: "Meppadi", region: "Chembra Foothills • Tea Zone", elevation: "1,100m", image: "https://aftertherains.in/blog/wp-content/uploads/2022/08/Mountains-of-Wayanad-in-Kerala.png" },
     { id: "ambalavayal", name: "Ambalavayal", region: "Agri Research Base • Edakkal", elevation: "980m", image: "https://www.mywayanad.com/wp-content/uploads/2022/08/Banasura-Sagar-Dam-3-Wayanad.jpg" },
-    { id: "pulpally", name: "Pulpally", region: "Eastern Forest Settlement", elevation: "840m", image: "https://m.economictimes.com/thumb/height-450,width-600,imgsize-295184,msid-131986094/monsoon.jpg" },
-    { id: "panamaram", name: "Panamaram", region: "River Confluence • Transit", elevation: "740m", image: "https://aftertherains.in/blog/wp-content/uploads/2022/08/Mountains-of-Wayanad-in-Kerala.png" },
+    { id: "pulpally", name: "Pulpally", region: "Eastern Forest Settlement", elevation: "742m", image: "https://m.economictimes.com/thumb/height-450,width-600,imgsize-295184,msid-131986094/monsoon.jpg" },
+    { id: "panamaram", name: "Panamaram", region: "River Confluence • Transit", elevation: "760m", image: "https://aftertherains.in/blog/wp-content/uploads/2022/08/Mountains-of-Wayanad-in-Kerala.png" },
     { id: "padinjarathara", name: "Padinjarathara", region: "Banasura Sagar Dam Base", elevation: "820m", image: "https://www.mywayanad.com/wp-content/uploads/2022/08/Banasura-Sagar-Dam-3-Wayanad.jpg" },
-    { id: "meenangadi", name: "Meenangadi", region: "Carbon Neutral Mission • Spice", elevation: "860m", image: "https://pinaak-prod.s3.ap-south-1.amazonaws.com/experiences/6a3bef31cbdb9f98b4a72d62/images/original_1782312754601136314.jpg" },
-    { id: "thirunelly", name: "Thirunelly", region: "Brahmagiri Valley • Forest Temple", elevation: "900m", image: "https://m.economictimes.com/thumb/height-450,width-600,imgsize-295184,msid-131986094/monsoon.jpg" },
-    { id: "lakkidi", name: "Lakkidi", region: "Gateway of Wayanad • Ghat Pass", elevation: "1,250m", image: "https://aftertherains.in/blog/wp-content/uploads/2022/08/Mountains-of-Wayanad-in-Kerala.png" },
+    { id: "meenangadi", name: "Meenangadi", region: "Carbon Neutral Mission • Spice", elevation: "773m", image: "https://pinaak-prod.s3.ap-south-1.amazonaws.com/experiences/6a3bef31cbdb9f98b4a72d62/images/original_1782312754601136314.jpg" },
+    { id: "thirunelly", name: "Thirunelly", region: "Brahmagiri Valley • Forest Temple", elevation: "890m", image: "https://m.economictimes.com/thumb/height-450,width-600,imgsize-295184,msid-131986094/monsoon.jpg" },
+    { id: "lakkidi", name: "Lakkidi", region: "Gateway of Wayanad • Ghat Pass", elevation: "700m", image: "https://aftertherains.in/blog/wp-content/uploads/2022/08/Mountains-of-Wayanad-in-Kerala.png" },
     { id: "vaduvanchal", name: "Vaduvanchal", region: "Sunrise Valley • Chaliyar Gorge", elevation: "950m", image: "https://www.mywayanad.com/wp-content/uploads/2022/08/Banasura-Sagar-Dam-3-Wayanad.jpg" },
     { id: "pozhuthana", name: "Pozhuthana", region: "Sugandhagiri • Bamboo Rafting", elevation: "880m", image: "https://pinaak-prod.s3.ap-south-1.amazonaws.com/experiences/6a3bef31cbdb9f98b4a72d62/images/original_1782312754601136314.jpg" },
-    { id: "muttil", name: "Muttil", region: "Karapuzha Basin • Coffee Ridge", elevation: "800m", image: "https://m.economictimes.com/thumb/height-450,width-600,imgsize-295184,msid-131986094/monsoon.jpg" },
+    { id: "muttil", name: "Muttil", region: "Karapuzha Basin • Coffee Ridge", elevation: "750m", image: "https://m.economictimes.com/thumb/height-450,width-600,imgsize-295184,msid-131986094/monsoon.jpg" },
     { id: "nadavayal", name: "Nadavayal", region: "Heritage Crossway • Farmland", elevation: "780m", image: "https://aftertherains.in/blog/wp-content/uploads/2022/08/Mountains-of-Wayanad-in-Kerala.png" },
     { id: "kenichira", name: "Kenichira", region: "Robusta Heartland • Plantation", elevation: "810m", image: "https://www.mywayanad.com/wp-content/uploads/2022/08/Banasura-Sagar-Dam-3-Wayanad.jpg" },
     { id: "thrikkaipetta", name: "Thrikkaipetta", region: "Uravu Eco Bamboo Village", elevation: "790m", image: "https://pinaak-prod.s3.ap-south-1.amazonaws.com/experiences/6a3bef31cbdb9f98b4a72d62/images/original_1782312754601136314.jpg" }
