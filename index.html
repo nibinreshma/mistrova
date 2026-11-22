@@ -2002,56 +2002,59 @@ nav.desktop-nav .nav-link.is-current::after { content: ""; position: absolute; l
 @media (prefers-reduced-motion:reduce){.em-trav{animation:none!important}}
 
 
-/* ===== Agriculture: the topic tiles become app icons on phones =====
-   Spec from Apple's Human Interface Guidelines (app icons): a square tile
-   masked to a concentric rounded rectangle, one simple centred glyph, no
-   text inside the icon (the label sits beneath it), and no hairline strokes,
-   which lose crispness at icon size. Four across, as the iOS Home Screen is.
-   Markup and links are untouched; this is presentation only. */
+/* ===== Agriculture: the topic tiles as mobile app icons on phones =====
+   Matched to the site's own HUD app icons (Weather / Traffic / SOS) rather
+   than an iOS squircle: a tinted card, a 36px rounded chip inside it, and an
+   uppercase label beneath. Four across so seven tiles fill two rows without
+   leaving one alone on the last. Markup and links are untouched. */
 @media (max-width:640px){
   .agri-pages-row{
     display:grid!important;
     grid-template-columns:repeat(4,minmax(0,1fr))!important;
-    column-gap:.55rem;row-gap:1.15rem;
+    column-gap:.5rem;row-gap:.7rem;
     overflow:visible!important;scroll-snap-type:none!important;
     margin-inline:0!important;padding-inline:.1rem!important;padding-bottom:0!important}
   .agri-pages-hint{display:none!important}          /* nothing scrolls now */
 
-  /* the tile is the icon: no card chrome, so no card inside a card */
   .agri-page-card{
     flex:none!important;scroll-snap-align:none!important;
     display:flex!important;flex-direction:column;align-items:center;
-    gap:.45rem;padding:0!important;min-width:0;
-    background:none!important;border:0!important;box-shadow:none!important;
+    justify-content:flex-start;gap:.25rem;min-width:0;
+    padding:.6rem .3rem!important;border-radius:16px!important;
+    background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,0) 55%),#4E9BA0!important;
+    border:1.5px solid rgba(255,255,255,.35)!important;
+    box-shadow:none!important;
     backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
-    border-radius:0!important;
-    transition:transform .18s cubic-bezier(.22,1,.36,1),opacity .18s ease}
-  .agri-page-card:active{transform:scale(.93);opacity:.85}
-  .agri-page-card:hover,.agri-page-card:focus-visible{transform:none;background:none!important}
-  .agri-page-card:focus-visible{outline:none}
-  .agri-page-card:focus-visible .apc-ico{
-    outline:2px solid var(--aqua,#98D8D0);outline-offset:3px}
+    transition:transform .2s cubic-bezier(.22,1,.36,1),background .2s ease}
+  .agri-page-card:active{transform:scale(.95)}
+  .agri-page-card:hover,.agri-page-card:focus-visible{
+    transform:none;
+    background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,0) 55%),#10606F!important}
+  .agri-page-card:focus-visible{outline:2px solid #EAF7F4;outline-offset:2px}
 
-  /* the icon itself: square, concentric radius, one centred glyph */
+  /* the chip, at the HUD's own size and radius */
   .agri-page-card .apc-ico{
-    width:100%;aspect-ratio:1;height:auto;display:grid;place-items:center;
-    border-radius:22%;
-    background:linear-gradient(165deg,#2F7D82 0%,#10606F 62%,#0A3D4A 100%);
-    border:0;box-shadow:inset 0 1px 0 rgba(255,255,255,.22),
-      0 6px 14px -8px rgba(4,34,43,.7);
-    color:#EAF7F4}
-  .agri-page-card .apc-ico svg{
-    width:46%;height:46%;stroke-width:1.9;stroke:currentColor;fill:none}
+    display:flex!important;align-items:center;justify-content:center;
+    width:36px!important;height:36px!important;flex:0 0 36px;
+    border-radius:10px!important;margin-bottom:3px;
+    background:rgba(255,255,255,.16)!important;
+    border:0;box-shadow:none;color:#EAF7F4!important}
+  .agri-page-card .apc-ico svg{width:19px;height:19px;stroke-width:2;stroke:currentColor;fill:none}
 
-  /* the label lives under the icon, in the body face, sentence case */
+  /* the label, in the HUD's own type */
   .agri-page-card .apc-t{
     font-family:var(--sans,'Plus Jakarta Sans',system-ui,sans-serif);
-    font-size:.66rem;line-height:1.22;font-weight:600;letter-spacing:0;
-    text-transform:none;text-align:center;color:#EAF7F4;
+    font-size:.58rem;line-height:1.2;font-weight:800;letter-spacing:.03em;
+    text-transform:uppercase;text-align:center;color:#EAF7F4;
     display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
-    overflow:hidden;overflow-wrap:break-word;min-width:0;text-wrap:balance}
+    overflow:hidden;overflow-wrap:break-word;min-width:0}
   /* an app icon carries no strapline and no arrow */
   .agri-page-card .apc-s,.agri-page-card .apc-go{display:none!important}
+}
+@media (max-width:360px){
+  /* a third line rather than an ellipsis on the longest labels */
+  .agri-page-card .apc-t{-webkit-line-clamp:3;font-size:.55rem}
+  .agri-pages-row{column-gap:.4rem}
 }
 @media (max-width:640px) and (prefers-reduced-motion:reduce){
   .agri-page-card{transition:none}
