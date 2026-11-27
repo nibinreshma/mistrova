@@ -4,47 +4,92 @@
   "ascent": {
     "from": "Thamarassery",
     "to": "Vythiri",
-    "lengthKm": 30.6,
-    "travelMin": 55,
-    "freeFlowMin": 55,
+    "lengthKm": 30.7,
+    "travelMin": 59,
+    "freeFlowMin": 59,
     "delayMin": 0,
-    "avgSpeedKmh": 33.5,
+    "avgSpeedKmh": 31.2,
     "sections": []
   },
   "descent": {
     "from": "Vythiri",
     "to": "Thamarassery",
     "lengthKm": 30.6,
-    "travelMin": 52,
-    "freeFlowMin": 52,
+    "travelMin": 62,
+    "freeFlowMin": 62,
     "delayMin": 0,
-    "avgSpeedKmh": 35.2,
+    "avgSpeedKmh": 29.6,
     "sections": []
   },
-  "updated": "2026-11-27T03:04:39.238Z",
-  "incidents": [],
-  "incidentsChecked": "2026-11-27T03:04:39.262Z",
+  "updated": "2026-11-27T12:20:42.394Z",
+  "incidents": [
+    {
+      "type": "Traffic jam",
+      "description": "Stationary traffic",
+      "magnitude": "major",
+      "delayMin": 4,
+      "road": "NH766, SH29",
+      "fromTo": "Vavad → Vattoli Road",
+      "where": "near Thamarassery town",
+      "start": "2026-11-27T11:57:15Z",
+      "end": "2026-11-27T12:43:45Z"
+    },
+    {
+      "type": "Traffic jam",
+      "description": "Stationary traffic",
+      "magnitude": "major",
+      "delayMin": 10,
+      "road": "SH28",
+      "fromTo": "Vazhikkadavu → Vazhikkadavu",
+      "where": "at 11.386, 76.359",
+      "start": "2026-11-27T12:06:45Z",
+      "end": "2026-11-27T12:45:45Z"
+    },
+    {
+      "type": "Traffic jam",
+      "description": "Queuing traffic",
+      "magnitude": "moderate",
+      "delayMin": 8,
+      "road": "NH766",
+      "fromTo": "Raheem Memorial Road → Kuppadi",
+      "where": "near Sulthan Bathery",
+      "start": "2026-11-27T12:05:45Z",
+      "end": "2026-11-27T12:49:45Z"
+    },
+    {
+      "type": "Traffic jam",
+      "description": "Slow traffic",
+      "magnitude": "minor",
+      "delayMin": 5,
+      "road": "NH766, SH29",
+      "fromTo": "Vattoli Road → Koyilandi Thamarassery Road",
+      "where": "near Thamarassery town",
+      "start": "2026-11-27T12:04:45Z",
+      "end": "2026-11-27T12:44:45Z"
+    }
+  ],
+  "incidentsChecked": "2026-11-27T12:20:42.412Z",
   "corridors": {
     "ghat": {
       "label": "Thamarassery Churam Pass (NH 766)",
       "ascent": {
         "from": "Thamarassery",
         "to": "Vythiri",
-        "lengthKm": 30.6,
-        "travelMin": 55,
-        "freeFlowMin": 55,
+        "lengthKm": 30.7,
+        "travelMin": 59,
+        "freeFlowMin": 59,
         "delayMin": 0,
-        "avgSpeedKmh": 33.5,
+        "avgSpeedKmh": 31.2,
         "sections": []
       },
       "descent": {
         "from": "Vythiri",
         "to": "Thamarassery",
         "lengthKm": 30.6,
-        "travelMin": 52,
-        "freeFlowMin": 52,
+        "travelMin": 62,
+        "freeFlowMin": 62,
         "delayMin": 0,
-        "avgSpeedKmh": 35.2,
+        "avgSpeedKmh": 29.6,
         "sections": []
       }
     },
@@ -53,21 +98,21 @@
       "ascent": {
         "from": "Thamarassery",
         "to": "Muthanga",
-        "lengthKm": 84.5,
-        "travelMin": 183,
-        "freeFlowMin": 183,
+        "lengthKm": 84.7,
+        "travelMin": 197,
+        "freeFlowMin": 197,
         "delayMin": 0,
-        "avgSpeedKmh": 27.7,
+        "avgSpeedKmh": 25.8,
         "sections": []
       },
       "descent": {
         "from": "Muthanga",
         "to": "Thamarassery",
         "lengthKm": 84.5,
-        "travelMin": 188,
-        "freeFlowMin": 188,
+        "travelMin": 200,
+        "freeFlowMin": 200,
         "delayMin": 0,
-        "avgSpeedKmh": 27,
+        "avgSpeedKmh": 25.3,
         "sections": []
       }
     }
