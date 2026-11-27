@@ -1,20 +1,7 @@
 {
-  "updated": "2026-11-27T12:20:41.833Z",
+  "updated": "2026-11-27T21:32:28.457Z",
   "officialFeed": "ok",
   "alerts": [
-    {
-      "id": "IN-1795778494084006_6",
-      "source": "official",
-      "level": "critical",
-      "category": "MODERATE THUNDERSTORMS",
-      "title": "Moderate Thunderstorm with Moderate rainfall (5-15mm/ hour) and wind speed likely to be 50 Kmph (in Gusts) at one or two places over Kozhikode, Wayanad  Kannur districts in next 3 hours.",
-      "detail": "Please follow SDMA guidelines.",
-      "area": "Kannur,Kozhikode,Wayanad districts of Kerala",
-      "issued": "2026-11-27T11:28:14.000Z",
-      "expires": "2026-11-27T14:19:00.000Z",
-      "author": "controlroom@ndma.gov.in (IMD Thiruvananthapuram)",
-      "link": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1795778494084006"
-    },
     {
       "id": "local-nh766-night",
       "level": "critical",
