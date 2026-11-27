@@ -5,25 +5,25 @@
     "from": "Thamarassery",
     "to": "Vythiri",
     "lengthKm": 30.6,
-    "travelMin": 52,
-    "freeFlowMin": 52,
+    "travelMin": 55,
+    "freeFlowMin": 55,
     "delayMin": 0,
-    "avgSpeedKmh": 35.6,
+    "avgSpeedKmh": 33.5,
     "sections": []
   },
   "descent": {
     "from": "Vythiri",
     "to": "Thamarassery",
     "lengthKm": 30.6,
-    "travelMin": 48,
-    "freeFlowMin": 48,
+    "travelMin": 52,
+    "freeFlowMin": 52,
     "delayMin": 0,
-    "avgSpeedKmh": 38.3,
+    "avgSpeedKmh": 35.2,
     "sections": []
   },
-  "updated": "2026-11-26T20:24:29.062Z",
+  "updated": "2026-11-27T03:04:39.238Z",
   "incidents": [],
-  "incidentsChecked": "2026-11-26T20:24:29.079Z",
+  "incidentsChecked": "2026-11-27T03:04:39.262Z",
   "corridors": {
     "ghat": {
       "label": "Thamarassery Churam Pass (NH 766)",
@@ -31,20 +31,20 @@
         "from": "Thamarassery",
         "to": "Vythiri",
         "lengthKm": 30.6,
-        "travelMin": 52,
-        "freeFlowMin": 52,
+        "travelMin": 55,
+        "freeFlowMin": 55,
         "delayMin": 0,
-        "avgSpeedKmh": 35.6,
+        "avgSpeedKmh": 33.5,
         "sections": []
       },
       "descent": {
         "from": "Vythiri",
         "to": "Thamarassery",
         "lengthKm": 30.6,
-        "travelMin": 48,
-        "freeFlowMin": 48,
+        "travelMin": 52,
+        "freeFlowMin": 52,
         "delayMin": 0,
-        "avgSpeedKmh": 38.3,
+        "avgSpeedKmh": 35.2,
         "sections": []
       }
     },
@@ -54,20 +54,20 @@
         "from": "Thamarassery",
         "to": "Muthanga",
         "lengthKm": 84.5,
-        "travelMin": 164,
-        "freeFlowMin": 164,
+        "travelMin": 183,
+        "freeFlowMin": 183,
         "delayMin": 0,
-        "avgSpeedKmh": 31,
+        "avgSpeedKmh": 27.7,
         "sections": []
       },
       "descent": {
         "from": "Muthanga",
         "to": "Thamarassery",
         "lengthKm": 84.5,
-        "travelMin": 169,
-        "freeFlowMin": 169,
+        "travelMin": 188,
+        "freeFlowMin": 188,
         "delayMin": 0,
-        "avgSpeedKmh": 30,
+        "avgSpeedKmh": 27,
         "sections": []
       }
     }
